@@ -3,6 +3,7 @@ package com.example.dsublett.monsterfetch
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.*
@@ -18,7 +19,9 @@ class MainActivity : AppCompatActivity() {
             AsyncTaskExample(this).execute()
         }
     }
-
+    fun clearBtn(view: View) {
+        responseTextView.text = null
+    }
 }
 
 class AsyncTaskExample(private var activity: MainActivity?) : AsyncTask<String, String, String>() {
