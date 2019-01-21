@@ -2,6 +2,6 @@
     <string name="app_name">Monster Fetch</string>
     <string name="fetch">Fetch</string>
     <string name="clear">clear</string>
-    <string name="update_view">update_view</string>
-    <string name="update_data">update_data</string>
+    <string name="update_view">update view</string>
+    <string name="update_data">update data</string>
 </resources>

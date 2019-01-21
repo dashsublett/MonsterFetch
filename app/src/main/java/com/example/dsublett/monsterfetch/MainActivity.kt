@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.squareup.moshi.Moshi
-import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URL
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-    var monsters: ArrayList<String> = ArrayList() // Data set for recycler view
+private class MainActivity : AppCompatActivity() {
+    private val monsters: ArrayList<String> = ArrayList() // Data set for recycler view
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,10 @@ class MainActivity : AppCompatActivity() {
     }
     fun updateDataSet(view: View) {
         // Asynchronously retrieve list of monsters, parse into List, add to data set
-        UpdateMonsterList(this).execute()
+        UpdateMonsterList(this.monsters).execute()
+    }
+    fun clearDataSet(view: View) {
+        ClearMonsterList(this.monsters).execute()
     }
     fun updateView(view: View) {
         // Notify view that data set changed
@@ -28,10 +31,11 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-class UpdateMonsterList(val activity: MainActivity)
+private class UpdateMonsterList(val monsterList: ArrayList<String>)
     : AsyncTask<String, String, ArrayList<String>>() {
     private val moshi = Moshi.Builder().build()
     private val responseAdapter = moshi.adapter(Response::class.java)
+
     override fun doInBackground(vararg p0: String?): ArrayList<String> {
         // Return ArrayList populated with monster names
         val retList = ArrayList<String>()
@@ -47,9 +51,12 @@ class UpdateMonsterList(val activity: MainActivity)
     override fun onPostExecute(result: ArrayList<String>) {
         // Add all monsters from ArrayList to data set
         super.onPostExecute(result)
-        activity.monsters.addAll(result)
+        monsterList.addAll(result)
     }
 }
 
-data class Response(val count: Int, val results: List<Monster>)
-data class Monster(val name: String, val url: String)
+private class ClearMonsterList(val monsterList: ArrayList<String>) : AsyncTask<Void, Unit, Unit>() {
+    override fun doInBackground(vararg p0: Void) {
+        monsterList.clear()
+    }
+}
