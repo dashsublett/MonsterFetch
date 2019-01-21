@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.monster_list_item.view.*
 
-class MonsterAdapter(val items: ArrayList<String>, val context: Context)
+class MonsterAdapter(val items: List<Monster>, val context: Context)
     : RecyclerView.Adapter<ViewHolder>() {
     override fun getItemCount(): Int {
         return items.size
@@ -20,7 +20,7 @@ class MonsterAdapter(val items: ArrayList<String>, val context: Context)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Bind monster name to text view
-        holder.tvMonsterType?.text = items[position]
+        holder.tvMonsterType?.text = items[position].name
     }
 }
 
