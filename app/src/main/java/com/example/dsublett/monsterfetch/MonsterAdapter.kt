@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.monster_list_item.view.*
 
-class MonsterAdapter(val items: List<Monster>, val context: Context)
+class MonsterAdapter(val context: Context)
     : RecyclerView.Adapter<ViewHolder>() {
+    val monsters = mutableListOf<Monster>() // Data set for recycler view
     override fun getItemCount(): Int {
-        return items.size
+        return monsters.size
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Create the view holder
@@ -20,7 +21,7 @@ class MonsterAdapter(val items: List<Monster>, val context: Context)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Bind monster name to text view
-        holder.tvMonsterType?.text = items[position].name
+        holder.tvMonsterType?.text = monsters[position].name
     }
 }
 

@@ -10,20 +10,18 @@ import java.net.URL
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private val monsters = mutableListOf<Monster>() // Data set for recycler view
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         this.rvMonsterList.layoutManager = LinearLayoutManager(this)
-        this.rvMonsterList.adapter = MonsterAdapter(monsters, this)
+        this.rvMonsterList.adapter = MonsterAdapter(this)
     }
     fun updateDataSet(view: View) {
         // Asynchronously retrieve list of monsters, parse into List, add to data set
-        UpdateMonsterList(this.monsters).execute()
+        UpdateMonsterList(this.rvMonsterList.adapter as MonsterAdapter).execute()
     }
     fun clearDataSet(view: View) {
-        (monsters as? ArrayList)?.clear()
+        (this.rvMonsterList.adapter as MonsterAdapter).monsters.clear()
         this.rvMonsterList.adapter?.notifyDataSetChanged()
     }
     fun updateView(view: View) {
@@ -32,8 +30,9 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-private class UpdateMonsterList(val monsterList: List<Monster>)
+private class UpdateMonsterList(adapter: MonsterAdapter)
     : AsyncTask<Unit, Unit, List<Monster>>() {
+    private val adapterRef = adapter
     private val moshi = Moshi.Builder().build()
     private val responseAdapter = moshi.adapter(Response::class.java)
 
@@ -54,6 +53,6 @@ private class UpdateMonsterList(val monsterList: List<Monster>)
     override fun onPostExecute(result: List<Monster>) {
         // Add all monsters from ArrayList to data set
         super.onPostExecute(result)
-        (monsterList as? ArrayList)?.addAll(result)
+        (adapterRef.monsters).addAll(result)
     }
 }
