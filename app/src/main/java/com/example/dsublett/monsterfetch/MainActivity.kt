@@ -15,10 +15,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         this.rvMonsterList.layoutManager = LinearLayoutManager(this)
         this.rvMonsterList.adapter = MonsterAdapter(this)
+        this.progressBar.visibility = View.INVISIBLE
     }
     fun updateDataSet(view: View) {
         // Asynchronously retrieve list of monsters, parse into List, add to data set
         UpdateMonsterList(this.rvMonsterList.adapter as MonsterAdapter).execute()
+        this.progressBar.visibility = View.VISIBLE
     }
     fun clearDataSet(view: View) {
         (this.rvMonsterList.adapter as MonsterAdapter).monsters.clear()
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     fun updateView(view: View) {
         // Notify view that data set changed
         this.rvMonsterList.adapter?.notifyDataSetChanged()
+        this.progressBar.visibility = View.INVISIBLE
     }
 }
 
