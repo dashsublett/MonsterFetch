@@ -19,23 +19,26 @@ class MainActivity : AppCompatActivity() {
     }
     fun updateDataSet(view: View) {
         // Asynchronously retrieve list of monsters, parse into List, add to data set
-        UpdateMonsterList(this.rvMonsterList.adapter as MonsterAdapter).execute()
+        UpdateMonsterList(
+                this.rvMonsterList.adapter as MonsterAdapter,
+                { ml1, ml2 -> (ml1 as MutableList).addAll(ml2) },
+                {
+                    this.rvMonsterList.adapter?.notifyDataSetChanged()
+                    this.progressBar.visibility = View.INVISIBLE
+                }
+        ).execute()
         this.progressBar.visibility = View.VISIBLE
     }
     fun clearDataSet(view: View) {
         (this.rvMonsterList.adapter as MonsterAdapter).monsters.clear()
         this.rvMonsterList.adapter?.notifyDataSetChanged()
     }
-    fun updateView(view: View) {
-        // Notify view that data set changed
-        this.rvMonsterList.adapter?.notifyDataSetChanged()
-        this.progressBar.visibility = View.INVISIBLE
-    }
 }
 
-private class UpdateMonsterList(adapter: MonsterAdapter)
+private class UpdateMonsterList(private val adapterRef: MonsterAdapter,
+                                val addMonsterCallback: ((l1: List<Monster>, l2: List<Monster>) -> Unit),
+                                val updateViewCallback: (() -> Unit))
     : AsyncTask<Unit, Unit, List<Monster>>() {
-    private val adapterRef = adapter
     private val moshi = Moshi.Builder().build()
     private val responseAdapter = moshi.adapter(Response::class.java)
 
@@ -56,6 +59,7 @@ private class UpdateMonsterList(adapter: MonsterAdapter)
     override fun onPostExecute(result: List<Monster>) {
         // Add all monsters from ArrayList to data set
         super.onPostExecute(result)
-        (adapterRef.monsters).addAll(result)
+        addMonsterCallback(adapterRef.monsters, result)
+        updateViewCallback()
     }
 }
