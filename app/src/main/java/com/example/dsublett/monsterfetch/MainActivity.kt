@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         this.rvMonsterList.adapter = MonsterAdapter(this)
     }
     fun fetchMonsters(view: View) {
-        this.progressBar.visibility = View.VISIBLE
         // Asynchronously retrieve list of monsters, parse into List, add to data set
         UpdateMonsterList { ml ->
             val parsedResponse = Moshi
@@ -33,18 +32,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }.execute()
-        this.rvMonsterList.adapter?.notifyDataSetChanged()
-        this.progressBar.visibility = View.INVISIBLE
     }
     fun clearDataSet(view: View) {
         MonsterAdapter.monsters.clear()
         this.rvMonsterList.adapter?.notifyDataSetChanged()
     }
-}
-
-private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
-    : AsyncTask<Unit, Unit, Unit>() {
-    override fun doInBackground(vararg p0: Unit) {
-        callback(MonsterAdapter.monsters)
+    inner class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
+        : AsyncTask<Unit, Unit, Unit>() {
+        override fun onPreExecute() {
+            super.onPreExecute()
+            progressBar.visibility = View.VISIBLE
+        }
+        override fun doInBackground(vararg p0: Unit) {
+            callback(MonsterAdapter.monsters)
+        }
+        override fun onPostExecute(result: Unit?) {
+            super.onPostExecute(result)
+            rvMonsterList.adapter?.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+        }
     }
 }
+
