@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     }
     fun fetchMonsters(view: View) {
         this.progressBar.visibility = View.VISIBLE
-        // Asynchronously retrieve list of monsters, parse into List, add to data set
         UpdateMonsterList{ ml ->
             (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters = ml.toMutableList()
             this.progressBar.visibility = View.INVISIBLE
