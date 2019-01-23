@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         this.rvMonsterList.adapter = MonsterAdapter(this)
         this.progressBar.visibility = View.INVISIBLE
     }
-    fun updateDataSet(view: View) {
+    fun fetchMonsters(view: View) {
         // Asynchronously retrieve list of monsters, parse into List, add to data set
         UpdateMonsterList(
                 this.rvMonsterList.adapter as MonsterAdapter,
