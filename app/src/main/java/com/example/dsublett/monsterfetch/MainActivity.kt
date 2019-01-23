@@ -17,40 +17,33 @@ class MainActivity : AppCompatActivity() {
         this.rvMonsterList.adapter = MonsterAdapter(this)
     }
     fun fetchMonsters(view: View) {
+        this.progressBar.visibility = View.VISIBLE
         // Asynchronously retrieve list of monsters, parse into List, add to data set
-        UpdateMonsterList { ml ->
-            val parsedResponse = Moshi
-                    .Builder()
-                    .build()
-                    .adapter(Response::class.java)
-                    .fromJson(URL("http://www.dnd5eapi.co/api/monsters").readText())
-            val monsterList = parsedResponse?.results
-            val monsterIt: Iterator<Monster>? = monsterList?.iterator()
-            if (monsterIt != null) {
-                while (monsterIt.hasNext()) {
-                    (ml as MutableList).add(monsterIt.next())
-                }
-            }
+        UpdateMonsterList{ ml ->
+            (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters = ml.toMutableList()
+            this.rvMonsterList.adapter?.notifyDataSetChanged()
+            this.progressBar.visibility = View.INVISIBLE
         }.execute()
     }
     fun clearDataSet(view: View) {
-        MonsterAdapter.monsters.clear()
+        (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters?.clear()
         this.rvMonsterList.adapter?.notifyDataSetChanged()
     }
-    inner class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
-        : AsyncTask<Unit, Unit, Unit>() {
-        override fun onPreExecute() {
-            super.onPreExecute()
-            progressBar.visibility = View.VISIBLE
-        }
-        override fun doInBackground(vararg p0: Unit) {
-            callback(MonsterAdapter.monsters)
-        }
-        override fun onPostExecute(result: Unit?) {
-            super.onPostExecute(result)
-            rvMonsterList.adapter?.notifyDataSetChanged()
-            progressBar.visibility = View.GONE
-        }
+}
+private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
+    : AsyncTask<Unit, Unit, List<Monster>>() {
+    override fun doInBackground(vararg p0: Unit): List<Monster> {
+        val parsedResponse = Moshi
+                .Builder()
+                .build()
+                .adapter(Response::class.java)
+                .fromJson(URL("http://www.dnd5eapi.co/api/monsters").readText())
+        val monsterList = parsedResponse?.results
+        return monsterList ?: emptyList()
+    }
+    override fun onPostExecute(result: List<Monster>) {
+        super.onPostExecute(result)
+        callback(result)
     }
 }
 
