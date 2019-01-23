@@ -21,13 +21,11 @@ class MainActivity : AppCompatActivity() {
         // Asynchronously retrieve list of monsters, parse into List, add to data set
         UpdateMonsterList{ ml ->
             (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters = ml.toMutableList()
-            this.rvMonsterList.adapter?.notifyDataSetChanged()
             this.progressBar.visibility = View.INVISIBLE
         }.execute()
     }
     fun clearDataSet(view: View) {
-        (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters?.clear()
-        this.rvMonsterList.adapter?.notifyDataSetChanged()
+        (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters = mutableListOf()
     }
 }
 private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
@@ -43,7 +41,7 @@ private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
     }
     override fun onPostExecute(result: List<Monster>) {
         super.onPostExecute(result)
-        callback(result)
+        this.callback(result)
     }
 }
 

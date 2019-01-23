@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.monster_list_item.view.*
 
 class MonsterAdapter(val context: Context) : RecyclerView.Adapter<ViewHolder>() {
-    var monsters = mutableListOf<Monster>() // Data set for recycler view
+    var monsters = mutableListOf<Monster>()
+        set(value) {
+            field = value
+            this.notifyDataSetChanged()
+        }
 
     override fun getItemCount(): Int {
         return monsters.size
