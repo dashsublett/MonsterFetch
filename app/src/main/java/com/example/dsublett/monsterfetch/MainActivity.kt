@@ -3,33 +3,47 @@ package com.example.dsublett.monsterfetch
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.TextView
+import com.squareup.moshi.Moshi
+import java.net.URL
 import kotlinx.android.synthetic.main.activity_main.*
-import java.net.*
-
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val responseTextView = findViewById<TextView>(R.id.responseTextView)
-        fetchBtn.setOnClickListener {
-            AsyncTaskExample(this).execute()
-        }
+        this.rvMonsterList.layoutManager = LinearLayoutManager(this)
+        this.rvMonsterList.adapter = MonsterAdapter(this)
     }
-    fun clearBtn(view: View) {
-        responseTextView.text = null
+    fun fetchMonsters(view: View) {
+        this.progressBar.visibility = View.VISIBLE
+        // Asynchronously retrieve list of monsters, parse into List, add to data set
+        UpdateMonsterList{ ml ->
+            (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters = ml.toMutableList()
+            this.rvMonsterList.adapter?.notifyDataSetChanged()
+            this.progressBar.visibility = View.INVISIBLE
+        }.execute()
+    }
+    fun clearDataSet(view: View) {
+        (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters?.clear()
+        this.rvMonsterList.adapter?.notifyDataSetChanged()
+    }
+}
+private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
+    : AsyncTask<Unit, Unit, List<Monster>>() {
+    override fun doInBackground(vararg p0: Unit): List<Monster> {
+        val parsedResponse = Moshi
+                .Builder()
+                .build()
+                .adapter(Response::class.java)
+                .fromJson(URL("http://www.dnd5eapi.co/api/monsters").readText())
+        val monsterList = parsedResponse?.results
+        return monsterList ?: emptyList()
+    }
+    override fun onPostExecute(result: List<Monster>) {
+        super.onPostExecute(result)
+        callback(result)
     }
 }
 
-class AsyncTaskExample(private var activity: MainActivity?) : AsyncTask<String, String, String>() {
-    override fun doInBackground(vararg p0: String?): String {
-        return URL("http://www.dnd5eapi.co/api/monsters").readText()
-    }
-    override fun onPostExecute(result: String?) {
-        super.onPostExecute(result)
-        activity?.responseTextView?.text = result
-    }
-}
