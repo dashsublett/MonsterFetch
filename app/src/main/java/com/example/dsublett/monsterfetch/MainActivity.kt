@@ -29,13 +29,13 @@ class MainActivity : AppCompatActivity() {
 }
 private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
     : AsyncTask<Unit, Unit, List<Monster>>() {
-    override fun doInBackground(vararg p0: Unit): List<Monster> {
-        val parsedResponse = Moshi
+    override fun doInBackground(vararg p0: Unit): List<Monster>? {
+        val monsterList = Moshi
                 .Builder()
                 .build()
                 .adapter(Response::class.java)
                 .fromJson(URL("http://www.dnd5eapi.co/api/monsters").readText())
-        val monsterList = parsedResponse?.results
+                ?.results
         return monsterList ?: emptyList()
     }
     override fun onPostExecute(result: List<Monster>) {
@@ -43,4 +43,3 @@ private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
         this.callback(result)
     }
 }
-
