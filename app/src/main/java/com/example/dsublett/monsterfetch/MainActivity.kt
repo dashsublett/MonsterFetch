@@ -1,49 +1,20 @@
 package com.example.dsublett.monsterfetch
 
-import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import com.squareup.moshi.Moshi
-import java.net.URL
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ItemFragment.OnListFragmentInteractionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        this.rvMonsterList.layoutManager = LinearLayoutManager(this)
-        this.rvMonsterList.adapter = MonsterAdapter(this)
-    }
-    fun fetchMonsters(view: View) {
-        this.progressBar.visibility = View.VISIBLE
-        // Asynchronously retrieve list of monsters, parse into List, add to data set
-        UpdateMonsterList{ ml ->
-            (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters = ml.toMutableList()
-            this.rvMonsterList.adapter?.notifyDataSetChanged()
-            this.progressBar.visibility = View.INVISIBLE
-        }.execute()
-    }
-    fun clearDataSet(view: View) {
-        (this.rvMonsterList.adapter as? MonsterAdapter)?.monsters?.clear()
-        this.rvMonsterList.adapter?.notifyDataSetChanged()
-    }
-}
-private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
-    : AsyncTask<Unit, Unit, List<Monster>>() {
-    override fun doInBackground(vararg p0: Unit): List<Monster> {
-        val parsedResponse = Moshi
-                .Builder()
-                .build()
-                .adapter(Response::class.java)
-                .fromJson(URL("http://www.dnd5eapi.co/api/monsters").readText())
-        val monsterList = parsedResponse?.results
-        return monsterList ?: emptyList()
-    }
-    override fun onPostExecute(result: List<Monster>) {
-        super.onPostExecute(result)
-        callback(result)
-    }
-}
 
+        val itemFragment = ItemFragment()
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+
+        transaction.add(R.id.fragment_container, itemFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    override fun onListFragmentInteraction(item: Monster) {}
+}
