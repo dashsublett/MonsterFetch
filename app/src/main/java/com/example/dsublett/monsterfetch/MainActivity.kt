@@ -3,8 +3,11 @@ package com.example.dsublett.monsterfetch
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-class MainActivity : AppCompatActivity(), ItemFragment.OnListFragmentInteractionListener {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        /* Set activity_main.xml layout, create instance of ItemFragment, and use a fragment
+         * transaction to add it to the Linear Layout with id of "fragment_container".
+         */
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -16,5 +19,4 @@ class MainActivity : AppCompatActivity(), ItemFragment.OnListFragmentInteraction
         transaction.addToBackStack(null)
         transaction.commit()
     }
-    override fun onListFragmentInteraction(item: Monster) {}
 }

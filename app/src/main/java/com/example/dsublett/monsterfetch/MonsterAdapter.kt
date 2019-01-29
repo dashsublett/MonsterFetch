@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.monster_item.view.*
 
-class MonsterAdapter(private val mListener: ItemFragment.OnListFragmentInteractionListener?)
-    : RecyclerView.Adapter<ViewHolder>() {
+class MonsterAdapter : RecyclerView.Adapter<ViewHolder>() {
     var monsters = mutableListOf<Monster>() // Data set for recycler view
 
     override fun getItemCount(): Int {
+        // Get size of List<Monster> (required to implement RecyclerView.Adapter)
         return monsters.size
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
