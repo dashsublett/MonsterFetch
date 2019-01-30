@@ -10,13 +10,5 @@ class MainActivity : AppCompatActivity() {
          */
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val itemFragment = ItemFragment()
-        val manager = supportFragmentManager
-        val transaction = manager.beginTransaction()
-
-        transaction.add(R.id.fragment_container, itemFragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
     }
 }

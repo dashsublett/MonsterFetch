@@ -60,8 +60,8 @@ class ItemFragment : Fragment(), View.OnClickListener {
 
 private class UpdateMonsterList(private val callback: ((List<Monster>) -> Unit))
     : AsyncTask<Unit, Unit, List<Monster>>() {
-    /* Performs GET request, parses the response and returns that list or null depending on success
-     * of the operation.
+    /* Performs GET request, parses the response and returns that list or empty list depending on
+     * success of the operation.
      */
     override fun doInBackground(vararg p0: Unit): List<Monster>? {
         val monsterList = Moshi
