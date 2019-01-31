@@ -9,39 +9,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ProgressBar
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.monster_item_list.view.*
 import java.net.URL
 
 class ItemFragment : Fragment(), View.OnClickListener {
-    private lateinit var monsterListRv: RecyclerView
-    private var progressBarRef: ProgressBar? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        /* Initialize button references and set their onClick listeners.
-         */
-        super.onCreate(savedInstanceState)
-        val fetchBtn = activity?.findViewById<Button>(R.id.fetchBtn)
-        val clearBtn = activity?.findViewById<Button>(R.id.clearBtn)
-
-        fetchBtn?.setOnClickListener(this)
-        clearBtn?.setOnClickListener(this)
-    }
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        /* Inflate RecyclerView "monster_item_list", setting the layoutManager and adapter for it,
-         * set the monsterListRv reference after the containing view has been created, and return a
-         * reference to the RecyclerView.
+        /* Inflate RecyclerView "monster_item_list", setting the layoutManager and adapter for it
+         * and return a reference to the RecyclerView.
          */
-        val view =
-                (inflater.inflate(R.layout.monster_item_list, container, false)
-                        as RecyclerView).apply {
+        val view = inflater.inflate(R.layout.monster_item_list, container, false)
+        (view.rvMonsterList as RecyclerView).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = MonsterAdapter(mutableListOf())
         }
-        this.monsterListRv = view.rvMonsterList
+        val fetchBtn = view.findViewById<Button>(R.id.fetchBtn)
+        val clearBtn = view.findViewById<Button>(R.id.clearBtn)
+        fetchBtn?.setOnClickListener(this)
+        clearBtn?.setOnClickListener(this)
 
         return view
     }
@@ -54,17 +41,17 @@ class ItemFragment : Fragment(), View.OnClickListener {
          */
         when(view.id) {
             R.id.fetchBtn -> {
-                this.progressBarRef = activity?.findViewById(R.id.loadingSpinner)
-                this.progressBarRef?.visibility = View.VISIBLE
+                this.view?.loadingSpinner?.visibility = View.VISIBLE
                 UpdateMonsterList { ml ->
-                    (this.monsterListRv.adapter as? MonsterAdapter)?.monsters = ml.toMutableList()
-                    this.monsterListRv.adapter?.notifyDataSetChanged()
-                    this.progressBarRef?.visibility = View.INVISIBLE
+                    (this.view?.rvMonsterList?.adapter as? MonsterAdapter)?.monsters =
+                            ml.toMutableList()
+                    this.view?.rvMonsterList?.adapter?.notifyDataSetChanged()
+                    this.view?.loadingSpinner?.visibility = View.INVISIBLE
                 }.execute()
             }
             R.id.clearBtn -> {
-                (this.monsterListRv.adapter as? MonsterAdapter)?.monsters?.clear()
-                this.monsterListRv.adapter?.notifyDataSetChanged()
+                (this.view?.rvMonsterList?.adapter as? MonsterAdapter)?.monsters?.clear()
+                this.view?.rvMonsterList?.adapter?.notifyDataSetChanged()
             }
         }
     }
