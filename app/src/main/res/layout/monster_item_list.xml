@@ -52,5 +52,4 @@
         app:layout_constraintTop_toTopOf="parent"
         style="?android:attr/progressBarStyle" />
 
-
 </android.support.constraint.ConstraintLayout>

@@ -18,7 +18,7 @@ class ItemFragment : Fragment(), View.OnClickListener {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         /* Inflate RecyclerView "monster_item_list", setting the layoutManager and adapter for it
-         * and return a reference to the RecyclerView.
+         * and return a reference to the View that is the root of the inflated layout.
          */
         val view = inflater.inflate(R.layout.monster_item_list, container, false)
         (view.rvMonsterList as RecyclerView).apply {
