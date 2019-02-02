@@ -19,41 +19,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/classesBtn"
+        app:layout_constraintTop_toTopOf="parent"
         tools:context=".ItemFragment"
         tools:listitem="@layout/list_item" />
-
-    <Button
-        android:id="@+id/monstersBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/m"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/classesBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/c"
-        app:layout_constraintEnd_toStartOf="@+id/spellsBtn"
-        app:layout_constraintStart_toEndOf="@+id/monstersBtn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/spellsBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/s"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/loadingSpinner"

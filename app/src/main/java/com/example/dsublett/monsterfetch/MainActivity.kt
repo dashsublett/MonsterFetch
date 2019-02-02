@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.mainActivityLayout, ItemFragment())
+        fragmentTransaction.add(R.id.mainActivityLayout, NavBarFragment())
         fragmentTransaction.commit()
     }
 }
