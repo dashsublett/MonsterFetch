@@ -7,7 +7,13 @@ import retrofit2.http.GET
 
 interface DNDAPIService {
     @GET("monsters")
-    fun getMonsters(): Call<MonstersResponse>
+    fun getMonsters(): Call<DNDAPIResponse>
+
+    @GET("classes")
+    fun getClasses(): Call<DNDAPIResponse>
+
+    @GET("spells")
+    fun getSpells(): Call<DNDAPIResponse>
 
     companion object Factory {
         fun create(): DNDAPIService {
