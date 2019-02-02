@@ -10,8 +10,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        val itemFragment = ItemFragment()
-        fragmentTransaction.add(R.id.mainActivityLayout, itemFragment)
+        fragmentTransaction.add(R.id.mainActivityLayout, ItemFragment())
         fragmentTransaction.commit()
     }
 }
