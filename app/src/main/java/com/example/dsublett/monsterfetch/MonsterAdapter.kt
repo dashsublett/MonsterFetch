@@ -1,5 +1,7 @@
 package com.example.dsublett.monsterfetch
 
+import com.example.dsublett.monsterfetch.services.Monster
+
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
