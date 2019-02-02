@@ -15,18 +15,19 @@ class ItemFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.monster_item_list, container, false).apply {
-            this.fetchBtn.setOnClickListener{
-                this.loadingSpinner.visibility = View.VISIBLE
-                UpdateMonsterList { ml ->
-                    (this.rvMonsterList.adapter as MonsterAdapter).monsters = ml.toMutableList()
-                    this.rvMonsterList.adapter?.notifyDataSetChanged()
-                    this.loadingSpinner.visibility = View.INVISIBLE
-                }.execute()
-            }
+            // Fetch monster list
+            this.loadingSpinner.visibility = View.VISIBLE
+            UpdateMonsterList { ml ->
+                (this.rvMonsterList.adapter as MonsterAdapter).monsters = ml.toMutableList()
+                this.rvMonsterList.adapter?.notifyDataSetChanged()
+                this.loadingSpinner.visibility = View.INVISIBLE
+            }.execute()
+            // Set clear button click listener
             this.clearBtn.setOnClickListener{
                 (this.rvMonsterList.adapter as MonsterAdapter).monsters.clear()
                 this.rvMonsterList.adapter?.notifyDataSetChanged()
             }
+            // Set layout manager and adapter for recycler view
             this.rvMonsterList.layoutManager = LinearLayoutManager(context)
             this.rvMonsterList.adapter = MonsterAdapter(mutableListOf())
         }
