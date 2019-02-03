@@ -15,7 +15,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 class NavBarFragment : Fragment() {
     private val apiService = DNDAPIService.create()
 
@@ -75,11 +74,20 @@ class NavBarFragment : Fragment() {
     }
     // Utility functions to reduce code duplication
     private fun preFetch() {
+        // Clear list and show loading spinner
+        activity?.loadingSpinner?.visibility = View.VISIBLE
+
+        val fragmentManager = activity?.supportFragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction?.add(R.id.listContainer, ItemFragment())
+        fragmentTransaction?.addToBackStack(null)
+        fragmentTransaction?.commit()
+
         (activity?.rvItemList?.adapter as ItemAdapter).responseItems.clear()
         activity?.rvItemList?.adapter?.notifyDataSetChanged()
-        activity?.loadingSpinner?.visibility = View.VISIBLE
     }
     private fun postFetch() {
+        // Hide loading spinner
         activity?.rvItemList?.adapter?.notifyDataSetChanged()
         activity?.loadingSpinner?.visibility = View.INVISIBLE
     }
