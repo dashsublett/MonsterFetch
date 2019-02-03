@@ -5,7 +5,7 @@
     android:id="@+id/navBarLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavBarFragment">
+    tools:context=".fragments.NavBarFragment">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -20,14 +20,14 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-    android:id="@+id/monstersButton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/m"
-    app:layout_constraintStart_toStartOf="@+id/toolbar"
-    app:layout_constraintEnd_toStartOf="@+id/classesButton"
-    app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-    app:layout_constraintTop_toTopOf="@+id/toolbar"/>
+        android:id="@+id/monstersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/m"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintEnd_toStartOf="@+id/classesButton"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"/>
 
     <Button
         android:id="@+id/classesButton"

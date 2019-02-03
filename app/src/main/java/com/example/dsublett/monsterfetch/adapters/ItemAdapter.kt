@@ -1,4 +1,4 @@
-package com.example.dsublett.monsterfetch
+package com.example.dsublett.monsterfetch.adapters
 
 import com.example.dsublett.monsterfetch.services.ResponseItem
 
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.dsublett.monsterfetch.R
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class ItemAdapter(var responseItems: MutableList<ResponseItem>)
