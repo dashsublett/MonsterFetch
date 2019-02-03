@@ -1,6 +1,6 @@
 package com.example.dsublett.monsterfetch.adapters
 
-import com.example.dsublett.monsterfetch.services.ResponseItem
+import com.example.dsublett.monsterfetch.models.ResponseItem
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

@@ -1,5 +1,6 @@
 package com.example.dsublett.monsterfetch.services
 
+import com.example.dsublett.monsterfetch.models.DNDAPIResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

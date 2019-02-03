@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.dsublett.monsterfetch.adapters.ItemAdapter
 import com.example.dsublett.monsterfetch.R
-import com.example.dsublett.monsterfetch.services.DNDAPIResponse
+import com.example.dsublett.monsterfetch.models.DNDAPIResponse
 import com.example.dsublett.monsterfetch.services.DNDAPIService
 import kotlinx.android.synthetic.main.item_list.view.*
 import retrofit2.Call
