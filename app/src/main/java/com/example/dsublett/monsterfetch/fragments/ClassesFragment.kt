@@ -17,6 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ClassesFragment : Fragment() {
+    private val TAG = this::class.java.simpleName
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,7 +35,7 @@ class ClassesFragment : Fragment() {
                     loadingSpinner.visibility = View.INVISIBLE
                 }
                 override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
-                    Log.d(this::class.java.simpleName, "call failed")
+                    Log.d(TAG, "getClasses() call failed: $t")
                     loadingSpinner.visibility = View.INVISIBLE
                 }
             })
