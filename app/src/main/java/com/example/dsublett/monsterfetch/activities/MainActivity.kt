@@ -19,14 +19,19 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.listContainer, MonstersFragment())
         fragmentTransaction.commit()
 
-        this.monstersButton.setOnClickListener{
-            replaceRvFragment(MonstersFragment())
-        }
-        this.classesButton.setOnClickListener{
-            replaceRvFragment(ClassesFragment())
-        }
-        this.spellsButton.setOnClickListener{
-            replaceRvFragment(SpellsFragment())
+        this.navbarView.setOnNavigationItemSelectedListener{ item ->
+            when(item.itemId) {
+                R.id.monstersBtn -> {
+                    this.replaceRvFragment(MonstersFragment())
+                }
+                R.id.spellsBtn -> {
+                    this.replaceRvFragment(SpellsFragment())
+                }
+                R.id.classesBtn -> {
+                    this.replaceRvFragment(ClassesFragment())
+                }
+            }
+            true
         }
     }
     private fun replaceRvFragment(fragment: Fragment) {

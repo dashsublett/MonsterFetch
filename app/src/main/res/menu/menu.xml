@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/monstersBtn"
+        android:title="@string/m"
+        android:enabled="true" />
+    <item
+        android:id="@+id/classesBtn"
+        android:title="@string/c"
+        android:enabled="true" />
+    <item
+        android:id="@+id/spellsBtn"
+        android:title="@string/s"
+        android:enabled="true" />
+</menu>

@@ -9,51 +9,22 @@
         android:id="@+id/listContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/navbarView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navbarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toBottomOf="@id/listContainer"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@drawable/nav_item_color_state"
+        app:itemTextColor="@drawable/nav_item_color_state"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/monstersButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/m"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintEnd_toStartOf="@+id/classesButton"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"/>
-
-    <Button
-        android:id="@+id/classesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/c"
-        app:layout_constraintStart_toEndOf="@+id/monstersButton"
-        app:layout_constraintEnd_toStartOf="@+id/spellsButton"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"/>
-
-    <Button
-        android:id="@+id/spellsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/s"
-        app:layout_constraintStart_toEndOf="@+id/classesButton"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listContainer"
+        app:menu="@menu/menu" />
 
 </android.support.constraint.ConstraintLayout>
