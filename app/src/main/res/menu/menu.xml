@@ -4,13 +4,16 @@
     <item
         android:id="@+id/monstersBtn"
         android:title="@string/m"
+        android:icon="@drawable/monstersbtn_icon"
         android:enabled="true" />
     <item
         android:id="@+id/classesBtn"
         android:title="@string/c"
+        android:icon="@drawable/classesbtn_icon"
         android:enabled="true" />
     <item
         android:id="@+id/spellsBtn"
         android:title="@string/s"
+        android:icon="@drawable/spellsbtn_icon"
         android:enabled="true" />
 </menu>
