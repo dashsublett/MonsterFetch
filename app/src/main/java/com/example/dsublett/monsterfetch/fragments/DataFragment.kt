@@ -19,10 +19,12 @@ abstract class DataFragment : Fragment() {
     abstract fun fetchData()
     protected val fetchCallback = object: Callback<DNDAPIResponse> {
         override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
-            (rvItemList.adapter as ItemAdapter).responseItems =
-                    response.body()?.results!!.toMutableList()
-            rvItemList.adapter?.notifyDataSetChanged()
-            loadingSpinner.visibility = View.INVISIBLE
+            if(rvItemList != null) {
+                (rvItemList.adapter as ItemAdapter).responseItems =
+                        response.body()?.results!!.toMutableList()
+                rvItemList.adapter?.notifyDataSetChanged()
+                loadingSpinner.visibility = View.INVISIBLE
+            }
         }
         override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
             loadingSpinner.visibility = View.INVISIBLE
