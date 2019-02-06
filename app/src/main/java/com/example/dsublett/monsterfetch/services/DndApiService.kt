@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-interface DNDAPIService {
+interface DndApiService {
     @GET("monsters")
     fun getMonsters(): Call<DNDAPIResponse>
 
@@ -17,13 +17,12 @@ interface DNDAPIService {
     fun getSpells(): Call<DNDAPIResponse>
 
     companion object Factory {
-        fun create(): DNDAPIService {
-            val retrofit = Retrofit.Builder()
-                    .baseUrl("http://www.dnd5eapi.co/api/")
-                    .addConverterFactory(MoshiConverterFactory.create())
-                    .build()
-
-            return retrofit.create(DNDAPIService::class.java)
-        }
+        fun create(): DndApiService =
+            Retrofit
+                .Builder()
+                .baseUrl("http://www.dnd5eapi.co/api/")
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
+                .create(DndApiService::class.java)
     }
 }

@@ -22,18 +22,10 @@ class MainActivity : AppCompatActivity() {
 
         this.navbarView.setOnNavigationItemSelectedListener{ item ->
             when(item.itemId) {
-                R.id.monstersBtn -> {
-                    this.replaceRvFragment(MonstersFragment())
-                }
-                R.id.spellsBtn -> {
-                    this.replaceRvFragment(SpellsFragment())
-                }
-                R.id.classesBtn -> {
-                    this.replaceRvFragment(ClassesFragment())
-                }
-                R.id.favoritesBtn -> {
-                    this.replaceRvFragment(FavoritesFragment())
-                }
+                R.id.monstersBtn -> this.replaceRvFragment(MonstersFragment())
+                R.id.spellsBtn -> this.replaceRvFragment(SpellsFragment())
+                R.id.classesBtn -> this.replaceRvFragment(ClassesFragment())
+                R.id.favoritesBtn -> this.replaceRvFragment(FavoritesFragment())
             }
             true
         }

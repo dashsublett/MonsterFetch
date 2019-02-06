@@ -11,12 +11,11 @@ import com.example.dsublett.monsterfetch.models.ResponseItem
 import kotlinx.android.synthetic.main.item_list.*
 
 class FavoritesFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.item_list, container, false)
-    }
-
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.item_list, container, false)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.rvItemList.adapter = ItemAdapter(getFavorites())
@@ -24,9 +23,10 @@ class FavoritesFragment : Fragment() {
     }
     private fun getFavorites(): List<ResponseItem> {
         val favoritesList: List<ResponseItem> = emptyList() // Dummy favorites list
-        return when {
-            favoritesList.isNotEmpty() -> favoritesList
-            else -> listOf(ResponseItem("You don't have any favorites", ""))
+        return if(favoritesList.isNotEmpty()) {
+            favoritesList
+        } else {
+            listOf(ResponseItem("You don't have any favorites", ""))
         }
     }
 }
