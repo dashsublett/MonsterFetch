@@ -5,7 +5,7 @@
         android:id="@+id/monstersBtn"
         android:title="@string/m"
         android:icon="@drawable/monstersbtn_icon"
-        android:enabled="true" />
+        android:enabled="true"/>
     <item
         android:id="@+id/classesBtn"
         android:title="@string/c"

@@ -20,7 +20,7 @@ abstract class DataFragment : Fragment() {
     protected val fetchCallback = object: Callback<DNDAPIResponse> {
         override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
             this@DataFragment.rvItemList?.adapter =
-                    ItemAdapter(response.body()?.results ?: listOf())
+                    ItemAdapter(response.body()?.results ?: emptyList())
             this@DataFragment.loadingSpinner?.visibility = View.INVISIBLE
         }
         override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
