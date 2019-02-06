@@ -20,7 +20,7 @@ class ItemAdapter(private val responseItems: List<ResponseItem>)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Bind monster name to text view
-        holder.tvMonsterName.text = this.responseItems[position].name
+        holder.tvItemName.text = this.responseItems[position].name
     }
     override fun getItemCount(): Int {
         // Get size of List<ResponseItem> (required to implement RecyclerView.Adapter)
@@ -28,6 +28,6 @@ class ItemAdapter(private val responseItems: List<ResponseItem>)
     }
     inner class ViewHolder(mView: View): RecyclerView.ViewHolder(mView) {
         // Set the reference to the text view that holds the monster name
-        val tvMonsterName: TextView = mView.itemName
+        val tvItemName: TextView = mView.itemName
     }
 }
