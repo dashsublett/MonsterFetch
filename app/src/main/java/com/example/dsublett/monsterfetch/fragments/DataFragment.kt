@@ -19,26 +19,25 @@ abstract class DataFragment : Fragment() {
     abstract fun fetchData()
     protected val fetchCallback = object: Callback<DNDAPIResponse> {
         override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
-            if(rvItemList != null) {
-                (rvItemList.adapter as ItemAdapter).responseItems =
-                        response.body()?.results!!.toMutableList()
-                rvItemList.adapter?.notifyDataSetChanged()
-                loadingSpinner.visibility = View.INVISIBLE
-            }
+            this@DataFragment.rvItemList?.adapter =
+                    ItemAdapter(response.body()?.results ?: listOf())
+            this@DataFragment.loadingSpinner?.visibility = View.INVISIBLE
         }
         override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
-            loadingSpinner.visibility = View.INVISIBLE
+            this@DataFragment.loadingSpinner?.visibility = View.INVISIBLE
         }
     }
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val returnView = inflater.inflate(R.layout.item_list, container, false).apply {
+        return inflater.inflate(R.layout.item_list, container, false).apply {
             this.rvItemList.layoutManager = LinearLayoutManager(context)
             this.rvItemList.adapter = ItemAdapter(mutableListOf())
             this.loadingSpinner.visibility = View.VISIBLE
         }
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         fetchData()
-        return returnView
     }
 }

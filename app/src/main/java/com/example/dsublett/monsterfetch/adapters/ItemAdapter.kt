@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.example.dsublett.monsterfetch.R
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ItemAdapter(var responseItems: MutableList<ResponseItem>)
+class ItemAdapter(private val responseItems: List<ResponseItem>)
     : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Create the view holder and inflate the list_item layout for each monster
@@ -20,13 +20,13 @@ class ItemAdapter(var responseItems: MutableList<ResponseItem>)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Bind monster name to text view
-        holder.tvMonsterName.text = responseItems[position].name
+        holder.tvMonsterName.text = this.responseItems[position].name
     }
     override fun getItemCount(): Int {
         // Get size of List<ResponseItem> (required to implement RecyclerView.Adapter)
-        return responseItems.size
+        return this.responseItems.size
     }
-    inner class ViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
+    inner class ViewHolder(mView: View): RecyclerView.ViewHolder(mView) {
         // Set the reference to the text view that holds the monster name
         val tvMonsterName: TextView = mView.itemName
     }
