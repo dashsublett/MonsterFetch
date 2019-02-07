@@ -16,7 +16,7 @@ interface DndApiService {
     @GET("spells")
     fun getSpells(): Call<DNDAPIResponse>
 
-    companion object Factory {
+    companion object {
         fun create(): DndApiService =
             Retrofit
                 .Builder()
