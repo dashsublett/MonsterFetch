@@ -15,7 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 abstract class DataFragment : Fragment() {
-    abstract fun fetchData()
+    protected abstract fun fetchData()
     protected val fetchCallback = object : Callback<DNDAPIResponse> {
         override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
             this@DataFragment.rvItemList?.adapter =
