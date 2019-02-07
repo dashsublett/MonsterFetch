@@ -32,12 +32,12 @@ abstract class DataFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.item_list, container, false).apply {
             this.rvItemList.layoutManager = LinearLayoutManager(context)
-            this.rvItemList.adapter = ItemAdapter(mutableListOf())
+            this.rvItemList.adapter = ItemAdapter(emptyList())
             this.loadingSpinner.visibility = View.VISIBLE
         }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fetchData()
+        this.fetchData()
     }
 }
