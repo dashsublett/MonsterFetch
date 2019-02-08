@@ -1,5 +1,6 @@
 package com.example.dsublett.monsterfetch.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -41,5 +42,9 @@ abstract class DataFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.fetchData()
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
     }
 }

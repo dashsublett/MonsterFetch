@@ -16,17 +16,10 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.item_list, container, false)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.rvItemList.adapter = ItemAdapter(getFavorites())
+        this.rvItemList.adapter = ItemAdapter(emptyList())
         this.loadingSpinner.visibility = View.INVISIBLE
-    }
-    private fun getFavorites(): List<ResponseItem> {
-        val favoritesList: List<ResponseItem> = emptyList() // Dummy favorites list
-        return if(favoritesList.isNotEmpty()) {
-            favoritesList
-        } else {
-            listOf(ResponseItem("You don't have any favorites", ""))
-        }
     }
 }

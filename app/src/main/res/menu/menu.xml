@@ -3,17 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/monstersBtn"
-        android:title="@string/m"
+        android:title="@string/monsters"
         android:icon="@drawable/monstersbtn_icon"
         android:enabled="true"/>
     <item
         android:id="@+id/classesBtn"
-        android:title="@string/c"
+        android:title="@string/classes"
         android:icon="@drawable/classesbtn_icon"
         android:enabled="true" />
     <item
         android:id="@+id/spellsBtn"
-        android:title="@string/s"
+        android:title="@string/spells"
         android:icon="@drawable/spellsbtn_icon"
+        android:enabled="true" />
+    <item
+        android:id="@+id/favoritesBtn"
+        android:title="@string/favorites"
+        android:icon="@drawable/favoritesbtn_icon"
         android:enabled="true" />
 </menu>
