@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.example.dsublett.monsterfetch.R
-import com.example.dsublett.monsterfetch.fragments.ClassesFragment
-import com.example.dsublett.monsterfetch.fragments.FavoritesFragment
-import com.example.dsublett.monsterfetch.fragments.MonstersFragment
-import com.example.dsublett.monsterfetch.fragments.SpellsFragment
+import com.example.dsublett.monsterfetch.fragments.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
