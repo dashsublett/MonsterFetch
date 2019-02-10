@@ -1,10 +1,11 @@
 package com.example.dsublett.monsterfetch.services
 
-import com.example.dsublett.monsterfetch.models.DNDAPIResponse
+import com.example.dsublett.monsterfetch.models.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface DndApiService {
     @GET("monsters")
@@ -15,6 +16,15 @@ interface DndApiService {
 
     @GET("spells")
     fun getSpells(): Call<DNDAPIResponse>
+
+    @GET("monsters/{index}")
+    fun getMonster(@Path("index")index: Int): Call<MonsterResponse>
+
+    @GET("spells/{index}")
+    fun getSpell(@Path("index")index: Int): Call<SpellResponse>
+
+    @GET("classes/{index}")
+    fun getClass(@Path("index")index: Int): Call<ClassResponse>
 
     companion object {
         fun create(): DndApiService =
