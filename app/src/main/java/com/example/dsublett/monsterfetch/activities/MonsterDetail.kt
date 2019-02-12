@@ -1,13 +1,9 @@
 package com.example.dsublett.monsterfetch.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.AttributeSet
-import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.MonsterResponse
-import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.DndApiService
 import kotlinx.android.synthetic.main.monster_detail.*
 import kotlinx.android.synthetic.main.monster_detail.view.*
@@ -20,13 +16,7 @@ class MonsterDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.monster_detail)
         // Could wrap api call and setting view in a function and call here
-    }
-
-    override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View? {
-        val tokenizedUrl = ResponseItem(
-            intent.getStringExtra("name"),
-            intent.getStringExtra("url")
-        ).url.split("/")
+        val tokenizedUrl = intent.getStringExtra("url").split("/")
         DndApiService.create().getMonster(tokenizedUrl[tokenizedUrl.size - 1].toInt()).enqueue(
             object : Callback<MonsterResponse> {
                 override fun onResponse(call: Call<MonsterResponse>, response: Response<MonsterResponse>) {
@@ -51,6 +41,5 @@ class MonsterDetail : AppCompatActivity() {
                 }
             }
         )
-        return super.onCreateView(name, context, attrs)
     }
 }

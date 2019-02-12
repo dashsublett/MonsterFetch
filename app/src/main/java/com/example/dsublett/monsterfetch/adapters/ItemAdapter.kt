@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.dsublett.monsterfetch.R
-import com.example.dsublett.monsterfetch.services.DndApiService
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class ItemAdapter(private val responseItems: List<ResponseItem>,
@@ -26,8 +25,8 @@ class ItemAdapter(private val responseItems: List<ResponseItem>,
             holder.tvItemName.text = "You don't have any favorites"
         } else {
             holder.tvItemName.text = this.responseItems[position].name
+            holder.bind(responseItems[position], listener)
         }
-        holder.bind(responseItems[position], listener)
     }
 
     override fun getItemCount(): Int {
