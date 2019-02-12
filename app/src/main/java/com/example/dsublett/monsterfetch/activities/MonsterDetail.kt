@@ -1,8 +1,10 @@
 package com.example.dsublett.monsterfetch.activities
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.MonsterResponse
 import com.example.dsublett.monsterfetch.services.DndApiService
@@ -17,6 +19,8 @@ class MonsterDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.monster_detail)
+
+        this.monsterDetailView.visibility = View.INVISIBLE
 
         DndApiService
             .create()
@@ -39,6 +43,7 @@ class MonsterDetail : AppCompatActivity() {
                         mView.monsterConstitution.text = response.body()?.constitution.toString()
                         mView.monsterIntelligence.text = response.body()?.intelligence.toString()
                         mView.monsterWisdom.text = response.body()?.wisdom.toString()
+                        mView.monsterDetailView.visibility = View.VISIBLE
                     }
 
                     override fun onFailure(call: Call<MonsterResponse>, t: Throwable) {
