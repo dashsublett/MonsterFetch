@@ -22,4 +22,5 @@
     <string name="casting_time_label">Casting Time:</string>
     <string name="level_label">Level:</string>
     <string name="armor_class_label">Armor Class:</string>
+    <string name="add_favorite">Add Favorite</string>
 </resources>

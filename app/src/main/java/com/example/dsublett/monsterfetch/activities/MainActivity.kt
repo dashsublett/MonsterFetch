@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity(), Showable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        this.actionBar?.setDisplayHomeAsUpEnabled(true)
+
         val fragmentTransaction = this.supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.listContainer, MonstersList())
         fragmentTransaction.commit()
