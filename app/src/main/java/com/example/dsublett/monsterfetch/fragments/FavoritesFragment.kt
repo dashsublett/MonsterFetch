@@ -19,7 +19,12 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.rvItemList.adapter = ItemAdapter(emptyList())
+        this.rvItemList.adapter = ItemAdapter(emptyList(),
+            object : ItemAdapter.OnItemClickListener {
+                override fun onItemClick(responseItem: ResponseItem) {
+                    // Handle click on favorite item
+                }
+            })
         this.loadingSpinner.visibility = View.INVISIBLE
     }
 }
