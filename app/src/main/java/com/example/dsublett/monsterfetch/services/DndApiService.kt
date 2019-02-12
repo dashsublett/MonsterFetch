@@ -18,13 +18,13 @@ interface DndApiService {
     fun getSpells(): Call<DNDAPIResponse>
 
     @GET("monsters/{index}")
-    fun getMonster(@Path("index")index: Int): Call<MonsterResponse>
+    fun getMonster(@Path("index")index: String): Call<MonsterResponse>
 
     @GET("spells/{index}")
-    fun getSpell(@Path("index")index: Int): Call<SpellResponse>
+    fun getSpell(@Path("index")index: String): Call<SpellResponse>
 
     @GET("classes/{index}")
-    fun getClass(@Path("index")index: Int): Call<ClassResponse>
+    fun getClass(@Path("index")index: String): Call<ClassResponse>
 
     companion object {
         fun create(): DndApiService =

@@ -1,13 +1,11 @@
 package com.example.dsublett.monsterfetch.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.AttributeSet
-import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ClassResponse
 import com.example.dsublett.monsterfetch.services.DndApiService
+import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.class_detail.*
 import kotlinx.android.synthetic.main.class_detail.view.*
 import retrofit2.Call
@@ -18,23 +16,23 @@ class ClassDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.class_detail)
-    }
 
-    override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View? {
-        val tokenizedUrl = intent.getStringExtra("url").split("/")
-        DndApiService.create().getClass(tokenizedUrl[tokenizedUrl.size - 1].toInt()).enqueue(
-            object : Callback<ClassResponse> {
-                override fun onResponse(call: Call<ClassResponse>, response: Response<ClassResponse>) {
-                    val cView = this@ClassDetail.classDetail
-                    cView.className.text = response.body()?.name
-                    cView.classHitDice.text = response.body()?.hit_die
-                }
+        DndApiService
+            .create()
+            .getClass(UrlParse.getIndex(this.intent.getStringExtra("url")))
+            .enqueue(
+                object : Callback<ClassResponse> {
+                    override fun onResponse(call: Call<ClassResponse>,
+                                            response: Response<ClassResponse>) {
+                        val cView = this@ClassDetail.classDetailView
+                        cView.className.text = response.body()?.name
+                        cView.classHitDice.text = response.body()?.hit_die
+                    }
 
-                override fun onFailure(call: Call<ClassResponse>, t: Throwable) {
-                    // Handle failure
+                    override fun onFailure(call: Call<ClassResponse>, t: Throwable) {
+                        throw t
+                    }
                 }
-            }
-        )
-        return super.onCreateView(name, context, attrs)
+            )
     }
 }

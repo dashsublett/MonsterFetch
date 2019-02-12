@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.dsublett.monsterfetch.R
 
-class ItemFragment : Fragment() {
+class ListItem : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

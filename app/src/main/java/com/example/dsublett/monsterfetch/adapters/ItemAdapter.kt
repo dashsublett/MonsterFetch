@@ -1,13 +1,12 @@
 package com.example.dsublett.monsterfetch.adapters
 
-import com.example.dsublett.monsterfetch.models.ResponseItem
-
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.models.ResponseItem
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class ItemAdapter(private val responseItems: List<ResponseItem>,

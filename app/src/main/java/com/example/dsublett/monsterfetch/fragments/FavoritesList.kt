@@ -10,8 +10,7 @@ import com.example.dsublett.monsterfetch.adapters.ItemAdapter
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import kotlinx.android.synthetic.main.item_list.*
 
-
-class FavoritesFragment : Fragment() {
+class FavoritesList : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

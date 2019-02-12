@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.fragments.*
 import com.example.dsublett.monsterfetch.models.*
+import com.example.dsublett.monsterfetch.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
@@ -15,32 +16,27 @@ class MainActivity : AppCompatActivity(), Showable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Launch app with monsters fragment and don't add to back stack
         val fragmentTransaction = this.supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.listContainer, MonstersFragment())
+        fragmentTransaction.replace(R.id.listContainer, MonstersList())
         fragmentTransaction.commit()
 
         this.navbarView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.monstersBtn -> this.replaceRvFragment(MonstersFragment())
-                R.id.spellsBtn -> this.replaceRvFragment(SpellsFragment())
-                R.id.classesBtn -> this.replaceRvFragment(ClassesFragment())
-                R.id.favoritesBtn -> this.replaceRvFragment(FavoritesFragment())
+                R.id.monstersBtn -> this.replaceRvFragment(MonstersList())
+                R.id.spellsBtn -> this.replaceRvFragment(SpellsList())
+                R.id.classesBtn -> this.replaceRvFragment(ClassesList())
+                R.id.favoritesBtn -> this.replaceRvFragment(FavoritesList())
             }
             true
         }
     }
 
     override fun showDetails(responseItem: ResponseItem) {
-        val detailClass = when (
-            responseItem.url.removePrefix("http://www.dnd5eapi.co/api/").split("/")[0]
-            ) {
+        val detailClass = when (UrlParse.getEndpoint(responseItem.url)) {
             "monsters" -> MonsterDetail::class.java
             "classes" -> ClassDetail::class.java
             "spells" -> SpellDetail::class.java
-            else -> throw Exception(
-                "That endpoint is either invalid or has not been implemented yet."
-            )
+            else -> throw Exception("That endpoint is invalid or has not been implemented yet.")
         }
         val theIntent = Intent(this, detailClass).apply {
             action = Intent.ACTION_VIEW
