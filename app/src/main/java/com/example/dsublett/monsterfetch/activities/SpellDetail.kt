@@ -2,6 +2,7 @@ package com.example.dsublett.monsterfetch.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.SpellResponse
 import com.example.dsublett.monsterfetch.services.DndApiService
@@ -41,5 +42,9 @@ class SpellDetail : AppCompatActivity() {
                     }
                 }
             )
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action_bar, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }
