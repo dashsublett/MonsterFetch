@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/monsterFragment"
+    android:id="@+id/monsterDetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,10 +9,10 @@
         android:id="@+id/labelName"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Name:"
+        android:text="@string/name_label"
         app:layout_constraintBottom_toTopOf="@id/labelType"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterName"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -29,10 +29,10 @@
         android:id="@+id/labelType"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Type:"
+        android:text="@string/type_label"
         app:layout_constraintBottom_toTopOf="@id/labelSubtype"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterType"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
     <TextView
@@ -49,10 +49,10 @@
         android:id="@+id/labelSubtype"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Subtype:"
+        android:text="@string/subtype_label"
         app:layout_constraintBottom_toTopOf="@id/labelAlignment"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterSubtype"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelType" />
 
     <TextView
@@ -69,10 +69,10 @@
         android:id="@+id/labelAlignment"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Alignment:"
+        android:text="@string/alignment_label"
         app:layout_constraintBottom_toTopOf="@id/labelArmorClass"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterAlignment"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelSubtype" />
 
     <TextView
@@ -89,10 +89,10 @@
         android:id="@+id/labelArmorClass"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Armor class:"
+        android:text="@string/armor_class_label"
         app:layout_constraintBottom_toTopOf="@id/labelHitPoints"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterArmorClass"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelAlignment" />
 
     <TextView
@@ -109,10 +109,10 @@
         android:id="@+id/labelHitPoints"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="HP:"
+        android:text="@string/hp_label"
         app:layout_constraintBottom_toTopOf="@id/labelHitDice"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterHitPoints"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelArmorClass" />
 
     <TextView
@@ -120,19 +120,19 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/monsterHitDice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterArmorClass"
-        app:layout_constraintBottom_toTopOf="@id/monsterHitDice"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterArmorClass" />
 
     <TextView
         android:id="@+id/labelHitDice"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Hit dice:"
+        android:text="@string/hit_dice_label"
         app:layout_constraintBottom_toTopOf="@id/labelSpeed"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterHitDice"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelHitPoints" />
 
     <TextView
@@ -140,19 +140,19 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/monsterSpeed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterHitPoints"
-        app:layout_constraintBottom_toTopOf="@id/monsterSpeed" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterHitPoints" />
 
     <TextView
         android:id="@+id/labelSpeed"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Speed:"
+        android:text="@string/speed_label"
         app:layout_constraintBottom_toTopOf="@id/labelStrength"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterSpeed"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelHitDice" />
 
     <TextView
@@ -160,19 +160,19 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/monsterStrength"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterHitDice"
-        app:layout_constraintBottom_toTopOf="@id/monsterStrength" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterHitDice" />
 
     <TextView
         android:id="@+id/labelStrength"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Strength:"
+        android:text="@string/strength_label"
         app:layout_constraintBottom_toTopOf="@id/labelDexterity"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterStrength"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelSpeed" />
 
     <TextView
@@ -180,19 +180,19 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/monsterDexterity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterSpeed"
-        app:layout_constraintBottom_toTopOf="@id/monsterDexterity" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterSpeed" />
 
     <TextView
         android:id="@+id/labelDexterity"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Dexterity:"
+        android:text="@string/dexterity_label"
         app:layout_constraintBottom_toTopOf="@id/labelConstitution"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterDexterity"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelStrength" />
 
     <TextView
@@ -200,19 +200,19 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/monsterConstitution"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterStrength"
-        app:layout_constraintBottom_toTopOf="@id/monsterConstitution" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterStrength" />
 
     <TextView
         android:id="@+id/labelConstitution"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Constitution:"
+        android:text="@string/constitution_label"
         app:layout_constraintBottom_toTopOf="@id/labelIntelligence"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterConstitution"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelDexterity" />
 
     <TextView
@@ -220,19 +220,19 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/monsterIntelligence"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterDexterity"
-        app:layout_constraintBottom_toTopOf="@id/monsterIntelligence" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterDexterity" />
 
     <TextView
         android:id="@+id/labelIntelligence"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Intelligence:"
+        android:text="@string/intelligence_label"
         app:layout_constraintBottom_toTopOf="@id/labelWisdom"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterIntelligence"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelConstitution" />
 
     <TextView
@@ -240,19 +240,19 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/monsterWisdom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterConstitution"
-        app:layout_constraintBottom_toTopOf="@id/monsterWisdom" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterConstitution" />
 
     <TextView
         android:id="@+id/labelWisdom"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="Wisdom:"
+        android:text="@string/wisdom_label"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/monsterWisdom"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelIntelligence" />
 
     <TextView
@@ -260,9 +260,9 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text=""
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterIntelligence"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monsterIntelligence" />
 
 </android.support.constraint.ConstraintLayout>

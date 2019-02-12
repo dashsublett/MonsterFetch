@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/spellDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/labelName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/name_label"
+        app:layout_constraintBottom_toTopOf="@id/labelDesc"
+        app:layout_constraintEnd_toStartOf="@id/spellName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/spellName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/description_label"
+        app:layout_constraintBottom_toTopOf="@id/labelRange"
+        app:layout_constraintEnd_toStartOf="@id/spellDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelName" />
+
+    <TextView
+        android:id="@+id/spellDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellRange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellName" />
+
+    <TextView
+        android:id="@+id/labelRange"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/range_label"
+        app:layout_constraintBottom_toTopOf="@id/labelComponents"
+        app:layout_constraintEnd_toStartOf="@id/spellRange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelDesc" />
+
+    <TextView
+        android:id="@+id/spellRange"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellComponents"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellDesc" />
+
+    <TextView
+        android:id="@+id/labelComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/components_label"
+        app:layout_constraintBottom_toTopOf="@id/labelRitual"
+        app:layout_constraintEnd_toStartOf="@id/spellComponents"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelRange" />
+
+    <TextView
+        android:id="@+id/spellComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellRitual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellRange" />
+
+    <TextView
+        android:id="@+id/labelRitual"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/armor_class_label"
+        app:layout_constraintBottom_toTopOf="@id/labelDuration"
+        app:layout_constraintEnd_toStartOf="@id/spellRitual"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelComponents" />
+
+    <TextView
+        android:id="@+id/spellRitual"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellDuration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellComponents" />
+
+    <TextView
+        android:id="@+id/labelDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/hp_label"
+        app:layout_constraintBottom_toTopOf="@id/labelConcentration"
+        app:layout_constraintEnd_toStartOf="@id/spellDuration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelRitual" />
+
+    <TextView
+        android:id="@+id/spellDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellConcentration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellRitual" />
+
+    <TextView
+        android:id="@+id/labelConcentration"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/hit_dice_label"
+        app:layout_constraintBottom_toTopOf="@id/labelCastingTime"
+        app:layout_constraintEnd_toStartOf="@id/spellConcentration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelDuration" />
+
+    <TextView
+        android:id="@+id/spellConcentration"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellCastingTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellDuration" />
+
+    <TextView
+        android:id="@+id/labelCastingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/casting_time_label"
+        app:layout_constraintBottom_toTopOf="@id/labelLevel"
+        app:layout_constraintEnd_toStartOf="@id/spellCastingTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelConcentration" />
+
+    <TextView
+        android:id="@+id/spellCastingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@id/spellLevel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellConcentration" />
+
+    <TextView
+        android:id="@+id/labelLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/level_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/spellLevel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelCastingTime" />
+
+    <TextView
+        android:id="@+id/spellLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spellCastingTime" />
+
+</android.support.constraint.ConstraintLayout>

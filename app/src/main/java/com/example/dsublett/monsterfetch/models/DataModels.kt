@@ -29,7 +29,7 @@ data class MonsterResponse(
 
 data class ClassResponse(
     val name: String,
-    val hit_dice: String
+    val hit_die: String
 )
 
 data class SpellResponse(

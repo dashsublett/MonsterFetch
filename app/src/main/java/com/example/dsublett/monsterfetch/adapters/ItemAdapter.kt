@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.services.DndApiService
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ItemAdapter(private val responseItems: List<ResponseItem>) :
+class ItemAdapter(private val responseItems: List<ResponseItem>,
+                  private val listener: OnItemClickListener) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -25,6 +27,7 @@ class ItemAdapter(private val responseItems: List<ResponseItem>) :
         } else {
             holder.tvItemName.text = this.responseItems[position].name
         }
+        holder.bind(responseItems[position], listener)
     }
 
     override fun getItemCount(): Int {
@@ -41,5 +44,14 @@ class ItemAdapter(private val responseItems: List<ResponseItem>) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvItemName: TextView = itemView.itemName
+        fun bind(responseItem: ResponseItem, listener: ItemAdapter.OnItemClickListener) {
+            tvItemName.setOnClickListener {
+                listener.onItemClick(responseItem)
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(responseItem: ResponseItem)
     }
 }
