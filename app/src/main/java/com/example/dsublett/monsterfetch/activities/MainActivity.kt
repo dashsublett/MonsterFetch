@@ -44,10 +44,7 @@ class MainActivity : AppCompatActivity(), Showable {
         }
         val theIntent = Intent(this, detailClass).apply {
             action = Intent.ACTION_VIEW
-            putExtras(Bundle().apply {
-                putString("name", responseItem.name)
-                putString("url", responseItem.url)
-            })
+            putExtras(Bundle().apply { putString("url", responseItem.url) })
         }
         startActivity(theIntent)
     }

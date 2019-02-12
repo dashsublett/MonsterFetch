@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.SpellResponse
-import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.DndApiService
 import kotlinx.android.synthetic.main.spell_detail.*
 import kotlinx.android.synthetic.main.spell_detail.view.*
@@ -22,10 +21,7 @@ class SpellDetail : AppCompatActivity() {
     }
 
     override fun onCreateView(name: String?, context: Context?, attrs: AttributeSet?): View? {
-        val tokenizedUrl = ResponseItem(
-            intent.getStringExtra("name"),
-            intent.getStringExtra("url")
-        ).url.split("/")
+        val tokenizedUrl = intent.getStringExtra("url").split("/")
         DndApiService.create().getSpell(tokenizedUrl[tokenizedUrl.size - 1].toInt()).enqueue(
             object : Callback<SpellResponse> {
                 override fun onResponse(call: Call<SpellResponse>, response: Response<SpellResponse>) {
