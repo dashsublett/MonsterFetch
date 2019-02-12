@@ -17,24 +17,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-abstract class DataFragment : Fragment() {
+abstract class ItemList : Fragment() {
     protected abstract fun fetchData()
     private var showable: Showable? = null
     protected val fetchCallback = object : Callback<DNDAPIResponse> {
         override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
-            this@DataFragment.rvItemList?.adapter =
+            this@ItemList.rvItemList?.adapter =
                 ItemAdapter(response.body()?.results ?: emptyList(),
                     object : ItemAdapter.OnItemClickListener {
                         override fun onItemClick(responseItem: ResponseItem) {
-                            this@DataFragment.showable?.showDetails(responseItem)
+                            this@ItemList.showable?.showDetails(responseItem)
                         }
                     }
                 )
-            this@DataFragment.loadingSpinner?.visibility = View.INVISIBLE
+            this@ItemList.loadingSpinner?.visibility = View.INVISIBLE
         }
 
         override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
-            this@DataFragment.loadingSpinner?.visibility = View.INVISIBLE
+            this@ItemList.loadingSpinner?.visibility = View.INVISIBLE
         }
     }
 
