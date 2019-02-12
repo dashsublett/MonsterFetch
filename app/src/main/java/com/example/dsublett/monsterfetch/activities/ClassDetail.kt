@@ -3,6 +3,7 @@ package com.example.dsublett.monsterfetch.activities
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ClassResponse
 import com.example.dsublett.monsterfetch.services.DndApiService
@@ -18,6 +19,8 @@ class ClassDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.class_detail)
 
+        this.classDetailView.visibility = View.VISIBLE
+
         DndApiService
             .create()
             .getClass(UrlParse.getIndex(this.intent.getStringExtra("url")))
@@ -28,6 +31,7 @@ class ClassDetail : AppCompatActivity() {
                         val cView = this@ClassDetail.classDetailView
                         cView.className.text = response.body()?.name
                         cView.classHitDice.text = response.body()?.hit_die
+                        cView.classDetailView.visibility = View.VISIBLE
                     }
 
                     override fun onFailure(call: Call<ClassResponse>, t: Throwable) {

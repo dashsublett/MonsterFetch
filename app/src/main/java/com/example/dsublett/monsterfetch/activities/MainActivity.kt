@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.fragments.*
 import com.example.dsublett.monsterfetch.models.*
 import com.example.dsublett.monsterfetch.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_list.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), Showable {
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity(), Showable {
     }
 
     override fun showDetails(responseItem: ResponseItem) {
+        this.loadingSpinner.visibility = View.VISIBLE
         val detailClass = when (UrlParse.getEndpoint(responseItem.url)) {
             "monsters" -> MonsterDetail::class.java
             "classes" -> ClassDetail::class.java
