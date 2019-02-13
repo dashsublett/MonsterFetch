@@ -34,6 +34,7 @@ class ItemAdapter(private val responseItems: List<ResponseItem>,
         } else {
             this.responseItems.size
         }
+
     }
 
     override fun getItemViewType(position: Int): Int {
