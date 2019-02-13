@@ -1,14 +1,18 @@
 package com.example.dsublett.monsterfetch.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.MonsterResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.DndApiService
+import com.example.dsublett.monsterfetch.utils.SPFavorites
 import com.example.dsublett.monsterfetch.utils.UrlParse
+import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.monster_detail.*
 import kotlinx.android.synthetic.main.monster_detail.view.*
 import retrofit2.Call
@@ -16,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MonsterDetail : AppCompatActivity() {
+    private lateinit var monsterItem: ResponseItem
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.monster_detail)
@@ -30,6 +35,9 @@ class MonsterDetail : AppCompatActivity() {
                 object : Callback<MonsterResponse> {
                     override fun onResponse(call: Call<MonsterResponse>,
                                             response: Response<MonsterResponse>) {
+                        this@MonsterDetail.monsterItem =
+                            this@MonsterDetail.intent.getParcelableExtra("responseItem")
+
                         val mView = this@MonsterDetail.monsterDetailView
                         mView.monsterName.text = response.body()?.name
                         mView.monsterType.text = response.body()?.type
@@ -56,6 +64,22 @@ class MonsterDetail : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.action_bar, menu)
+
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val sharedPreferences = this.getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences", Context.MODE_PRIVATE)
+        when(item?.itemId) {
+            R.id.addFavoriteBtn -> {
+                val responseItemAdapter = Moshi
+                    .Builder()
+                    .build().adapter(ResponseItem::class.java)
+                val responseItemString = responseItemAdapter.toJson(this@MonsterDetail.monsterItem)
+                SPFavorites.addFavorite("monsterFavorites", responseItemString, sharedPreferences)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

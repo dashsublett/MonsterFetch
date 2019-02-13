@@ -1,5 +1,6 @@
 package com.example.dsublett.monsterfetch.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -17,6 +18,19 @@ class MainActivity : AppCompatActivity(), Showable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val sharedPreferences = getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences", Context.MODE_PRIVATE)
+        with(sharedPreferences) {
+            if (getString("monsterFavorites", "").isBlank()) {
+                edit().putString("monsterFavorites", "[]").apply()
+            }
+            if (getString("classFavorites", "").isBlank()) {
+                edit().putString("classFavorites", "[]").apply()
+            }
+            if (getString("spellFavorites", "").isBlank()) {
+                edit().putString("spellFavorites", "[]").apply()
+            }
+        }
 
         this.actionBar?.setDisplayHomeAsUpEnabled(true)
 
