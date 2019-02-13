@@ -1,6 +1,7 @@
 package com.example.dsublett.monsterfetch.activities
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -66,6 +67,10 @@ class SpellDetail : AppCompatActivity() {
         val sharedPreferences = this.getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences", Context.MODE_PRIVATE)
         when (item?.itemId) {
             R.id.addFavoriteBtn -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    item.icon.setTint(getColor(R.color.accent_material_dark))
+                }
+
                 val responseItemAdapter = Moshi
                     .Builder()
                     .build().adapter(ResponseItem::class.java)

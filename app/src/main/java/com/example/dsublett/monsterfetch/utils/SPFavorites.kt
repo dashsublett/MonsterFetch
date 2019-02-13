@@ -18,5 +18,7 @@ class SPFavorites {
                     .apply()
             }
         }
+        fun isFavorited(list: String, responseItem: String, prefs: SharedPreferences): Boolean =
+            prefs.getString(list, "").contains(responseItem)
     }
 }
