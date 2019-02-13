@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.View
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.models.SpellResponse
 import com.example.dsublett.monsterfetch.services.DndApiService
 import com.example.dsublett.monsterfetch.utils.UrlParse
@@ -23,7 +24,8 @@ class SpellDetail : AppCompatActivity() {
 
         DndApiService
             .create()
-            .getSpell(UrlParse.getIndex(this.intent.getStringExtra("url")))
+            .getSpell(UrlParse.getIndex(
+                this.intent.getParcelableExtra<ResponseItem>("responseItem").url))
             .enqueue(
                 object : Callback<SpellResponse> {
                     override fun onResponse(call: Call<SpellResponse>,
@@ -47,8 +49,9 @@ class SpellDetail : AppCompatActivity() {
                 }
             )
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.action_bar, menu)
+        this.menuInflater.inflate(R.menu.action_bar, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }

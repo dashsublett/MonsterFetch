@@ -21,15 +21,15 @@ class MainActivity : AppCompatActivity(), Showable {
         this.actionBar?.setDisplayHomeAsUpEnabled(true)
 
         val fragmentTransaction = this.supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.listContainer, MonstersList())
+        fragmentTransaction.replace(R.id.listContainer, MonstersListFragment())
         fragmentTransaction.commit()
 
         this.navbarView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.monstersBtn -> this.replaceRvFragment(MonstersList())
-                R.id.spellsBtn -> this.replaceRvFragment(SpellsList())
-                R.id.classesBtn -> this.replaceRvFragment(ClassesList())
-                R.id.favoritesBtn -> this.replaceRvFragment(FavoritesList())
+                R.id.monstersBtn -> this.replaceRvFragment(MonstersListFragment())
+                R.id.spellsBtn -> this.replaceRvFragment(SpellsListFragment())
+                R.id.classesBtn -> this.replaceRvFragment(ClassesListFragment())
+                R.id.favoritesBtn -> this.replaceRvFragment(FavoritesListFragment())
             }
             true
         }
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity(), Showable {
         }
         val theIntent = Intent(this, detailClass).apply {
             action = Intent.ACTION_VIEW
-            putExtras(Bundle().apply { putString("url", responseItem.url) })
+            putExtras(Bundle().apply { putParcelable("responseItem", responseItem) })
         }
         startActivity(theIntent)
     }
