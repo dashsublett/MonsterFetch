@@ -57,5 +57,4 @@ abstract class ItemListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         this.fetchData()
     }
-
 }

@@ -34,6 +34,7 @@ class ItemAdapter(private val responseItems: List<ResponseItem>,
         } else {
             this.responseItems.size
         }
+
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -42,7 +43,6 @@ class ItemAdapter(private val responseItems: List<ResponseItem>,
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvItemName: TextView = itemView.itemName
-
         fun bind(responseItem: ResponseItem, listener: ItemAdapter.OnItemClickListener) {
             tvItemName.setOnClickListener {
                 listener.onItemClick(responseItem)
