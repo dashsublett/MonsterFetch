@@ -1,9 +1,36 @@
 package com.example.dsublett.monsterfetch.models
 
+import android.os.Parcel
+import android.os.Parcelable
+import com.squareup.moshi.Json
+
 // Data classes required to parse JSON response with Moshi
 data class DNDAPIResponse(val count: Int, val results: List<ResponseItem>)
 
-data class ResponseItem(val name: String, val url: String)
+data class ResponseItem(val name: String, val url: String) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString()
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(parcel: Parcel?, p1: Int) {
+        parcel?.writeString(this.name)
+        parcel?.writeString(this.url)
+    }
+
+    companion object CREATOR : Parcelable.Creator<ResponseItem> {
+        override fun createFromParcel(parcel: Parcel): ResponseItem {
+            return ResponseItem(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ResponseItem?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
 
 /* For MonsterResponse, ClassResponse and SpellResponse, I am only parsing fields that can be
  * represented as a String, Int, List<String> or List<Int>. Complex fields that would require
@@ -16,9 +43,9 @@ data class MonsterResponse(
     val type: String,
     val subtype: String,
     val alignment: String,
-    val armor_class: Int,
-    val hit_points: Int,
-    val hit_dice: String,
+    @field:Json(name = "armor_class") val armorClass: Int,
+    @field:Json(name = "hit_points") val hitPoints: Int,
+    @field:Json(name = "hit_dice") val hitDice: String,
     val speed: String,
     val strength: Int,
     val dexterity: Int,
@@ -29,7 +56,7 @@ data class MonsterResponse(
 
 data class ClassResponse(
     val name: String,
-    val hit_die: String
+    @field:Json(name = "hit_die") val hitDice: String
 )
 
 data class SpellResponse(

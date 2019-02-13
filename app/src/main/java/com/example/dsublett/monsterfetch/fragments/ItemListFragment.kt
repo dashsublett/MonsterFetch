@@ -17,24 +17,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-abstract class ItemList : Fragment() {
+abstract class ItemListFragment : Fragment() {
     protected abstract fun fetchData()
     private var showable: Showable? = null
     protected val fetchCallback = object : Callback<DNDAPIResponse> {
         override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
-            this@ItemList.rvItemList?.adapter =
+            this@ItemListFragment.rvItemList?.adapter =
                 ItemAdapter(response.body()?.results ?: emptyList(),
                     object : ItemAdapter.OnItemClickListener {
                         override fun onItemClick(responseItem: ResponseItem) {
-                            this@ItemList.showable?.showDetails(responseItem)
+                            this@ItemListFragment.showable?.showDetails(responseItem)
                         }
                     }
                 )
-            this@ItemList.loadingSpinner?.visibility = View.INVISIBLE
+            this@ItemListFragment.loadingSpinner?.visibility = View.INVISIBLE
         }
 
         override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
-            this@ItemList.loadingSpinner?.visibility = View.INVISIBLE
+            this@ItemListFragment.loadingSpinner?.visibility = View.INVISIBLE
         }
     }
 
@@ -57,5 +57,4 @@ abstract class ItemList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         this.fetchData()
     }
-
 }

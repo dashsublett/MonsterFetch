@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ClassResponse
+import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.DndApiService
 import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.class_detail.*
@@ -23,14 +24,15 @@ class ClassDetail : AppCompatActivity() {
 
         DndApiService
             .create()
-            .getClass(UrlParse.getIndex(this.intent.getStringExtra("url")))
+            .getClass(UrlParse
+                .getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url))
             .enqueue(
                 object : Callback<ClassResponse> {
                     override fun onResponse(call: Call<ClassResponse>,
                                             response: Response<ClassResponse>) {
                         val cView = this@ClassDetail.classDetailView
                         cView.className.text = response.body()?.name
-                        cView.classHitDice.text = response.body()?.hit_die
+                        cView.classHitDice.text = response.body()?.hitDice
                         cView.classDetailView.visibility = View.VISIBLE
                     }
 
@@ -41,7 +43,7 @@ class ClassDetail : AppCompatActivity() {
             )
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.action_bar, menu)
+        this.menuInflater.inflate(R.menu.action_bar, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }

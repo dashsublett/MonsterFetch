@@ -2,6 +2,6 @@ package com.example.dsublett.monsterfetch.fragments
 
 import com.example.dsublett.monsterfetch.services.DndApiService
 
-class MonstersList : ItemList() {
+class MonstersListFragment : ItemListFragment() {
     override fun fetchData() = DndApiService.create().getMonsters().enqueue(fetchCallback)
 }
