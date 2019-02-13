@@ -135,6 +135,8 @@
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="outputName" value="favoritesbtn_icon" />
                             <entry key="sourceFile" value="$PROJECT_DIR$/../../../../Pictures/assets/monsterfetch_assets/favorites.svg" />
+                            <entry key="outputName" value="addfavoritesbtn_icon" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../../../Pictures/assets/monsterfetch_assets/add_favorite.svg" />
                           </map>
                         </option>
                       </PersistentState>

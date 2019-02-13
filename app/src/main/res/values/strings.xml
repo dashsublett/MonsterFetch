@@ -4,4 +4,23 @@
     <string name="classes">Classes</string>
     <string name="spells">Spells</string>
     <string name="favorites">Favorites</string>
+    <string name="hit_dice_label">Hit Dice:</string>
+    <string name="name_label">Name:</string>
+    <string name="type_label">Type:</string>
+    <string name="subtype_label">Subtype:</string>
+    <string name="alignment_label">Alignment:</string>
+    <string name="hp_label">HP:</string>
+    <string name="speed_label">Speed:</string>
+    <string name="strength_label">Strength:</string>
+    <string name="dexterity_label">Dexterity:</string>
+    <string name="constitution_label">Constitution:</string>
+    <string name="intelligence_label">Intelligence:</string>
+    <string name="wisdom_label">Wisdom:</string>
+    <string name="description_label">Description:</string>
+    <string name="range_label">Range:</string>
+    <string name="components_label">Components:</string>
+    <string name="casting_time_label">Casting Time:</string>
+    <string name="level_label">Level:</string>
+    <string name="armor_class_label">Armor Class:</string>
+    <string name="add_favorite">Add Favorite</string>
 </resources>

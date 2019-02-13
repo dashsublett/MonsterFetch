@@ -1,16 +1,16 @@
 package com.example.dsublett.monsterfetch.adapters
 
-import com.example.dsublett.monsterfetch.models.ResponseItem
-
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.models.ResponseItem
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ItemAdapter(private val responseItems: List<ResponseItem>) :
+class ItemAdapter(private val responseItems: List<ResponseItem>,
+                  private val listener: OnItemClickListener) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -24,6 +24,7 @@ class ItemAdapter(private val responseItems: List<ResponseItem>) :
             holder.tvItemName.text = "You don't have any favorites"
         } else {
             holder.tvItemName.text = this.responseItems[position].name
+            holder.bind(responseItems[position], listener)
         }
     }
 
@@ -41,5 +42,15 @@ class ItemAdapter(private val responseItems: List<ResponseItem>) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvItemName: TextView = itemView.itemName
+
+        fun bind(responseItem: ResponseItem, listener: ItemAdapter.OnItemClickListener) {
+            tvItemName.setOnClickListener {
+                listener.onItemClick(responseItem)
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(responseItem: ResponseItem)
     }
 }

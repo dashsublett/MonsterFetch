@@ -20,5 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.MonsterDetail"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.ClassDetail"
+            android:parentActivityName=".activities.MainActivity"/>
+        <activity
+            android:name=".activities.SpellDetail"
+            android:parentActivityName=".activities.MainActivity"/>
     </application>
 </manifest>
