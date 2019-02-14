@@ -31,6 +31,12 @@ data class ResponseItem(val name: String, val url: String) : Parcelable {
     }
 }
 
+data class FavoritesList(
+    val monsterFavorites: List<ResponseItem>,
+    val classFavorites: List<ResponseItem>,
+    val spellFavorites: List<ResponseItem>
+)
+
 
 /* For MonsterResponse, ClassResponse and SpellResponse, I am only parsing fields that can be
  * represented as a String, Int, List<String> or List<Int>. Complex fields that would require
