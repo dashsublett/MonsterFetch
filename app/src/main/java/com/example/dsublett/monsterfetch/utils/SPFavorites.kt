@@ -7,7 +7,7 @@ import com.squareup.moshi.Moshi
 class SPFavorites {
     companion object {
         fun addFavorite(list: String, responseItem: String, prefs: SharedPreferences) {
-            if (prefs.getString(list, "").equals("[]")) {
+            if (prefs.getString(list, "") == "[]") {
                 prefs.edit().putString(list, "[$responseItem]").apply()
             } else {
                 val currentVal = prefs.getString(list, "")

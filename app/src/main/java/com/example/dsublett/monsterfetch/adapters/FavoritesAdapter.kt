@@ -21,29 +21,37 @@ class FavoritesAdapter(private val favoritesList: FavoritesList,
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (favoritesList.monsterFavorites.isEmpty() and
-            favoritesList.classFavorites.isEmpty() and
-            favoritesList.spellFavorites.isEmpty() ) {
+        if (this.favoritesList.monsterFavorites.isEmpty() and
+            this.favoritesList.classFavorites.isEmpty() and
+            this.favoritesList.spellFavorites.isEmpty()) {
             holder.tvItemName.text = "You don't have any favorites"
         } else {
-            holder.tvItemName.text = this.favoritesList.monsterFavorites[position].name
-            holder.bind(favoritesList.monsterFavorites[position], listener)
+            when {
+                position < this.favoritesList.monsterFavorites.size -> {
+                    holder.tvItemName.text = this.favoritesList.monsterFavorites[position].name
+                    holder.bind(this.favoritesList.monsterFavorites[position], listener)
+                }
+                (position >= this.favoritesList.monsterFavorites.size) and (position < this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size) -> {
+                    holder.tvItemName.text = this.favoritesList.classFavorites[position - this.favoritesList.monsterFavorites.size].name
+                    holder.bind(this.favoritesList.classFavorites[position - this.favoritesList.monsterFavorites.size], listener)
+                }
+                else -> {
+                    holder.tvItemName.text = this.favoritesList.spellFavorites[position - (this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size)].name
+                    holder.bind(this.favoritesList.spellFavorites[position - (this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size)], listener)
+                }
+            }
         }
     }
 
     override fun getItemCount(): Int {
-        return if (favoritesList.monsterFavorites.isEmpty() and
-            favoritesList.classFavorites.isEmpty() and
-            favoritesList.spellFavorites.isEmpty()) {
+        return if (this.favoritesList.monsterFavorites.isEmpty() and
+            this.favoritesList.classFavorites.isEmpty() and
+            this.favoritesList.spellFavorites.isEmpty()) {
             1
         } else {
-            this.favoritesList.monsterFavorites.size
+            this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size +
+                this.favoritesList.spellFavorites.size
         }
-
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

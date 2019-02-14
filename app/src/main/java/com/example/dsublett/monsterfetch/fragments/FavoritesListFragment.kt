@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.activities.Showable
 import com.example.dsublett.monsterfetch.adapters.FavoritesAdapter
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.utils.SPFavorites
-import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.item_list.*
 
 class FavoritesListFragment : Fragment() {
+    private var showable: Showable? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,11 +28,14 @@ class FavoritesListFragment : Fragment() {
         this.rvItemList.adapter = FavoritesAdapter(SPFavorites.getFavorites(sharedPreferences),
             object : FavoritesAdapter.OnItemClickListener {
                 override fun onItemClick(responseItem: ResponseItem) {
-                    when (UrlParse.getEndpoint(responseItem.url)) {
-                        // TODO: Launch detail activity on click
-                    }
+                    this@FavoritesListFragment.showable?.showDetails(responseItem)
                 }
             })
         this.loadingSpinner.visibility = View.INVISIBLE
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        this.showable = (this.activity as? Showable)
     }
 }

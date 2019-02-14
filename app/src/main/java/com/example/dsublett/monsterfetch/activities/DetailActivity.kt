@@ -50,9 +50,9 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
                     this.spListName, this.responseItemString, this.sharedPreferences
                 )
             ) {
-                this.addButton?.icon?.setTint(getColor(R.color.primary_material_light))
+                this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
             } else {
-                this.addButton?.icon?.setTint(getColor(R.color.primary_material_dark))
+                this.addButton?.icon?.setTint(getColor(R.color.primary_material_light))
             }
         }
     }

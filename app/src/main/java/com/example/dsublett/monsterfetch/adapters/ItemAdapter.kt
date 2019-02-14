@@ -20,26 +20,11 @@ class ItemAdapter(private val responseItems: List<ResponseItem>,
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (responseItems.isEmpty()) {
-            holder.tvItemName.text = "You don't have any favorites"
-        } else {
-            holder.tvItemName.text = this.responseItems[position].name
-            holder.bind(responseItems[position], listener)
-        }
+        holder.tvItemName.text = this.responseItems[position].name
+        holder.bind(this.responseItems[position], this.listener)
     }
 
-    override fun getItemCount(): Int {
-        return if (this.responseItems.isEmpty()) {
-            1
-        } else {
-            this.responseItems.size
-        }
-
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
+    override fun getItemCount(): Int = this.responseItems.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvItemName: TextView = itemView.itemName
