@@ -1,43 +1,42 @@
 package com.example.dsublett.monsterfetch.activities
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.models.SpellResponse
 import com.example.dsublett.monsterfetch.services.DndApiService
-import com.example.dsublett.monsterfetch.utils.SPFavorites
 import com.example.dsublett.monsterfetch.utils.UrlParse
-import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.spell_detail.*
 import kotlinx.android.synthetic.main.spell_detail.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SpellDetail : AppCompatActivity() {
-    private lateinit var spellItem: ResponseItem
+class SpellDetail : DetailActivity("spellFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.spell_detail)
 
         this.spellDetailView.visibility = View.INVISIBLE
+        this.sharedPreferences =
+            this.getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences", Context.MODE_PRIVATE)
+        this.itemIndex =
+            UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
         DndApiService
             .create()
-            .getSpell(UrlParse.getIndex(
-                this.intent.getParcelableExtra<ResponseItem>("responseItem").url))
+            .getSpell(this.itemIndex)
             .enqueue(
                 object : Callback<SpellResponse> {
                     override fun onResponse(call: Call<SpellResponse>,
                                             response: Response<SpellResponse>) {
-                        this@SpellDetail.spellItem =
+                        this@SpellDetail.detailItem =
                             this@SpellDetail.intent.getParcelableExtra("responseItem")
+                        this@SpellDetail.responseItemString =
+                            this@SpellDetail.responseItemAdapter.toJson(this@SpellDetail.detailItem)
+
                         val sView = this@SpellDetail.spellDetailView
                         sView.spellName.text = response.body()?.name
                         sView.spellDesc.text = response.body()?.desc.toString()
@@ -48,7 +47,9 @@ class SpellDetail : AppCompatActivity() {
                         sView.spellConcentration.text = response.body()?.concentration
                         sView.spellCastingTime.text = response.body()?.castingTime
                         sView.spellLevel.text = response.body()?.level.toString()
+
                         sView.spellDetailView.visibility = View.VISIBLE
+                        this@SpellDetail.setTintOnCreate()
                     }
 
                     override fun onFailure(call: Call<SpellResponse>, t: Throwable) {
@@ -56,29 +57,5 @@ class SpellDetail : AppCompatActivity() {
                     }
                 }
             )
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        this.menuInflater.inflate(R.menu.action_bar, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val sharedPreferences = this.getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences", Context.MODE_PRIVATE)
-        when (item?.itemId) {
-            R.id.addFavoriteBtn -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    item.icon.setTint(getColor(R.color.accent_material_dark))
-                }
-
-                val responseItemAdapter = Moshi
-                    .Builder()
-                    .build().adapter(ResponseItem::class.java)
-                val responseItemString = responseItemAdapter.toJson(this@SpellDetail.spellItem)
-                SPFavorites.addFavorite("spellFavorites", responseItemString, sharedPreferences)
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 }
