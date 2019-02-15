@@ -6,10 +6,12 @@ import com.squareup.moshi.Moshi
 
 class SPFavorites {
     companion object {
-        fun addFavorite(list: String, responseItem: String, prefs: SharedPreferences) {
-            if (prefs.getString(list, "") == "[]") {
-                prefs.edit().putString(list, "[$responseItem]").apply()
-            } else {
+        fun addFavorite(list: String, responseItem: String, prefs: SharedPreferences) = when {
+            prefs.getString(list, "") == "[]" -> prefs
+                .edit()
+                .putString(list, "[$responseItem]")
+                .apply()
+            else -> {
                 val currentVal = prefs.getString(list, "")
                 prefs
                     .edit()
@@ -23,13 +25,21 @@ class SPFavorites {
         fun isFavorited(list: String, responseItem: String, prefs: SharedPreferences): Boolean =
             prefs.getString(list, "").contains(responseItem)
 
+        fun addIfNotFavorited(list: String, responseItem: String, prefs: SharedPreferences) {
+            if (!(isFavorited(list, responseItem, prefs))) {
+                addFavorite(list, responseItem, prefs)
+            }
+        }
+
         fun getFavorites(prefs: SharedPreferences?): FavoritesList {
             val stringList = """
-                {"monsterFavorites":${prefs?.getString("monsterFavorites", "")},
-                "classFavorites":${prefs?.getString("classFavorites", "")},
-                "spellFavorites":${prefs?.getString("spellFavorites", "")}}""".trimIndent()
+                {
+                    "monsterFavorites":${prefs?.getString("monsterFavorites", "")},
+                    "classFavorites":${prefs?.getString("classFavorites", "")},
+                    "spellFavorites":${prefs?.getString("spellFavorites", "")}
+                }"""
 
-            val favoritesListAdapter= Moshi
+            val favoritesListAdapter = Moshi
                 .Builder()
                 .build()
                 .adapter(FavoritesList::class.java)

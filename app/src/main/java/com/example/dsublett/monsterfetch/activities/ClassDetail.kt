@@ -21,7 +21,8 @@ class ClassDetail : DetailActivity("classFavorites") {
 
         this.classDetailView.visibility = View.INVISIBLE
         this.sharedPreferences =
-            this.getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences", Context.MODE_PRIVATE)
+            this.getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences",
+                Context.MODE_PRIVATE)
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 

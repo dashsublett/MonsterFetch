@@ -30,14 +30,14 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            R.id.addFavoriteBtn -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    item.icon.setTint(getColor(R.color.primary_material_light))
-                }
-                if (!(SPFavorites.isFavorited(this.spListName, this.responseItemString, this.sharedPreferences))) {
-                    SPFavorites.addFavorite(this.spListName, this.responseItemString, this.sharedPreferences)
-                }
+        if (item?.itemId == R.id.addFavoriteBtn) {
+            SPFavorites.addIfNotFavorited(
+                this.spListName,
+                this.responseItemString,
+                this.sharedPreferences
+            )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                item.icon.setTint(getColor(R.color.accent_material_dark))
             }
         }
 
@@ -45,15 +45,12 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
     }
 
     protected fun setTintOnCreate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (SPFavorites.isFavorited(
-                    this.spListName, this.responseItemString, this.sharedPreferences
-                )
-            ) {
-                this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
-            } else {
-                this.addButton?.icon?.setTint(getColor(R.color.primary_material_light))
-            }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && SPFavorites.isFavorited(
+                this.spListName,
+                this.responseItemString,
+                this.sharedPreferences
+            )) {
+            this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
         }
     }
 }

@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
 class FavoritesAdapter(private val favoritesList: FavoritesList,
                        private val listener: OnItemClickListener) :
     RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
+    private var startOfSpells = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(LayoutInflater
@@ -21,23 +22,31 @@ class FavoritesAdapter(private val favoritesList: FavoritesList,
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        this.startOfSpells =
+            (this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size)
+
         if (this.favoritesList.monsterFavorites.isEmpty() and
             this.favoritesList.classFavorites.isEmpty() and
             this.favoritesList.spellFavorites.isEmpty()) {
             holder.tvItemName.text = "You don't have any favorites"
         } else {
             when {
-                position < this.favoritesList.monsterFavorites.size -> {
+                position < this.favoritesList.monsterFavorites.size -> { // Monster
                     holder.tvItemName.text = this.favoritesList.monsterFavorites[position].name
                     holder.bind(this.favoritesList.monsterFavorites[position], listener)
                 }
-                (position >= this.favoritesList.monsterFavorites.size) and (position < this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size) -> {
-                    holder.tvItemName.text = this.favoritesList.classFavorites[position - this.favoritesList.monsterFavorites.size].name
-                    holder.bind(this.favoritesList.classFavorites[position - this.favoritesList.monsterFavorites.size], listener)
+                (position >= this.favoritesList.monsterFavorites.size) and
+                    (position < this.startOfSpells) -> { // Class
+                    holder.tvItemName.text = this.favoritesList.classFavorites[position -
+                        this.favoritesList.monsterFavorites.size].name
+                    holder.bind(this.favoritesList.classFavorites[position -
+                        this.favoritesList.monsterFavorites.size], listener)
                 }
-                else -> {
-                    holder.tvItemName.text = this.favoritesList.spellFavorites[position - (this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size)].name
-                    holder.bind(this.favoritesList.spellFavorites[position - (this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size)], listener)
+                else -> { // Spell
+                    holder.tvItemName.text = this.favoritesList.spellFavorites[position -
+                        (this.startOfSpells)].name
+                    holder.bind(this.favoritesList.spellFavorites[position - (this.startOfSpells)],
+                        listener)
                 }
             }
         }
