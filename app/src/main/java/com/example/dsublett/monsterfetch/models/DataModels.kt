@@ -32,9 +32,9 @@ data class ResponseItem(val name: String, val url: String) : Parcelable {
 }
 
 data class FavoritesList(
-    val monsterFavorites: List<ResponseItem>,
-    val classFavorites: List<ResponseItem>,
-    val spellFavorites: List<ResponseItem>
+    private val monsterFavorites: List<ResponseItem>,
+    private val classFavorites: List<ResponseItem>,
+    private val spellFavorites: List<ResponseItem>
 ) : Map<String, List<ResponseItem>> {
     val startOfSpells: Int
         get() = monsterFavorites.size + classFavorites.size
@@ -52,7 +52,7 @@ data class FavoritesList(
 
     override fun containsValue(value: List<ResponseItem>): Boolean = throw NotImplementedError()
 
-    override fun get(key: String): List<ResponseItem>? {
+    override fun get(key: String): List<ResponseItem> {
         return when (key) {
             "monsterFavorites" -> this.monsterFavorites
             "classFavorites" -> this.classFavorites

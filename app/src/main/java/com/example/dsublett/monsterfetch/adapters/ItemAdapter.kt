@@ -21,16 +21,16 @@ class ItemAdapter(private val responseItems: List<ResponseItem>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvItemName.text = this.responseItems[position].name
-        holder.bind(this.responseItems[position], this.listener)
+        holder.bind(this.responseItems[position])
     }
 
     override fun getItemCount(): Int = this.responseItems.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvItemName: TextView = itemView.itemName
-        fun bind(responseItem: ResponseItem, listener: ItemAdapter.OnItemClickListener) {
-            tvItemName.setOnClickListener {
-                listener.onItemClick(responseItem)
+        fun bind(responseItem: ResponseItem) {
+            this.tvItemName.setOnClickListener {
+                this@ItemAdapter.listener.onItemClick(responseItem)
             }
         }
     }
