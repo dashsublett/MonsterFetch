@@ -63,6 +63,10 @@ class FavoritesAdapter(private val favoritesList: FavoritesList,
         }
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvItemName: TextView = itemView.itemName
         fun bind(responseItem: ResponseItem, listener: FavoritesAdapter.OnItemClickListener) {

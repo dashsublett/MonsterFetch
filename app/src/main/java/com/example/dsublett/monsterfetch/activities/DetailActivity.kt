@@ -45,12 +45,17 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
     }
 
     protected fun setTintOnCreate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && SPFavorites.isFavorited(
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if(SPFavorites.isFavorited(
                 this.spListName,
                 this.responseItemString,
                 this.sharedPreferences
             )) {
-            this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
+                this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
+            }
+            else {
+                this.addButton?.icon?.setTintList(null)
+            }
         }
     }
 }
