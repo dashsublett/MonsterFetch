@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.list_item.view.*
 class FavoritesAdapter(private val favoritesList: FavoritesList,
                        private val listener: OnItemClickListener) :
     RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
-    private var startOfSpells = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(LayoutInflater
@@ -22,49 +21,46 @@ class FavoritesAdapter(private val favoritesList: FavoritesList,
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        this.startOfSpells =
-            (this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size)
-
-        if (this.favoritesList.monsterFavorites.isEmpty() and
-            this.favoritesList.classFavorites.isEmpty() and
-            this.favoritesList.spellFavorites.isEmpty()) {
+        if (this.favoritesList.isEmpty()) {
             holder.tvItemName.text = "You don't have any favorites"
         } else {
-            when {
-                position < this.favoritesList.monsterFavorites.size -> { // Monster
+            when (getItemViewType(position)) {
+                0 -> { // Monster
                     holder.tvItemName.text = this.favoritesList.monsterFavorites[position].name
-                    holder.bind(this.favoritesList.monsterFavorites[position], listener)
+                    holder.bind(this.favoritesList.monsterFavorites[position], this.listener)
                 }
-                (position >= this.favoritesList.monsterFavorites.size) and
-                    (position < this.startOfSpells) -> { // Class
+                1 -> { // Class
                     holder.tvItemName.text = this.favoritesList.classFavorites[position -
                         this.favoritesList.monsterFavorites.size].name
                     holder.bind(this.favoritesList.classFavorites[position -
-                        this.favoritesList.monsterFavorites.size], listener)
+                        this.favoritesList.monsterFavorites.size], this.listener)
                 }
-                else -> { // Spell
+                2 -> { // Spell
                     holder.tvItemName.text = this.favoritesList.spellFavorites[position -
-                        (this.startOfSpells)].name
-                    holder.bind(this.favoritesList.spellFavorites[position - (this.startOfSpells)],
-                        listener)
+                        (this.favoritesList.startOfSpells)].name
+                    holder.bind(this.favoritesList.spellFavorites[position -
+                        (this.favoritesList.startOfSpells)], this.listener)
                 }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return if (this.favoritesList.monsterFavorites.isEmpty() and
-            this.favoritesList.classFavorites.isEmpty() and
-            this.favoritesList.spellFavorites.isEmpty()) {
+        return if (this.favoritesList.isEmpty()) {
             1
         } else {
-            this.favoritesList.monsterFavorites.size + this.favoritesList.classFavorites.size +
-                this.favoritesList.spellFavorites.size
+            this.favoritesList.size
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
+        super.getItemViewType(position)
+        return when {
+            (position < this.favoritesList.monsterFavorites.size) -> 0
+            (position >= this.favoritesList.monsterFavorites.size) and
+                (position < this.favoritesList.startOfSpells) -> 1
+            else -> 2
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
