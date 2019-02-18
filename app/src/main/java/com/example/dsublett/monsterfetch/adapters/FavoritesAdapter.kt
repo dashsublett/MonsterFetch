@@ -1,7 +1,6 @@
 package com.example.dsublett.monsterfetch.adapters
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,64 +14,53 @@ class FavoritesAdapter(private val favoritesList: FavoritesList,
                        private val listener: OnItemClickListener) :
     RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return if(viewType == -1) {
-            ViewHolder(LayoutInflater
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        when (viewType) {
+            in -1..5 step 2 -> ViewHolder(LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.list_item, parent, false))
-        }
-        else if (viewType == 1 || viewType == 3 || viewType == 5) {
-            ViewHolder(LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.list_item, parent, false))
-        } else {
-            ViewHolder(LayoutInflater
+            else -> ViewHolder(LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.list_item_wheader, parent, false))
         }
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("getItemViewType", "${getItemViewType(position)}")
-        if (this.favoritesList.isEmpty()) {
-            holder.tvItemName.text = "You don't have any favorites"
-        } else {
-            when (getItemViewType(position)) {
-                0 -> { // Monster with header
-                    holder.tvHeader?.text = "MONSTERS"
-                    holder.tvItemName.text = this.favoritesList["monsterFavorites"][position].name
-                    holder.bind(this.favoritesList["monsterFavorites"][position])
-                }
-                1 -> { // Monster
-                    holder.tvItemName.text = this.favoritesList["monsterFavorites"][position].name
-                    holder.bind(this.favoritesList["monsterFavorites"][position])
-                }
-                2 -> { // Class with header
-                    holder.tvHeader?.text = "CLASSES"
-                    holder.tvItemName.text = this.favoritesList["classFavorites"][position -
-                        this.favoritesList["monsterFavorites"].size].name
-                    holder.bind(this.favoritesList["classFavorites"][position -
-                        this.favoritesList["monsterFavorites"].size])
-                }
-                3 -> { // Class
-                    holder.tvItemName.text = this.favoritesList["classFavorites"][position -
-                        this.favoritesList["monsterFavorites"].size].name
-                    holder.bind(this.favoritesList["classFavorites"][position -
-                        this.favoritesList["monsterFavorites"].size])
-                }
-                4 -> { // Spell with header
-                    holder.tvHeader?.text = "SPELLS"
-                    holder.tvItemName.text = this.favoritesList["spellFavorites"][position -
-                        this.favoritesList.startOfSpells].name
-                    holder.bind(this.favoritesList["spellFavorites"][position -
-                        this.favoritesList.startOfSpells])
-                }
-                5 -> { // Spell
-                    holder.tvItemName.text = this.favoritesList["spellFavorites"][position -
-                        this.favoritesList.startOfSpells].name
-                    holder.bind(this.favoritesList["spellFavorites"][position -
-                        this.favoritesList.startOfSpells])
-                }
+        when (getItemViewType(position)) {
+            -1 -> holder.tvItemName.text = "You don't have any favorites"
+            0 -> { // Monster with header
+                holder.tvHeader?.text = "MONSTERS"
+                holder.tvItemName.text = this.favoritesList["monsterFavorites"][position].name
+                holder.bind(this.favoritesList["monsterFavorites"][position])
+            }
+            1 -> { // Monster
+                holder.tvItemName.text = this.favoritesList["monsterFavorites"][position].name
+                holder.bind(this.favoritesList["monsterFavorites"][position])
+            }
+            2 -> { // Class with header
+                holder.tvHeader?.text = "CLASSES"
+                holder.tvItemName.text = this.favoritesList["classFavorites"][position -
+                    this.favoritesList["monsterFavorites"].size].name
+                holder.bind(this.favoritesList["classFavorites"][position -
+                    this.favoritesList["monsterFavorites"].size])
+            }
+            3 -> { // Class
+                holder.tvItemName.text = this.favoritesList["classFavorites"][position -
+                    this.favoritesList["monsterFavorites"].size].name
+                holder.bind(this.favoritesList["classFavorites"][position -
+                    this.favoritesList["monsterFavorites"].size])
+            }
+            4 -> { // Spell with header
+                holder.tvHeader?.text = "SPELLS"
+                holder.tvItemName.text = this.favoritesList["spellFavorites"][position -
+                    this.favoritesList.startOfSpells].name
+                holder.bind(this.favoritesList["spellFavorites"][position -
+                    this.favoritesList.startOfSpells])
+            }
+            5 -> { // Spell
+                holder.tvItemName.text = this.favoritesList["spellFavorites"][position -
+                    this.favoritesList.startOfSpells].name
+                holder.bind(this.favoritesList["spellFavorites"][position -
+                    this.favoritesList.startOfSpells])
             }
         }
     }
@@ -83,7 +71,7 @@ class FavoritesAdapter(private val favoritesList: FavoritesList,
     }
 
     override fun getItemViewType(position: Int): Int = when {
-        (position == 0) and this.favoritesList.isEmpty() -> -1
+        this.favoritesList.isEmpty() -> -1
         (position == 0) -> 0
         ((position > 0) and (position < this.favoritesList["monsterFavorites"].size)) -> 1
         position == this.favoritesList["monsterFavorites"].size -> 2
