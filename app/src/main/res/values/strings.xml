@@ -23,4 +23,7 @@
     <string name="level_label">Level:</string>
     <string name="armor_class_label">Armor Class:</string>
     <string name="add_favorite">Add Favorite</string>
+    <string name="ritual_label">Ritual:</string>
+    <string name="duration_label">Duration:</string>
+    <string name="concentration_label">Concentration:</string>
 </resources>

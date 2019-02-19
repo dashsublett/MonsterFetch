@@ -1,5 +1,6 @@
 package com.example.dsublett.monsterfetch.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -18,11 +19,24 @@ class MainActivity : AppCompatActivity(), Showable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        with(getSharedPreferences(
+            "com.example.dsublett.monsterfetch.sharedPreferences",
+            Context.MODE_PRIVATE
+        )) {
+            if (getString("monsterFavorites", "").isBlank()) {
+                edit().putString("monsterFavorites", "[]").apply()
+            }
+            if (getString("classFavorites", "").isBlank()) {
+                edit().putString("classFavorites", "[]").apply()
+            }
+            if (getString("spellFavorites", "").isBlank()) {
+                edit().putString("spellFavorites", "[]").apply()
+            }
+        }
+
         this.actionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val fragmentTransaction = this.supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.listContainer, MonstersListFragment())
-        fragmentTransaction.commit()
+        this.replaceRvFragment(MonstersListFragment())
 
         this.navbarView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
