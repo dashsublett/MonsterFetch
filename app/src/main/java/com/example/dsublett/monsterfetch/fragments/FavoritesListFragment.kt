@@ -28,7 +28,7 @@ class FavoritesListFragment : Fragment() {
             Context.MODE_PRIVATE
         )
 
-        this.rvItemList.adapter = FavoritesAdapter(SPFavorites.getFavorites(sharedPreferences),
+        this.rvItemList.adapter = FavoritesAdapter(SPFavorites.getFavorites(sharedPreferences).flatten(),
             object : FavoritesAdapter.OnItemClickListener {
                 override fun onItemClick(responseItem: ResponseItem) {
                     this@FavoritesListFragment.showable?.showDetails(responseItem)

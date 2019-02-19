@@ -31,41 +31,6 @@ data class ResponseItem(val name: String, val url: String) : Parcelable {
     }
 }
 
-data class FavoritesList(
-    private val monsterFavorites: List<ResponseItem>,
-    private val classFavorites: List<ResponseItem>,
-    private val spellFavorites: List<ResponseItem>
-) : Map<String, List<ResponseItem>> {
-    val startOfSpells: Int
-        get() = monsterFavorites.size + classFavorites.size
-    override val entries: Set<Map.Entry<String, List<ResponseItem>>>
-        get() = throw NotImplementedError()
-    override val keys: Set<String>
-        get() = setOf("monsterFavorites", "classFavorites", "spellFavorites")
-    override val size: Int
-        get() = this.monsterFavorites.size + this.classFavorites.size + this.spellFavorites.size
-    override val values: Collection<List<ResponseItem>>
-        get() = listOf(this.monsterFavorites + this.classFavorites + this.spellFavorites)
-
-    override fun containsKey(key: String): Boolean =
-        (key == "monsterFavorites" || key == "classFavorites" || key == "spellFavorites")
-
-    override fun containsValue(value: List<ResponseItem>): Boolean = throw NotImplementedError()
-
-    override fun get(key: String): List<ResponseItem> {
-        return when (key) {
-            "monsterFavorites" -> this.monsterFavorites
-            "classFavorites" -> this.classFavorites
-            "spellFavorites" -> this.spellFavorites
-            else -> emptyList()
-        }
-    }
-
-    override fun isEmpty(): Boolean = this.monsterFavorites.isEmpty() and
-        this.classFavorites.isEmpty() and this.spellFavorites.isEmpty()
-
-}
-
 
 /* For MonsterResponse, ClassResponse and SpellResponse, I am only parsing fields that can be
  * represented as a String, Int, List<String> or List<Int>. Complex fields that would require

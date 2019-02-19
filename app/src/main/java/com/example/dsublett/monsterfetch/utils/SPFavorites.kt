@@ -5,7 +5,7 @@ import com.example.dsublett.monsterfetch.models.FavoritesList
 import com.squareup.moshi.Moshi
 
 object SPFavorites {
-    fun addFavorite(list: String, responseItem: String, prefs: SharedPreferences) = when {
+    private fun addFavorite(list: String, responseItem: String, prefs: SharedPreferences) = when {
         prefs.getString(list, "") == "[]" -> prefs
             .edit()
             .putString(list, "[$responseItem]")
