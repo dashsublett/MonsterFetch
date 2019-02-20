@@ -48,11 +48,7 @@ class SpellDetail : DetailActivity("spellFavorites") {
                 this@SpellDetail.setTintOnCreate()
             },
             {
-                try {
-                    throw it
-                } catch (e: Exception) {
-                    Log.d(this@SpellDetail::class.java.canonicalName, "$e")
-                }
+                Log.d(this@SpellDetail::class.java.canonicalName, "$it")
             }
         )
     }

@@ -23,11 +23,7 @@ class ClassesListFragment : ItemListFragment() {
         },
         {
             this.loadingSpinner?.visibility = View.INVISIBLE
-            try {
-                throw it
-            } catch (e: Exception) {
-                Log.d(this@ClassesListFragment::class.java.canonicalName, "$e")
-            }
+            Log.d(this@ClassesListFragment::class.java.canonicalName, "$it")
         }
     )
 }

@@ -23,11 +23,7 @@ class MonstersListFragment : ItemListFragment() {
         },
         {
             this.loadingSpinner?.visibility = View.INVISIBLE
-            try {
-                throw it
-            } catch (e: Exception) {
-                Log.d(this@MonstersListFragment::class.java.canonicalName, "$e")
-            }
+            Log.d(this@MonstersListFragment::class.java.canonicalName, "$it")
         }
     )
 }

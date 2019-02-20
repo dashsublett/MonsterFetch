@@ -41,11 +41,7 @@ class ClassDetail : DetailActivity("classFavorites") {
                 this@ClassDetail.setTintOnCreate()
             },
             {
-                try {
-                    throw it
-                } catch (e: Exception) {
-                    Log.d(this@ClassDetail::class.java.canonicalName, "$e")
-                }
+                Log.d(this@ClassDetail::class.java.canonicalName, "$it")
             }
         )
     }

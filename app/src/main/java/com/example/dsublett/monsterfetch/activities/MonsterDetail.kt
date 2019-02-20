@@ -53,12 +53,7 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
 
             },
             {
-                try {
-                    throw it
-                }
-                catch (e: Exception) {
-                    Log.d(this@MonsterDetail::class.java.canonicalName, "$e")
-                }
+                Log.d(this@MonsterDetail::class.java.canonicalName, "$it")
             }
         )
     }
