@@ -28,11 +28,11 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
     }
 
     private fun buildUI(details: MonsterResponse?) {
-        this@MonsterDetail.detailItem = this@MonsterDetail.intent.getParcelableExtra("responseItem")
-        this@MonsterDetail.responseItemString =
-            this@MonsterDetail.responseItemAdapter.toJson(this@MonsterDetail.detailItem)
+        this.detailItem = this.intent.getParcelableExtra("responseItem")
+        this.responseItemString =
+            this.responseItemAdapter.toJson(this.detailItem)
 
-        val mView = this@MonsterDetail.monsterDetailView
+        val mView = this.monsterDetailView
         mView.monsterName.text = details?.name
         mView.monsterType.text = details?.type
         mView.monsterSubtype.text = details?.subtype
@@ -48,6 +48,6 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         mView.monsterWisdom.text = details?.wisdom.toString()
 
         mView.monsterDetailView.visibility = View.VISIBLE
-        this@MonsterDetail.setTintOnCreate()
+        this.setTintOnCreate()
     }
 }

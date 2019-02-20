@@ -28,11 +28,11 @@ class SpellDetail : DetailActivity("spellFavorites") {
     }
 
     private fun buildUI(details: SpellResponse?) {
-        this@SpellDetail.detailItem = this@SpellDetail.intent.getParcelableExtra("responseItem")
-        this@SpellDetail.responseItemString =
-            this@SpellDetail.responseItemAdapter.toJson(this@SpellDetail.detailItem)
+        this.detailItem = this.intent.getParcelableExtra("responseItem")
+        this.responseItemString =
+            this.responseItemAdapter.toJson(this.detailItem)
 
-        val sView = this@SpellDetail.spellDetailView
+        val sView = this.spellDetailView
         sView.spellName.text = details?.name
         sView.spellDesc.text = details?.desc.toString()
         sView.spellRange.text = details?.range
@@ -44,6 +44,6 @@ class SpellDetail : DetailActivity("spellFavorites") {
         sView.spellLevel.text = details?.level.toString()
 
         sView.spellDetailView.visibility = View.VISIBLE
-        this@SpellDetail.setTintOnCreate()
+        this.setTintOnCreate()
     }
 }

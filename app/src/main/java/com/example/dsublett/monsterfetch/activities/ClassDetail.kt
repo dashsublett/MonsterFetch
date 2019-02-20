@@ -28,15 +28,15 @@ class ClassDetail : DetailActivity("classFavorites") {
     }
 
     private fun buildUI(details: ClassResponse?) {
-        this@ClassDetail.detailItem = this@ClassDetail.intent.getParcelableExtra("responseItem")
-        this@ClassDetail.responseItemString =
-            this@ClassDetail.responseItemAdapter.toJson(this@ClassDetail.detailItem)
+        this.detailItem = this.intent.getParcelableExtra("responseItem")
+        this.responseItemString =
+            this.responseItemAdapter.toJson(this.detailItem)
 
-        val cView = this@ClassDetail.classDetailView
+        val cView = this.classDetailView
         cView.className.text = details?.name
         cView.classHitDice.text = details?.hitDice
 
         cView.classDetailView.visibility = View.VISIBLE
-        this@ClassDetail.setTintOnCreate()
+        this.setTintOnCreate()
     }
 }
