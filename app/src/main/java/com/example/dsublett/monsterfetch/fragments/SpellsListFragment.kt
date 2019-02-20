@@ -1,16 +1,30 @@
 package com.example.dsublett.monsterfetch.fragments
 
 import android.util.Log
-import com.example.dsublett.monsterfetch.services.DndApiService
-import com.example.dsublett.monsterfetch.services.DndServiceImp
+import android.view.View
+import com.example.dsublett.monsterfetch.adapters.ItemAdapter
+import com.example.dsublett.monsterfetch.models.ResponseItem
+import com.example.dsublett.monsterfetch.services.RemoteDndService
+import kotlinx.android.synthetic.main.item_list.*
 import java.lang.Exception
 
 class SpellsListFragment : ItemListFragment() {
-    override fun fetchData() = DndServiceImp.getSpells(
-        { DndApiService.create().getSpells().enqueue(this.fetchCallback) },
-        { t ->
+    override fun fetchData() = RemoteDndService().getSpells(
+        {
+            this.rvItemList?.adapter =
+                ItemAdapter(it,
+                    object : ItemAdapter.OnItemClickListener {
+                        override fun onItemClick(responseItem: ResponseItem) {
+                            this@SpellsListFragment.showable?.showDetails(responseItem)
+                        }
+                    }
+                )
+            this.loadingSpinner?.visibility = View.INVISIBLE
+        },
+        {
+            this.loadingSpinner?.visibility = View.INVISIBLE
             try {
-                throw t
+                throw it
             } catch (e: Exception) {
                 Log.d(this@SpellsListFragment::class.java.canonicalName, "$e")
             }
