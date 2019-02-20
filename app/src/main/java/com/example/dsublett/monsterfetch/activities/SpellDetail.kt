@@ -6,13 +6,10 @@ import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.models.SpellResponse
-import com.example.dsublett.monsterfetch.services.DndApiService
+import com.example.dsublett.monsterfetch.services.RemoteDndService
 import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.spell_detail.*
 import kotlinx.android.synthetic.main.spell_detail.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SpellDetail : DetailActivity("spellFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,42 +17,33 @@ class SpellDetail : DetailActivity("spellFavorites") {
         setContentView(R.layout.spell_detail)
 
         this.spellDetailView.visibility = View.INVISIBLE
-        this.sharedPreferences =
-            this.getSharedPreferences("com.example.dsublett.monsterfetch.sharedPreferences", Context.MODE_PRIVATE)
+        this.sharedPreferences = this.getSharedPreferences(
+            "com.example.dsublett.monsterfetch.sharedPreferences",
+            Context.MODE_PRIVATE
+        )
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
-        DndApiService
-            .create()
-            .getSpell(this.itemIndex)
-            .enqueue(
-                object : Callback<SpellResponse> {
-                    override fun onResponse(call: Call<SpellResponse>,
-                                            response: Response<SpellResponse>) {
-                        this@SpellDetail.detailItem =
-                            this@SpellDetail.intent.getParcelableExtra("responseItem")
-                        this@SpellDetail.responseItemString =
-                            this@SpellDetail.responseItemAdapter.toJson(this@SpellDetail.detailItem)
+        RemoteDndService().getSpell(this.itemIndex, this::buildUI, this::logFailure)
+    }
 
-                        val sView = this@SpellDetail.spellDetailView
-                        sView.spellName.text = response.body()?.name
-                        sView.spellDesc.text = response.body()?.desc.toString()
-                        sView.spellRange.text = response.body()?.range
-                        sView.spellComponents.text = response.body()?.components.toString()
-                        sView.spellRitual.text = response.body()?.ritual
-                        sView.spellDuration.text = response.body()?.duration
-                        sView.spellConcentration.text = response.body()?.concentration
-                        sView.spellCastingTime.text = response.body()?.castingTime
-                        sView.spellLevel.text = response.body()?.level.toString()
+    private fun buildUI(details: SpellResponse?) {
+        this.detailItem = this.intent.getParcelableExtra("responseItem")
+        this.responseItemString =
+            this.responseItemAdapter.toJson(this.detailItem)
 
-                        sView.spellDetailView.visibility = View.VISIBLE
-                        this@SpellDetail.setTintOnCreate()
-                    }
+        val sView = this.spellDetailView
+        sView.spellName.text = details?.name
+        sView.spellDesc.text = details?.desc.toString()
+        sView.spellRange.text = details?.range
+        sView.spellComponents.text = details?.components.toString()
+        sView.spellRitual.text = details?.ritual
+        sView.spellDuration.text = details?.duration
+        sView.spellConcentration.text = details?.concentration
+        sView.spellCastingTime.text = details?.castingTime
+        sView.spellLevel.text = details?.level.toString()
 
-                    override fun onFailure(call: Call<SpellResponse>, t: Throwable) {
-                        throw t
-                    }
-                }
-            )
+        sView.spellDetailView.visibility = View.VISIBLE
+        this.setTintOnCreate()
     }
 }

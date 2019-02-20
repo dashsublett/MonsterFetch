@@ -3,6 +3,7 @@ package com.example.dsublett.monsterfetch.activities
 import android.content.SharedPreferences
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.dsublett.monsterfetch.R
@@ -21,6 +22,9 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         .Builder()
         .build()
         .adapter(ResponseItem::class.java)
+    protected fun logFailure(t: Throwable) {
+        Log.d("logFailure", "$t")
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.action_bar, menu)
