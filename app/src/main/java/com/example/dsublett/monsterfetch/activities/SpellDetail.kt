@@ -2,15 +2,14 @@ package com.example.dsublett.monsterfetch.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ResponseItem
+import com.example.dsublett.monsterfetch.models.SpellResponse
 import com.example.dsublett.monsterfetch.services.RemoteDndService
 import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.spell_detail.*
 import kotlinx.android.synthetic.main.spell_detail.view.*
-import java.lang.Exception
 
 class SpellDetail : DetailActivity("spellFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,29 +26,28 @@ class SpellDetail : DetailActivity("spellFavorites") {
 
         RemoteDndService().getSpell(
             this.itemIndex,
-            {
-                this@SpellDetail.detailItem =
-                    this@SpellDetail.intent.getParcelableExtra("responseItem")
-                this@SpellDetail.responseItemString =
-                    this@SpellDetail.responseItemAdapter.toJson(this@SpellDetail.detailItem)
-
-                val sView = this@SpellDetail.spellDetailView
-                sView.spellName.text = it?.name
-                sView.spellDesc.text = it?.desc.toString()
-                sView.spellRange.text = it?.range
-                sView.spellComponents.text = it?.components.toString()
-                sView.spellRitual.text = it?.ritual
-                sView.spellDuration.text = it?.duration
-                sView.spellConcentration.text = it?.concentration
-                sView.spellCastingTime.text = it?.castingTime
-                sView.spellLevel.text = it?.level.toString()
-
-                sView.spellDetailView.visibility = View.VISIBLE
-                this@SpellDetail.setTintOnCreate()
-            },
-            {
-                Log.d(this@SpellDetail::class.java.canonicalName, "$it")
-            }
+            this::buildUI,
+            this::logFailure
         )
+    }
+
+    private fun buildUI(details: SpellResponse?) {
+        this@SpellDetail.detailItem = this@SpellDetail.intent.getParcelableExtra("responseItem")
+        this@SpellDetail.responseItemString =
+            this@SpellDetail.responseItemAdapter.toJson(this@SpellDetail.detailItem)
+
+        val sView = this@SpellDetail.spellDetailView
+        sView.spellName.text = details?.name
+        sView.spellDesc.text = details?.desc.toString()
+        sView.spellRange.text = details?.range
+        sView.spellComponents.text = details?.components.toString()
+        sView.spellRitual.text = details?.ritual
+        sView.spellDuration.text = details?.duration
+        sView.spellConcentration.text = details?.concentration
+        sView.spellCastingTime.text = details?.castingTime
+        sView.spellLevel.text = details?.level.toString()
+
+        sView.spellDetailView.visibility = View.VISIBLE
+        this@SpellDetail.setTintOnCreate()
     }
 }
