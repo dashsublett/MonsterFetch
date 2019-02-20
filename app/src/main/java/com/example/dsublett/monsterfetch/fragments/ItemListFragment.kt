@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.activities.Showable
+import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
 
 abstract class ItemListFragment : Fragment() {
@@ -32,5 +33,10 @@ abstract class ItemListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.fetchData()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        this.loadingSpinner?.visibility = View.INVISIBLE
     }
 }
