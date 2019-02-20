@@ -24,11 +24,7 @@ class SpellDetail : DetailActivity("spellFavorites") {
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
-        RemoteDndService().getSpell(
-            this.itemIndex,
-            this::buildUI,
-            this::logFailure
-        )
+        RemoteDndService().getSpell(this.itemIndex, this::buildUI, this::logFailure)
     }
 
     private fun buildUI(details: SpellResponse?) {

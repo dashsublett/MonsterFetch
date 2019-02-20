@@ -24,11 +24,7 @@ class ClassDetail : DetailActivity("classFavorites") {
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
-        RemoteDndService().getClass(
-            this.itemIndex,
-            this::buildUI,
-            this::logFailure
-        )
+        RemoteDndService().getClass(this.itemIndex, this::buildUI, this::logFailure)
     }
 
     private fun buildUI(details: ClassResponse?) {

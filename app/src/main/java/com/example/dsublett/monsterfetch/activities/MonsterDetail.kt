@@ -24,11 +24,7 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
-        RemoteDndService().getMonster(
-            this.itemIndex,
-            this::buildUI,
-            this::logFailure
-        )
+        RemoteDndService().getMonster(this.itemIndex, this::buildUI, this::logFailure)
     }
 
     private fun buildUI(details: MonsterResponse?) {
