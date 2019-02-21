@@ -6,7 +6,7 @@ import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.models.SpellResponse
-import com.example.dsublett.monsterfetch.services.RemoteDndService
+import com.example.dsublett.monsterfetch.services.AppProxy
 import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.spell_detail.*
 import kotlinx.android.synthetic.main.spell_detail.view.*
@@ -24,7 +24,7 @@ class SpellDetail : DetailActivity("spellFavorites") {
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
-        RemoteDndService().getSpell(this.itemIndex, this::buildUI, this::logFailure)
+        AppProxy.dndService.getSpell(this.itemIndex, this::buildUI, this::logFailure)
     }
 
     private fun buildUI(details: SpellResponse?) {

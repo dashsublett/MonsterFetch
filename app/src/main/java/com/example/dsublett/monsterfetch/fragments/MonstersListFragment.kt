@@ -4,12 +4,11 @@ import android.util.Log
 import android.view.View
 import com.example.dsublett.monsterfetch.adapters.ItemAdapter
 import com.example.dsublett.monsterfetch.models.ResponseItem
-import com.example.dsublett.monsterfetch.services.RemoteDndService
+import com.example.dsublett.monsterfetch.services.AppProxy
 import kotlinx.android.synthetic.main.item_list.*
-import java.lang.Exception
 
 class MonstersListFragment : ItemListFragment() {
-    override fun fetchData() = RemoteDndService().getMonsters(
+    override fun fetchData() = AppProxy.dndService.getMonsters(
         {
             this.rvItemList?.adapter =
                 ItemAdapter(it,
