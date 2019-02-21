@@ -7,7 +7,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface DndApiService {
+interface RetrofitDndApi {
     @GET("monsters")
     fun getMonsters(): Call<DNDAPIResponse>
 
@@ -27,12 +27,12 @@ interface DndApiService {
     fun getClass(@Path("index")index: String): Call<ClassResponse>
 
     companion object {
-        fun create(): DndApiService =
+        fun create(): RetrofitDndApi =
             Retrofit
                 .Builder()
                 .baseUrl("http://www.dnd5eapi.co/api/")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
-                .create(DndApiService::class.java)
+                .create(RetrofitDndApi::class.java)
     }
 }

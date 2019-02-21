@@ -6,7 +6,7 @@ import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ClassResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
-import com.example.dsublett.monsterfetch.services.RemoteDndService
+import com.example.dsublett.monsterfetch.services.ServiceProxy
 import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.class_detail.*
 import kotlinx.android.synthetic.main.class_detail.view.*
@@ -24,7 +24,7 @@ class ClassDetail : DetailActivity("classFavorites") {
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
-        RemoteDndService().getClass(this.itemIndex, this::buildUI, this::logFailure)
+        ServiceProxy.dndService.getClass(this.itemIndex, this::buildUI, this::logFailure)
     }
 
     private fun buildUI(details: ClassResponse?) {
