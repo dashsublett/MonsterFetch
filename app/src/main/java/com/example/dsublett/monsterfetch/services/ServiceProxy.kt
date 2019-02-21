@@ -1,5 +1,5 @@
 package com.example.dsublett.monsterfetch.services
 
-object AppProxy {
+object ServiceProxy {
     val dndService: DndService = RemoteDndService()
 }

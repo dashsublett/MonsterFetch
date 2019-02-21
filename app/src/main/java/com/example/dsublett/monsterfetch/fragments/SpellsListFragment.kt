@@ -4,11 +4,11 @@ import android.util.Log
 import android.view.View
 import com.example.dsublett.monsterfetch.adapters.ItemAdapter
 import com.example.dsublett.monsterfetch.models.ResponseItem
-import com.example.dsublett.monsterfetch.services.AppProxy
+import com.example.dsublett.monsterfetch.services.ServiceProxy
 import kotlinx.android.synthetic.main.item_list.*
 
 class SpellsListFragment : ItemListFragment() {
-    override fun fetchData() = AppProxy.dndService.getSpells(
+    override fun fetchData() = ServiceProxy.dndService.getSpells(
         {
             this.rvItemList?.adapter =
                 ItemAdapter(it,
