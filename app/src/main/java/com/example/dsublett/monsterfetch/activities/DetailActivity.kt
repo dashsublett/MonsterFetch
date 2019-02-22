@@ -22,8 +22,15 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         .Builder()
         .build()
         .adapter(ResponseItem::class.java)
+
     protected fun logFailure(t: Throwable) {
         Log.d("logFailure", "$t")
+    }
+
+    protected fun prepareUI() {
+        this.detailItem = this.intent.getParcelableExtra("responseItem")
+        this.responseItemString = this.responseItemAdapter.toJson(this.detailItem)
+        this.setTintOnCreate()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -48,16 +55,15 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         return super.onOptionsItemSelected(item)
     }
 
-    protected fun setTintOnCreate() {
+    private fun setTintOnCreate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if(SPFavorites.isFavorited(
-                this.spListName,
-                this.responseItemString,
-                this.sharedPreferences
-            )) {
+            if (SPFavorites.isFavorited(
+                    this.spListName,
+                    this.responseItemString,
+                    this.sharedPreferences
+                )) {
                 this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
-            }
-            else {
+            } else {
                 this.addButton?.icon?.setTintList(null)
             }
         }

@@ -26,9 +26,7 @@ class SpellDetail : DetailActivity("spellFavorites") {
     }
 
     private fun buildUI(details: SpellResponse?) {
-        this.detailItem = this.intent.getParcelableExtra("responseItem")
-        this.responseItemString =
-            this.responseItemAdapter.toJson(this.detailItem)
+        this.prepareUI()
 
         val sView = this.spellDetailView
         sView.spellName.text = details?.name
@@ -42,6 +40,5 @@ class SpellDetail : DetailActivity("spellFavorites") {
         sView.spellLevel.text = details?.level.toString()
 
         sView.spellDetailView.visibility = View.VISIBLE
-        this.setTintOnCreate()
     }
 }

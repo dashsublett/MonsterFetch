@@ -26,9 +26,7 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
     }
 
     private fun buildUI(details: MonsterResponse?) {
-        this.detailItem = this.intent.getParcelableExtra("responseItem")
-        this.responseItemString =
-            this.responseItemAdapter.toJson(this.detailItem)
+        this.prepareUI()
 
         val mView = this.monsterDetailView
         mView.monsterName.text = details?.name
@@ -46,6 +44,5 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         mView.monsterWisdom.text = details?.wisdom.toString()
 
         mView.monsterDetailView.visibility = View.VISIBLE
-        this.setTintOnCreate()
     }
 }
