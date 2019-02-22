@@ -1,9 +1,9 @@
 package com.example.dsublett.monsterfetch.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.MonsterResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.ServiceProxy
@@ -17,37 +17,31 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         setContentView(R.layout.monster_detail)
 
         this.monsterDetailView.visibility = View.INVISIBLE
-        this.sharedPreferences = this.getSharedPreferences(
-            "com.example.dsublett.monsterfetch.sharedPreferences",
-            Context.MODE_PRIVATE
-        )
+        this.initSharedPreferences()
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
-
         ServiceProxy.dndService.getMonster(this.itemIndex, this::buildUI, this::logFailure)
     }
 
-    private fun buildUI(details: MonsterResponse?) {
-        this.detailItem = this.intent.getParcelableExtra("responseItem")
-        this.responseItemString =
-            this.responseItemAdapter.toJson(this.detailItem)
+    private fun buildUI(details: ItemResponse?) {
+        this.prepareUI()
 
-        val mView = this.monsterDetailView
-        mView.monsterName.text = details?.name
-        mView.monsterType.text = details?.type
-        mView.monsterSubtype.text = details?.subtype
-        mView.monsterAlignment.text = details?.alignment
-        mView.monsterArmorClass.text = details?.armorClass.toString()
-        mView.monsterHitPoints.text = details?.hitPoints.toString()
-        mView.monsterHitDice.text = details?.hitDice
-        mView.monsterSpeed.text = details?.speed
-        mView.monsterStrength.text = details?.strength.toString()
-        mView.monsterDexterity.text = details?.dexterity.toString()
-        mView.monsterConstitution.text = details?.constitution.toString()
-        mView.monsterIntelligence.text = details?.intelligence.toString()
-        mView.monsterWisdom.text = details?.wisdom.toString()
+        details as MonsterResponse
 
-        mView.monsterDetailView.visibility = View.VISIBLE
-        this.setTintOnCreate()
+        monsterDetailView.monsterName.text = details.name
+        monsterDetailView.monsterType.text = details.type
+        monsterDetailView.monsterSubtype.text = details.subtype
+        monsterDetailView.monsterAlignment.text = details.alignment
+        monsterDetailView.monsterArmorClass.text = details.armorClass.toString()
+        monsterDetailView.monsterHitPoints.text = details.hitPoints.toString()
+        monsterDetailView.monsterHitDice.text = details.hitDice
+        monsterDetailView.monsterSpeed.text = details.speed
+        monsterDetailView.monsterStrength.text = details.strength.toString()
+        monsterDetailView.monsterDexterity.text = details.dexterity.toString()
+        monsterDetailView.monsterConstitution.text = details.constitution.toString()
+        monsterDetailView.monsterIntelligence.text = details.intelligence.toString()
+        monsterDetailView.monsterWisdom.text = details.wisdom.toString()
+
+        monsterDetailView.monsterDetailView.visibility = View.VISIBLE
     }
 }

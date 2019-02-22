@@ -1,5 +1,6 @@
 package com.example.dsublett.monsterfetch.activities
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -13,17 +14,29 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
 abstract class DetailActivity(private val spListName: String) : AppCompatActivity() {
-    protected lateinit var detailItem: ResponseItem
-    protected lateinit var sharedPreferences: SharedPreferences
-    protected lateinit var responseItemString: String
     protected lateinit var itemIndex: String
+    private lateinit var detailItem: ResponseItem
+    private lateinit var responseItemString: String
+    private lateinit var sharedPreferences: SharedPreferences
     private var addButton: MenuItem? = null
-    protected val responseItemAdapter: JsonAdapter<ResponseItem> = Moshi
+
+    private val responseItemAdapter: JsonAdapter<ResponseItem> = Moshi
         .Builder()
         .build()
         .adapter(ResponseItem::class.java)
+
     protected fun logFailure(t: Throwable) {
         Log.d("logFailure", "$t")
+    }
+
+    protected fun initSharedPreferences() {
+        this.sharedPreferences = this.getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)
+    }
+
+    protected fun prepareUI() {
+        this.detailItem = this.intent.getParcelableExtra("responseItem")
+        this.responseItemString = this.responseItemAdapter.toJson(this.detailItem)
+        this.setTintOnCreate()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -48,16 +61,15 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         return super.onOptionsItemSelected(item)
     }
 
-    protected fun setTintOnCreate() {
+    private fun setTintOnCreate() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if(SPFavorites.isFavorited(
-                this.spListName,
-                this.responseItemString,
-                this.sharedPreferences
-            )) {
+            if (SPFavorites.isFavorited(
+                    this.spListName,
+                    this.responseItemString,
+                    this.sharedPreferences
+                )) {
                 this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
-            }
-            else {
+            } else {
                 this.addButton?.icon?.setTintList(null)
             }
         }

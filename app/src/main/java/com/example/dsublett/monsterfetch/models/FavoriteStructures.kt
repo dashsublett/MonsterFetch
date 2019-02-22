@@ -1,6 +1,5 @@
 package com.example.dsublett.monsterfetch.models
 
-
 data class FavoritesList(
     private val monsterFavorites: List<ResponseItem>,
     private val classFavorites: List<ResponseItem>,

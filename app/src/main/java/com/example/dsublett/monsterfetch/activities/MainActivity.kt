@@ -19,10 +19,7 @@ class MainActivity : AppCompatActivity(), Showable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        with(getSharedPreferences(
-            "com.example.dsublett.monsterfetch.sharedPreferences",
-            Context.MODE_PRIVATE
-        )) {
+        with(getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)) {
             if (getString("monsterFavorites", "").isBlank()) {
                 edit().putString("monsterFavorites", "[]").apply()
             }

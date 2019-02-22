@@ -5,6 +5,7 @@ import com.example.dsublett.monsterfetch.models.FavoritesList
 import com.squareup.moshi.Moshi
 
 object SPFavorites {
+    const val KEY = "com.example.dsublett.monsterfetch.sharedPreferences"
     fun addIfNotFavorited(list: String, responseItem: String, prefs: SharedPreferences) {
         when {
             isFavorited(list, responseItem, prefs) -> return // Remove favorite

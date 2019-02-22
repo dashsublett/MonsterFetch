@@ -1,9 +1,9 @@
 package com.example.dsublett.monsterfetch.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.models.SpellResponse
 import com.example.dsublett.monsterfetch.services.ServiceProxy
@@ -17,33 +17,27 @@ class SpellDetail : DetailActivity("spellFavorites") {
         setContentView(R.layout.spell_detail)
 
         this.spellDetailView.visibility = View.INVISIBLE
-        this.sharedPreferences = this.getSharedPreferences(
-            "com.example.dsublett.monsterfetch.sharedPreferences",
-            Context.MODE_PRIVATE
-        )
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
-
+        this.initSharedPreferences()
         ServiceProxy.dndService.getSpell(this.itemIndex, this::buildUI, this::logFailure)
     }
 
-    private fun buildUI(details: SpellResponse?) {
-        this.detailItem = this.intent.getParcelableExtra("responseItem")
-        this.responseItemString =
-            this.responseItemAdapter.toJson(this.detailItem)
+    private fun buildUI(details: ItemResponse?) {
+        this.prepareUI()
 
-        val sView = this.spellDetailView
-        sView.spellName.text = details?.name
-        sView.spellDesc.text = details?.desc.toString()
-        sView.spellRange.text = details?.range
-        sView.spellComponents.text = details?.components.toString()
-        sView.spellRitual.text = details?.ritual
-        sView.spellDuration.text = details?.duration
-        sView.spellConcentration.text = details?.concentration
-        sView.spellCastingTime.text = details?.castingTime
-        sView.spellLevel.text = details?.level.toString()
+        details as SpellResponse
 
-        sView.spellDetailView.visibility = View.VISIBLE
-        this.setTintOnCreate()
+        spellDetailView.spellName.text = details.name
+        spellDetailView.spellDesc.text = details.desc.toString()
+        spellDetailView.spellRange.text = details.range
+        spellDetailView.spellComponents.text = details.components.toString()
+        spellDetailView.spellRitual.text = details.ritual
+        spellDetailView.spellDuration.text = details.duration
+        spellDetailView.spellConcentration.text = details.concentration
+        spellDetailView.spellCastingTime.text = details.castingTime
+        spellDetailView.spellLevel.text = details.level.toString()
+
+        spellDetailView.spellDetailView.visibility = View.VISIBLE
     }
 }

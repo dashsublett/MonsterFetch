@@ -6,41 +6,32 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RemoteDndService : DndService {
-    override fun getMonsters(success: (List<ResponseItem>) -> Unit, failure: (Throwable) -> Unit) {
-        RetrofitDndApi.create().getMonsters().enqueue(object : Callback<DNDAPIResponse> {
-            override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
-                success(response.body()?.results ?: emptyList())
-            }
+    class ListCallback(
+        val success: (List<ResponseItem>) -> Unit,
+        val failure: (Throwable) -> Unit
+    ) : Callback<DNDAPIResponse> {
+        override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
+            success(response.body()?.results ?: emptyList())
+        }
 
-            override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
-                failure(t)
-            }
-        })
+        override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
+            failure(t)
+        }
     }
 
-    override fun getClasses(success: (List<ResponseItem>) -> Unit, failure: (Throwable) -> Unit) {
-        RetrofitDndApi.create().getClasses().enqueue(object : Callback<DNDAPIResponse> {
-            override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
-                success(response.body()?.results ?: emptyList())
-            }
-
-            override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
-                failure(t)
-            }
-        })
-    }
-
-    override fun getSpells(success: (List<ResponseItem>) -> Unit, failure: (Throwable) -> Unit) {
-        RetrofitDndApi.create().getSpells().enqueue(object : Callback<DNDAPIResponse> {
-            override fun onResponse(call: Call<DNDAPIResponse>, response: Response<DNDAPIResponse>) {
-                success(response.body()?.results ?: emptyList())
-            }
-
-            override fun onFailure(call: Call<DNDAPIResponse>, t: Throwable) {
-                failure(t)
-            }
-        })
-    }
+    override fun getList(
+        listType: ItemListType,
+        success: (List<ResponseItem>) -> Unit,
+        failure: (Throwable) -> Unit
+    ) =
+        when (listType) {
+            ItemListType.Monsters ->
+                RetrofitDndApi.create().getMonsters().enqueue(ListCallback(success, failure))
+            ItemListType.Classes ->
+                RetrofitDndApi.create().getClasses().enqueue(ListCallback(success, failure))
+            ItemListType.Spells ->
+                RetrofitDndApi.create().getSpells().enqueue(ListCallback(success, failure))
+        }
 
     override fun getMonster(index: String, success: (MonsterResponse?) -> Unit, failure: (Throwable) -> Unit) {
         RetrofitDndApi.create().getMonster(index).enqueue(object : Callback<MonsterResponse> {

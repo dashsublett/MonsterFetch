@@ -1,10 +1,10 @@
 package com.example.dsublett.monsterfetch.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ClassResponse
+import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.ServiceProxy
 import com.example.dsublett.monsterfetch.utils.UrlParse
@@ -17,26 +17,20 @@ class ClassDetail : DetailActivity("classFavorites") {
         setContentView(R.layout.class_detail)
 
         this.classDetailView.visibility = View.INVISIBLE
-        this.sharedPreferences = this.getSharedPreferences(
-            "com.example.dsublett.monsterfetch.sharedPreferences",
-            Context.MODE_PRIVATE
-        )
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
-
+        this.initSharedPreferences()
         ServiceProxy.dndService.getClass(this.itemIndex, this::buildUI, this::logFailure)
     }
 
-    private fun buildUI(details: ClassResponse?) {
-        this.detailItem = this.intent.getParcelableExtra("responseItem")
-        this.responseItemString =
-            this.responseItemAdapter.toJson(this.detailItem)
+    private fun buildUI(details: ItemResponse?) {
+        this.prepareUI()
 
-        val cView = this.classDetailView
-        cView.className.text = details?.name
-        cView.classHitDice.text = details?.hitDice
+        details as ClassResponse
 
-        cView.classDetailView.visibility = View.VISIBLE
-        this.setTintOnCreate()
+        classDetailView.className.text = details.name
+        classDetailView.classHitDice.text = details.hitDice
+
+        classDetailView.classDetailView.visibility = View.VISIBLE
     }
 }
