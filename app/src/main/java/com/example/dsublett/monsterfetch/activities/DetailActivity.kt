@@ -1,5 +1,6 @@
 package com.example.dsublett.monsterfetch.activities
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
@@ -13,18 +14,22 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
 abstract class DetailActivity(private val spListName: String) : AppCompatActivity() {
-    protected lateinit var detailItem: ResponseItem
-    protected lateinit var sharedPreferences: SharedPreferences
-    protected lateinit var responseItemString: String
+    private lateinit var detailItem: ResponseItem
+    private lateinit var responseItemString: String
     protected lateinit var itemIndex: String
+    private lateinit var sharedPreferences: SharedPreferences
     private var addButton: MenuItem? = null
-    protected val responseItemAdapter: JsonAdapter<ResponseItem> = Moshi
+    private val responseItemAdapter: JsonAdapter<ResponseItem> = Moshi
         .Builder()
         .build()
         .adapter(ResponseItem::class.java)
 
     protected fun logFailure(t: Throwable) {
         Log.d("logFailure", "$t")
+    }
+
+    protected fun initSharedPreferences() {
+        this.sharedPreferences = this.getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)
     }
 
     protected fun prepareUI() {
