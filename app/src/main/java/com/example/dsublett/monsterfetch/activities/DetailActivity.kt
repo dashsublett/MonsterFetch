@@ -8,17 +8,20 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.utils.SPFavorites
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
 abstract class DetailActivity(private val spListName: String) : AppCompatActivity() {
+    protected abstract fun buildUI(details: ItemResponse?)
+    protected lateinit var itemIndex: String
     private lateinit var detailItem: ResponseItem
     private lateinit var responseItemString: String
-    protected lateinit var itemIndex: String
     private lateinit var sharedPreferences: SharedPreferences
     private var addButton: MenuItem? = null
+
     private val responseItemAdapter: JsonAdapter<ResponseItem> = Moshi
         .Builder()
         .build()

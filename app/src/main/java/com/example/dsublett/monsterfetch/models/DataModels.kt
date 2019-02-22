@@ -35,6 +35,8 @@ data class ResponseItem(val name: String, val url: String) : Parcelable {
  * ignored, since they are not being used in the app.
  */
 
+interface ItemResponse
+
 data class MonsterResponse(
     val name: String,
     val type: String,
@@ -49,12 +51,12 @@ data class MonsterResponse(
     val constitution: Int,
     val intelligence: Int,
     val wisdom: Int
-)
+) : ItemResponse
 
 data class ClassResponse(
     val name: String,
     @field:Json(name = "hit_die") val hitDice: String
-)
+) : ItemResponse
 
 data class SpellResponse(
     val name: String,
@@ -66,4 +68,4 @@ data class SpellResponse(
     val concentration: String,
     val castingTime: String,
     val level: Int
-)
+) : ItemResponse

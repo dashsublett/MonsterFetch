@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ClassResponse
+import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.ServiceProxy
 import com.example.dsublett.monsterfetch.utils.UrlParse
@@ -16,18 +17,19 @@ class ClassDetail : DetailActivity("classFavorites") {
         setContentView(R.layout.class_detail)
 
         this.classDetailView.visibility = View.INVISIBLE
-        this.initSharedPreferences()
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
-
+        this.initSharedPreferences()
         ServiceProxy.dndService.getClass(this.itemIndex, this::buildUI, this::logFailure)
     }
 
-    private fun buildUI(details: ClassResponse?) {
+    override fun buildUI(details: ItemResponse?) {
         this.prepareUI()
 
-        classDetailView.className.text = details?.name
-        classDetailView.classHitDice.text = details?.hitDice
+        details as ClassResponse
+
+        classDetailView.className.text = details.name
+        classDetailView.classHitDice.text = details.hitDice
 
         classDetailView.classDetailView.visibility = View.VISIBLE
     }
