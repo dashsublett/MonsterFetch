@@ -28,21 +28,20 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
     private fun buildUI(details: MonsterResponse?) {
         this.prepareUI()
 
-        val mView = this.monsterDetailView
-        mView.monsterName.text = details?.name
-        mView.monsterType.text = details?.type
-        mView.monsterSubtype.text = details?.subtype
-        mView.monsterAlignment.text = details?.alignment
-        mView.monsterArmorClass.text = details?.armorClass.toString()
-        mView.monsterHitPoints.text = details?.hitPoints.toString()
-        mView.monsterHitDice.text = details?.hitDice
-        mView.monsterSpeed.text = details?.speed
-        mView.monsterStrength.text = details?.strength.toString()
-        mView.monsterDexterity.text = details?.dexterity.toString()
-        mView.monsterConstitution.text = details?.constitution.toString()
-        mView.monsterIntelligence.text = details?.intelligence.toString()
-        mView.monsterWisdom.text = details?.wisdom.toString()
+        monsterDetailView.monsterName.text = details?.name
+        monsterDetailView.monsterType.text = details?.type
+        monsterDetailView.monsterSubtype.text = details?.subtype
+        monsterDetailView.monsterAlignment.text = details?.alignment
+        monsterDetailView.monsterArmorClass.text = details?.armorClass.toString()
+        monsterDetailView.monsterHitPoints.text = details?.hitPoints.toString()
+        monsterDetailView.monsterHitDice.text = details?.hitDice
+        monsterDetailView.monsterSpeed.text = details?.speed
+        monsterDetailView.monsterStrength.text = details?.strength.toString()
+        monsterDetailView.monsterDexterity.text = details?.dexterity.toString()
+        monsterDetailView.monsterConstitution.text = details?.constitution.toString()
+        monsterDetailView.monsterIntelligence.text = details?.intelligence.toString()
+        monsterDetailView.monsterWisdom.text = details?.wisdom.toString()
 
-        mView.monsterDetailView.visibility = View.VISIBLE
+        monsterDetailView.monsterDetailView.visibility = View.VISIBLE
     }
 }

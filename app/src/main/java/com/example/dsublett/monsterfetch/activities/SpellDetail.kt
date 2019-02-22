@@ -28,17 +28,16 @@ class SpellDetail : DetailActivity("spellFavorites") {
     private fun buildUI(details: SpellResponse?) {
         this.prepareUI()
 
-        val sView = this.spellDetailView
-        sView.spellName.text = details?.name
-        sView.spellDesc.text = details?.desc.toString()
-        sView.spellRange.text = details?.range
-        sView.spellComponents.text = details?.components.toString()
-        sView.spellRitual.text = details?.ritual
-        sView.spellDuration.text = details?.duration
-        sView.spellConcentration.text = details?.concentration
-        sView.spellCastingTime.text = details?.castingTime
-        sView.spellLevel.text = details?.level.toString()
+        spellDetailView.spellName.text = details?.name
+        spellDetailView.spellDesc.text = details?.desc.toString()
+        spellDetailView.spellRange.text = details?.range
+        spellDetailView.spellComponents.text = details?.components.toString()
+        spellDetailView.spellRitual.text = details?.ritual
+        spellDetailView.spellDuration.text = details?.duration
+        spellDetailView.spellConcentration.text = details?.concentration
+        spellDetailView.spellCastingTime.text = details?.castingTime
+        spellDetailView.spellLevel.text = details?.level.toString()
 
-        sView.spellDetailView.visibility = View.VISIBLE
+        spellDetailView.spellDetailView.visibility = View.VISIBLE
     }
 }

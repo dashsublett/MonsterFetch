@@ -28,10 +28,9 @@ class ClassDetail : DetailActivity("classFavorites") {
     private fun buildUI(details: ClassResponse?) {
         this.prepareUI()
 
-        val cView = this.classDetailView
-        cView.className.text = details?.name
-        cView.classHitDice.text = details?.hitDice
+        classDetailView.className.text = details?.name
+        classDetailView.classHitDice.text = details?.hitDice
 
-        cView.classDetailView.visibility = View.VISIBLE
+        classDetailView.classDetailView.visibility = View.VISIBLE
     }
 }
