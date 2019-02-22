@@ -23,7 +23,7 @@ class ClassDetail : DetailActivity("classFavorites") {
         ServiceProxy.dndService.getClass(this.itemIndex, this::buildUI, this::logFailure)
     }
 
-    override fun buildUI(details: ItemResponse?) {
+    private fun buildUI(details: ItemResponse?) {
         this.prepareUI()
 
         details as ClassResponse

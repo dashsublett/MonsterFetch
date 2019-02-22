@@ -23,7 +23,7 @@ class SpellDetail : DetailActivity("spellFavorites") {
         ServiceProxy.dndService.getSpell(this.itemIndex, this::buildUI, this::logFailure)
     }
 
-    override fun buildUI(details: ItemResponse?) {
+    private fun buildUI(details: ItemResponse?) {
         this.prepareUI()
 
         details as SpellResponse

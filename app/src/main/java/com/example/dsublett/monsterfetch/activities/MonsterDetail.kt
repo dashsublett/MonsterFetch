@@ -23,7 +23,7 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         ServiceProxy.dndService.getMonster(this.itemIndex, this::buildUI, this::logFailure)
     }
 
-    override fun buildUI(details: ItemResponse?) {
+    private fun buildUI(details: ItemResponse?) {
         this.prepareUI()
 
         details as MonsterResponse
