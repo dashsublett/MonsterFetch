@@ -54,8 +54,8 @@ abstract class ItemListFragment : Fragment() {
         this.fetchData()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onResume() {
+        super.onResume()
         this.loadingSpinner?.visibility = View.INVISIBLE
     }
 }
