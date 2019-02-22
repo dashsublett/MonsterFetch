@@ -7,6 +7,7 @@ import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.models.SpellResponse
 import com.example.dsublett.monsterfetch.services.ServiceProxy
+import com.example.dsublett.monsterfetch.utils.SPFavorites
 import com.example.dsublett.monsterfetch.utils.UrlParse
 import kotlinx.android.synthetic.main.spell_detail.*
 import kotlinx.android.synthetic.main.spell_detail.view.*
@@ -17,10 +18,7 @@ class SpellDetail : DetailActivity("spellFavorites") {
         setContentView(R.layout.spell_detail)
 
         this.spellDetailView.visibility = View.INVISIBLE
-        this.sharedPreferences = this.getSharedPreferences(
-            "com.example.dsublett.monsterfetch.sharedPreferences",
-            Context.MODE_PRIVATE
-        )
+        this.sharedPreferences = this.getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 

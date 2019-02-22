@@ -8,10 +8,7 @@ import com.squareup.moshi.Json
 data class DNDAPIResponse(val count: Int, val results: List<ResponseItem>)
 
 data class ResponseItem(val name: String, val url: String) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString()
-    )
+    constructor(parcel: Parcel) : this(parcel.readString(), parcel.readString())
 
     override fun describeContents() = 0
 
