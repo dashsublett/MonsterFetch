@@ -1,268 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/monsterDetailView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/labelName"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/name_label"
-        app:layout_constraintBottom_toTopOf="@id/labelType"
-        app:layout_constraintEnd_toStartOf="@id/monsterName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/monsterName"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterType"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary">
 
-    <TextView
-        android:id="@+id/labelType"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/type_label"
-        app:layout_constraintBottom_toTopOf="@id/labelSubtype"
-        app:layout_constraintEnd_toStartOf="@id/monsterType"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelName" />
+            <ImageView
+                android:id="@+id/monsterDetailImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/monster_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/monster_detail"
+                app:layout_collapseMode="parallax"/>
 
-    <TextView
-        android:id="@+id/monsterType"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterSubtype"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterName" />
+            <TextView
+                android:id="@+id/monsterName"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="" />
 
-    <TextView
-        android:id="@+id/labelSubtype"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/subtype_label"
-        app:layout_constraintBottom_toTopOf="@id/labelAlignment"
-        app:layout_constraintEnd_toStartOf="@id/monsterSubtype"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelType" />
+            <TextView
+                android:id="@+id/monsterSubtype"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/monsterSubtype"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterAlignment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterType" />
+            <TextView
+                android:id="@+id/monsterAlignment"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/labelAlignment"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/alignment_label"
-        app:layout_constraintBottom_toTopOf="@id/labelArmorClass"
-        app:layout_constraintEnd_toStartOf="@id/monsterAlignment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelSubtype" />
+            <TextView
+                android:id="@+id/monsterArmorClass"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/monsterAlignment"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterArmorClass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterSubtype" />
+            <TextView
+                android:id="@+id/monsterHitPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/labelArmorClass"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/armor_class_label"
-        app:layout_constraintBottom_toTopOf="@id/labelHitPoints"
-        app:layout_constraintEnd_toStartOf="@id/monsterArmorClass"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelAlignment" />
+            <TextView
+                android:id="@+id/monsterHitDice"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/monsterArmorClass"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterHitPoints"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterAlignment" />
+            <TextView
+                android:id="@+id/monsterSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/labelHitPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/hp_label"
-        app:layout_constraintBottom_toTopOf="@id/labelHitDice"
-        app:layout_constraintEnd_toStartOf="@id/monsterHitPoints"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelArmorClass" />
+            <TextView
+                android:id="@+id/monsterStrength"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/monsterHitPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterHitDice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterArmorClass" />
+            <TextView
+                android:id="@+id/monsterDexterity"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/labelHitDice"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/hit_dice_label"
-        app:layout_constraintBottom_toTopOf="@id/labelSpeed"
-        app:layout_constraintEnd_toStartOf="@id/monsterHitDice"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelHitPoints" />
+            <TextView
+                android:id="@+id/monsterConstitution"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/monsterHitDice"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterSpeed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterHitPoints" />
+            <TextView
+                android:id="@+id/monsterIntelligence"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/labelSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/speed_label"
-        app:layout_constraintBottom_toTopOf="@id/labelStrength"
-        app:layout_constraintEnd_toStartOf="@id/monsterSpeed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelHitDice" />
+            <TextView
+                android:id="@+id/monsterWisdom"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text=""/>
 
-    <TextView
-        android:id="@+id/monsterSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterStrength"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterHitDice" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"/>
 
-    <TextView
-        android:id="@+id/labelStrength"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/strength_label"
-        app:layout_constraintBottom_toTopOf="@id/labelDexterity"
-        app:layout_constraintEnd_toStartOf="@id/monsterStrength"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelSpeed" />
+        </android.support.design.widget.CollapsingToolbarLayout>
 
-    <TextView
-        android:id="@+id/monsterStrength"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterDexterity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterSpeed" />
+    </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/labelDexterity"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/dexterity_label"
-        app:layout_constraintBottom_toTopOf="@id/labelConstitution"
-        app:layout_constraintEnd_toStartOf="@id/monsterDexterity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelStrength" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/monsterDexterity"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterConstitution"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterStrength" />
+        <TextView
+            android:id="@+id/monsterType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp"/>
 
-    <TextView
-        android:id="@+id/labelConstitution"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/constitution_label"
-        app:layout_constraintBottom_toTopOf="@id/labelIntelligence"
-        app:layout_constraintEnd_toStartOf="@id/monsterConstitution"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelDexterity" />
-
-    <TextView
-        android:id="@+id/monsterConstitution"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterIntelligence"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterDexterity" />
-
-    <TextView
-        android:id="@+id/labelIntelligence"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/intelligence_label"
-        app:layout_constraintBottom_toTopOf="@id/labelWisdom"
-        app:layout_constraintEnd_toStartOf="@id/monsterIntelligence"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelConstitution" />
-
-    <TextView
-        android:id="@+id/monsterIntelligence"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/monsterWisdom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterConstitution" />
-
-    <TextView
-        android:id="@+id/labelWisdom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/wisdom_label"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/monsterWisdom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelIntelligence" />
-
-    <TextView
-        android:id="@+id/monsterWisdom"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monsterIntelligence" />
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

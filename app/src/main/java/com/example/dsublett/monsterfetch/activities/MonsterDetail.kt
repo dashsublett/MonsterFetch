@@ -16,7 +16,7 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.monster_detail)
 
-        this.monsterDetailView.visibility = View.INVISIBLE
+        this.collapsingToolbar.visibility = View.INVISIBLE
         this.initSharedPreferences()
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
@@ -28,20 +28,22 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
 
         details as MonsterResponse
 
-        monsterDetailView.monsterName.text = details.name
-        monsterDetailView.monsterType.text = details.type
-        monsterDetailView.monsterSubtype.text = details.subtype
-        monsterDetailView.monsterAlignment.text = details.alignment
-        monsterDetailView.monsterArmorClass.text = details.armorClass.toString()
-        monsterDetailView.monsterHitPoints.text = details.hitPoints.toString()
-        monsterDetailView.monsterHitDice.text = details.hitDice
-        monsterDetailView.monsterSpeed.text = details.speed
-        monsterDetailView.monsterStrength.text = details.strength.toString()
-        monsterDetailView.monsterDexterity.text = details.dexterity.toString()
-        monsterDetailView.monsterConstitution.text = details.constitution.toString()
-        monsterDetailView.monsterIntelligence.text = details.intelligence.toString()
-        monsterDetailView.monsterWisdom.text = details.wisdom.toString()
+        this.collapsingToolbar.title = details.name
+//        this.collapsingToolbar.monsterType.text = details.type
+//        this.collapsingToolbar.monsterName.text = details.name
+//        this.collapsingToolbar.monsterType.text = details.type
+//        this.collapsingToolbar.monsterSubtype.text = details.subtype
+//        this.collapsingToolbar.monsterAlignment.text = details.alignment
+//        this.collapsingToolbar.monsterArmorClass.text = details.armorClass.toString()
+//        this.collapsingToolbar.monsterHitPoints.text = details.hitPoints.toString()
+//        this.collapsingToolbar.monsterHitDice.text = details.hitDice
+//        this.collapsingToolbar.monsterSpeed.text = details.speed
+//        this.collapsingToolbar.monsterStrength.text = details.strength.toString()
+//        this.collapsingToolbar.monsterDexterity.text = details.dexterity.toString()
+//        this.collapsingToolbar.monsterConstitution.text = details.constitution.toString()
+//        this.collapsingToolbar.monsterIntelligence.text = details.intelligence.toString()
+//        this.collapsingToolbar.monsterWisdom.text = details.wisdom.toString()
 
-        monsterDetailView.monsterDetailView.visibility = View.VISIBLE
+        this.collapsingToolbar.visibility = View.VISIBLE
     }
 }
