@@ -26,4 +26,5 @@
     <string name="ritual_label">Ritual:</string>
     <string name="duration_label">Duration:</string>
     <string name="concentration_label">Concentration:</string>
+    <string name="monster_image">monster image</string>
 </resources>

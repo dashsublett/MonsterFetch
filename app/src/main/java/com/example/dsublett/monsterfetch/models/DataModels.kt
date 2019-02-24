@@ -109,11 +109,7 @@ data class Ability(
     val name: String
 )
 
-data class ProficiencyGroup(
-    val from: List<ResponseItem>,
-    val type: String,
-    val choose: String
-)
+data class ProficiencyGroup(val from: List<ResponseItem>, val type: String, val choose: String)
 
 data class ClassAndUrl(val url: String, @field:Json(name = "class") val dndClass: String)
 
