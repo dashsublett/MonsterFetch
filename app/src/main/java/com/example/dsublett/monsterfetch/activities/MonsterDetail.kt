@@ -11,7 +11,6 @@ import com.example.dsublett.monsterfetch.utils.UrlParse
 import com.inmotionsoftware.promise.catch
 import com.inmotionsoftware.promise.then
 import kotlinx.android.synthetic.main.monster_detail.*
-import kotlinx.android.synthetic.main.monster_detail.view.*
 
 class MonsterDetail : DetailActivity("monsterFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,21 +33,24 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
 
         details as MonsterResponse
 
-        this.collapsingToolbar.title = details.name
-//        this.collapsingToolbar.monsterType.text = details.type
-//        this.collapsingToolbar.monsterName.text = details.name
-//        this.collapsingToolbar.monsterType.text = details.type
-//        this.collapsingToolbar.monsterSubtype.text = details.subtype
-//        this.collapsingToolbar.monsterAlignment.text = details.alignment
-//        this.collapsingToolbar.monsterArmorClass.text = details.armorClass.toString()
-//        this.collapsingToolbar.monsterHitPoints.text = details.hitPoints.toString()
-//        this.collapsingToolbar.monsterHitDice.text = details.hitDice
-//        this.collapsingToolbar.monsterSpeed.text = details.speed
-//        this.collapsingToolbar.monsterStrength.text = details.strength.toString()
-//        this.collapsingToolbar.monsterDexterity.text = details.dexterity.toString()
-//        this.collapsingToolbar.monsterConstitution.text = details.constitution.toString()
-//        this.collapsingToolbar.monsterIntelligence.text = details.intelligence.toString()
-//        this.collapsingToolbar.monsterWisdom.text = details.wisdom.toString()
+        this.title = details.name
+
+        this.monsterSize.text = details.size
+
+//        this.monsterType.text = details.type
+//        this.monsterName.text = details.name
+//        this.monsterType.text = details.type
+//        this.monsterSubtype.text = details.subtype
+        this.monsterAlignment.text = details.alignment
+        this.monsterArmorClass.text = details.armorClass.toString()
+//        this.monsterHitPoints.text = details.hitPoints.toString()
+        this.monsterHitDice.text = details.hitDice
+//        this.monsterSpeed.text = details.speed
+//        this.monsterStrength.text = details.strength.toString()
+//        this.monsterDexterity.text = details.dexterity.toString()
+//        this.monsterConstitution.text = details.constitution.toString()
+//        this.monsterIntelligence.text = details.intelligence.toString()
+//        this.monsterWisdom.text = details.wisdom.toString()
 
         this.collapsingToolbar.visibility = View.VISIBLE
     }

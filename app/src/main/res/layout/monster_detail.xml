@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,8 +12,8 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary">
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/monsterDetailImage"
@@ -23,10 +22,10 @@
                 android:contentDescription="@string/monster_image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/monster_detail"
-                app:layout_collapseMode="parallax"/>
+                app:layout_collapseMode="parallax" />
 
             <TextView
-                android:id="@+id/monsterName"
+                android:id="@+id/monsterType"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="" />
@@ -35,90 +34,188 @@
                 android:id="@+id/monsterSubtype"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/monsterAlignment"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/monsterArmorClass"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/monsterHitPoints"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/monsterHitDice"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/monsterSpeed"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/monsterStrength"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text=""/>
-
-            <TextView
-                android:id="@+id/monsterDexterity"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text=""/>
+                android:text="" />
 
             <TextView
                 android:id="@+id/monsterConstitution"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text=""/>
+                android:text="" />
 
             <TextView
                 android:id="@+id/monsterIntelligence"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text=""/>
+                android:text="" />
 
             <TextView
                 android:id="@+id/monsterWisdom"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text=""/>
+                android:text="" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:id="@+id/monsterType"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="18sp"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/labelSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/size_label"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/monsterSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text=""
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/labelAlignment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/alignment_label"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/monsterAlignment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:text=""
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/labelArmorClass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/armor_class_label"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/monsterArmorClass"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:text=""
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/labelHitDice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/hit_dice_label"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/monsterHitDice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:text=""
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/labelHitPoints"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/hp_label"/>
+
+                    <TextView
+                        android:id="@+id/monsterHitPoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/labelSpeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/speed_label"/>
+
+                    <TextView
+                        android:id="@+id/monsterSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/labelStrength"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/strength_label"/>
+
+                    <TextView
+                        android:id="@+id/monsterStrength"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/labelDexterity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dexterity_label"/>
+
+                    <TextView
+                        android:id="@+id/monsterDexterity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:text="" />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
 </android.support.design.widget.CoordinatorLayout>
