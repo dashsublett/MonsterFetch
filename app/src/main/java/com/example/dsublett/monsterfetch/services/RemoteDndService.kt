@@ -1,6 +1,7 @@
 package com.example.dsublett.monsterfetch.services
 
 import com.example.dsublett.monsterfetch.models.*
+import com.inmotionsoftware.promise.Promise
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,53 +20,79 @@ class RemoteDndService : DndService {
         }
     }
 
-    override fun getList(
-        listType: ItemListType,
-        success: (List<ResponseItem>) -> Unit,
-        failure: (Throwable) -> Unit
-    ) =
+    override fun getList(listType: ItemListType): Promise<List<ResponseItem>> =
         when (listType) {
             ItemListType.Monsters ->
-                RetrofitDndApi.create().getMonsters().enqueue(ListCallback(success, failure))
+                Promise { resolve, reject ->
+                    RetrofitDndApi
+                        .create()
+                        .getMonsters()
+                        .enqueue(ListCallback(resolve, reject))
+                }
+
             ItemListType.Classes ->
-                RetrofitDndApi.create().getClasses().enqueue(ListCallback(success, failure))
+                Promise { resolve, reject ->
+                    RetrofitDndApi
+                        .create()
+                        .getClasses()
+                        .enqueue(ListCallback(resolve, reject))
+                }
+
             ItemListType.Spells ->
-                RetrofitDndApi.create().getSpells().enqueue(ListCallback(success, failure))
+                Promise { resolve, reject ->
+                    RetrofitDndApi
+                        .create()
+                        .getSpells()
+                        .enqueue(ListCallback(resolve, reject))
+                }
         }
 
-    override fun getMonster(index: String, success: (MonsterResponse?) -> Unit, failure: (Throwable) -> Unit) {
-        RetrofitDndApi.create().getMonster(index).enqueue(object : Callback<MonsterResponse> {
-            override fun onResponse(call: Call<MonsterResponse>, response: Response<MonsterResponse>) {
-                success(response.body())
-            }
+    override fun getMonster(index: String): Promise<MonsterResponse?> =
+        Promise { resolve, reject ->
+            RetrofitDndApi.create().getMonster(index).enqueue(object : Callback<MonsterResponse> {
+                override fun onResponse(
+                    call: Call<MonsterResponse>,
+                    response: Response<MonsterResponse>
+                ) {
+                    resolve(response.body())
+                }
 
-            override fun onFailure(call: Call<MonsterResponse>, t: Throwable) {
-                failure(t)
-            }
-        })
-    }
+                override fun onFailure(call: Call<MonsterResponse>, t: Throwable) {
+                    reject(t)
+                }
+            })
+        }
 
-    override fun getClass(index: String, success: (ClassResponse?) -> Unit, failure: (Throwable) -> Unit) {
-        RetrofitDndApi.create().getClass(index).enqueue(object : Callback<ClassResponse> {
-            override fun onResponse(call: Call<ClassResponse>, response: Response<ClassResponse>) {
-                success(response.body())
-            }
 
-            override fun onFailure(call: Call<ClassResponse>, t: Throwable) {
-                failure(t)
-            }
-        })
-    }
+    override fun getClass(index: String): Promise<ClassResponse?> =
+        Promise { resolve, reject ->
+            RetrofitDndApi.create().getClass(index).enqueue(object : Callback<ClassResponse> {
+                override fun onResponse(
+                    call: Call<ClassResponse>,
+                    response: Response<ClassResponse>
+                ) {
+                    resolve(response.body())
+                }
 
-    override fun getSpell(index: String, success: (SpellResponse?) -> Unit, failure: (Throwable) -> Unit) {
-        RetrofitDndApi.create().getSpell(index).enqueue(object : Callback<SpellResponse> {
-            override fun onResponse(call: Call<SpellResponse>, response: Response<SpellResponse>) {
-                success(response.body())
-            }
+                override fun onFailure(call: Call<ClassResponse>, t: Throwable) {
+                    reject(t)
+                }
+            })
+        }
 
-            override fun onFailure(call: Call<SpellResponse>, t: Throwable) {
-                failure(t)
-            }
-        })
-    }
+    override fun getSpell(index: String): Promise<SpellResponse?> =
+        Promise { resolve, reject ->
+            RetrofitDndApi.create().getSpell(index).enqueue(object : Callback<SpellResponse> {
+                override fun onResponse(
+                    call: Call<SpellResponse>,
+                    response: Response<SpellResponse>
+                ) {
+                    resolve(response.body())
+                }
+
+                override fun onFailure(call: Call<SpellResponse>, t: Throwable) {
+                    reject(t)
+                }
+            })
+        }
 }
