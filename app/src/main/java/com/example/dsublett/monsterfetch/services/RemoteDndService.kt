@@ -19,8 +19,9 @@ class RemoteDndService : DndService {
             failure(t)
         }
     }
-    override fun getList(listType: ItemListType): Promise<List<ResponseItem>> {
-        return when (listType) {
+
+    override fun getList(listType: ItemListType): Promise<List<ResponseItem>> =
+        when (listType) {
             ItemListType.Monsters ->
                 Promise { resolve, reject ->
                     RetrofitDndApi
@@ -28,6 +29,7 @@ class RemoteDndService : DndService {
                         .getMonsters()
                         .enqueue(ListCallback(resolve, reject))
                 }
+
             ItemListType.Classes ->
                 Promise { resolve, reject ->
                     RetrofitDndApi
@@ -35,6 +37,7 @@ class RemoteDndService : DndService {
                         .getClasses()
                         .enqueue(ListCallback(resolve, reject))
                 }
+
             ItemListType.Spells ->
                 Promise { resolve, reject ->
                     RetrofitDndApi
@@ -43,12 +46,14 @@ class RemoteDndService : DndService {
                         .enqueue(ListCallback(resolve, reject))
                 }
         }
-    }
 
-    override fun getMonster(index: String): Promise<MonsterResponse?> {
-        return Promise { resolve, reject ->
+    override fun getMonster(index: String): Promise<MonsterResponse?> =
+        Promise { resolve, reject ->
             RetrofitDndApi.create().getMonster(index).enqueue(object : Callback<MonsterResponse> {
-                override fun onResponse(call: Call<MonsterResponse>, response: Response<MonsterResponse>) {
+                override fun onResponse(
+                    call: Call<MonsterResponse>,
+                    response: Response<MonsterResponse>
+                ) {
                     resolve(response.body())
                 }
 
@@ -57,12 +62,15 @@ class RemoteDndService : DndService {
                 }
             })
         }
-    }
 
-    override fun getClass(index: String): Promise<ClassResponse?> {
-        return Promise { resolve, reject ->
+
+    override fun getClass(index: String): Promise<ClassResponse?> =
+        Promise { resolve, reject ->
             RetrofitDndApi.create().getClass(index).enqueue(object : Callback<ClassResponse> {
-                override fun onResponse(call: Call<ClassResponse>, response: Response<ClassResponse>) {
+                override fun onResponse(
+                    call: Call<ClassResponse>,
+                    response: Response<ClassResponse>
+                ) {
                     resolve(response.body())
                 }
 
@@ -71,12 +79,14 @@ class RemoteDndService : DndService {
                 }
             })
         }
-    }
 
-    override fun getSpell(index: String): Promise<SpellResponse?> {
-        return Promise { resolve, reject ->
+    override fun getSpell(index: String): Promise<SpellResponse?> =
+        Promise { resolve, reject ->
             RetrofitDndApi.create().getSpell(index).enqueue(object : Callback<SpellResponse> {
-                override fun onResponse(call: Call<SpellResponse>, response: Response<SpellResponse>) {
+                override fun onResponse(
+                    call: Call<SpellResponse>,
+                    response: Response<SpellResponse>
+                ) {
                     resolve(response.body())
                 }
 
@@ -85,5 +95,4 @@ class RemoteDndService : DndService {
                 }
             })
         }
-    }
 }
