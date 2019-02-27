@@ -11,11 +11,12 @@ import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.activities.Showable
 import com.example.dsublett.monsterfetch.adapters.ItemAdapter
 import com.example.dsublett.monsterfetch.models.ResponseItem
+import com.inmotionsoftware.promise.Promise
 import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list.view.*
 
 abstract class ItemListFragment : Fragment() {
-    protected abstract fun fetchData()
+    protected abstract fun fetchData(): Promise<Unit>
     protected var showable: Showable? = null
     protected fun logFailure(t: Throwable) {
         this.loadingSpinner?.visibility = View.INVISIBLE

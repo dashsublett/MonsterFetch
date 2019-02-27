@@ -8,6 +8,8 @@ import com.example.dsublett.monsterfetch.models.MonsterResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
 import com.example.dsublett.monsterfetch.services.ServiceProxy
 import com.example.dsublett.monsterfetch.utils.UrlParse
+import com.inmotionsoftware.promise.catch
+import com.inmotionsoftware.promise.then
 import kotlinx.android.synthetic.main.monster_detail.*
 import kotlinx.android.synthetic.main.monster_detail.view.*
 
@@ -20,7 +22,11 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         this.initSharedPreferences()
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
-        ServiceProxy.dndService.getMonster(this.itemIndex, this::buildUI, this::logFailure)
+        ServiceProxy.dndService.getMonster(this.itemIndex).then {
+            this.buildUI(it)
+        }.catch {
+            this.logFailure(it)
+        }
     }
 
     private fun buildUI(details: ItemResponse?) {
