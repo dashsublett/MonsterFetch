@@ -35,7 +35,6 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
 
         details as MonsterResponse
 
-//        this.title = details.name
         this.toolbar.title = details.name
         this.toolbar.subtitle = details.type
 
@@ -47,11 +46,11 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
 //        this.monsterSubtype.text = details.subtype
         this.monsterAlignment.text = details.alignment
         this.monsterArmorClass.text = details.armorClass.toString()
-//        this.monsterHitPoints.text = details.hitPoints.toString()
+        this.monsterHitPoints.text = details.hitPoints.toString()
         this.monsterHitDice.text = details.hitDice
-//        this.monsterSpeed.text = details.speed
-//        this.monsterStrength.text = details.strength.toString()
-//        this.monsterDexterity.text = details.dexterity.toString()
+        this.monsterSpeed.text = details.speed
+        this.monsterStrength.text = details.strength.toString()
+        this.monsterDexterity.text = details.dexterity.toString()
 //        this.monsterConstitution.text = details.constitution.toString()
 //        this.monsterIntelligence.text = details.intelligence.toString()
 //        this.monsterWisdom.text = details.wisdom.toString()
