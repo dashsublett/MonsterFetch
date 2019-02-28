@@ -275,6 +275,16 @@
                 android:paddingBottom="16dp"
                 android:text="Special Abilities:"
                 android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/rvAbilityList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:textAlignment="textStart"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/list_ability"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

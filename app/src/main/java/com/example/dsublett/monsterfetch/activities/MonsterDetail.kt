@@ -3,6 +3,7 @@ package com.example.dsublett.monsterfetch.activities
 import android.os.Bundle
 import android.view.View
 import com.example.dsublett.monsterfetch.R
+import com.example.dsublett.monsterfetch.adapters.AbilityAdapter
 import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.MonsterResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
@@ -35,15 +36,12 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
 
         details as MonsterResponse
 
+        this.rvAbilityList.adapter = AbilityAdapter(details.specialAbilities)
+
         this.toolbar.title = details.name
         this.toolbar.subtitle = details.type
 
         this.monsterSize.text = details.size
-
-//        this.monsterType.text = details.type
-//        this.monsterName.text = details.name
-//        this.monsterType.text = details.type
-//        this.monsterSubtype.text = details.subtype
         this.monsterAlignment.text = details.alignment
         this.monsterArmorClass.text = details.armorClass.toString()
         this.monsterHitPoints.text = details.hitPoints.toString()
@@ -51,9 +49,6 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
         this.monsterSpeed.text = details.speed
         this.monsterStrength.text = details.strength.toString()
         this.monsterDexterity.text = details.dexterity.toString()
-//        this.monsterConstitution.text = details.constitution.toString()
-//        this.monsterIntelligence.text = details.intelligence.toString()
-//        this.monsterWisdom.text = details.wisdom.toString()
 
         this.collapsingToolbar.visibility = View.VISIBLE
     }

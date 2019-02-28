@@ -44,11 +44,10 @@ abstract class ItemListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater
+    ): View? =
+        inflater
             .inflate(R.layout.item_list, container, false)
             .apply { this.loadingSpinner.visibility = View.VISIBLE }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
