@@ -23,6 +23,8 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
         ServiceProxy.dndService.getMonster(this.itemIndex).then {
             this.buildUI(it)
+            setSupportActionBar(this.toolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }.catch {
             this.logFailure(it)
         }
@@ -33,7 +35,9 @@ class MonsterDetail : DetailActivity("monsterFavorites") {
 
         details as MonsterResponse
 
-        this.title = details.name
+//        this.title = details.name
+        this.toolbar.title = details.name
+        this.toolbar.subtitle = details.type
 
         this.monsterSize.text = details.size
 

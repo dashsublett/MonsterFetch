@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity(), Showable {
             }
         }
 
-        this.actionBar?.setDisplayHomeAsUpEnabled(true)
+//        this.actionBar?.setDisplayHomeAsUpEnabled(true)
+        setSupportActionBar(this.topNavbar)
 
         this.replaceRvFragment(MonstersListFragment())
 
