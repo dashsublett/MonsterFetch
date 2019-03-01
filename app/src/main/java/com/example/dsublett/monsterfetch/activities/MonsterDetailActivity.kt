@@ -1,9 +1,11 @@
 package com.example.dsublett.monsterfetch.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.adapters.AbilityAdapter
+import com.example.dsublett.monsterfetch.models.Ability
 import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.MonsterResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
@@ -36,7 +38,14 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
 
         details as MonsterResponse
 
-        this.rvAbilityList.adapter = AbilityAdapter(details.specialAbilities)
+        this.rvAbilityList.adapter = AbilityAdapter(
+            details.specialAbilities,
+            object : AbilityAdapter.OnItemClickListener {
+                override fun onItemClick(ability: Ability) {
+                    this@MonsterDetailActivity.showAbility(ability)
+                }
+            }
+        )
 
         this.toolbar.title = details.name
         this.toolbar.subtitle = details.type
@@ -51,5 +60,15 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
         this.monsterDexterity.text = details.dexterity.toString()
 
         this.collapsingToolbar.visibility = View.VISIBLE
+    }
+
+    fun showAbility(ability: Ability) {
+        startActivity(Intent(this, AbilityActivity::class.java).apply {
+            action = Intent.ACTION_VIEW
+            putExtras(Bundle().apply {
+                putString("name", ability.name)
+                putString("desc", ability.desc)
+            })
+        })
     }
 }

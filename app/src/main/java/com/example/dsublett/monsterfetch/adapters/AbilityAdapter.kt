@@ -9,7 +9,8 @@ import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.models.Ability
 import kotlinx.android.synthetic.main.list_ability.view.*
 
-class AbilityAdapter(private val abilities: List<Ability>) :
+class AbilityAdapter(private val abilities: List<Ability>,
+                     private val listener: AbilityAdapter.OnItemClickListener) :
     RecyclerView.Adapter<AbilityAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -21,6 +22,7 @@ class AbilityAdapter(private val abilities: List<Ability>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvAbilityName.text = this.abilities[position].name
         holder.tvAbilityDesc.text = this.abilities[position].desc
+        holder.bind(this.abilities[position])
     }
 
     override fun getItemCount(): Int = this.abilities.size
@@ -28,5 +30,16 @@ class AbilityAdapter(private val abilities: List<Ability>) :
     inner class ViewHolder(abilityView: View) : RecyclerView.ViewHolder(abilityView) {
         val tvAbilityName: TextView = abilityView.abilityName
         val tvAbilityDesc: TextView = abilityView.abilityDesc
+        fun bind(ability: Ability?) {
+            this.tvAbilityName.setOnClickListener {
+                ability?.let {
+                    this@AbilityAdapter.listener.onItemClick(it)
+                }
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(ability: Ability)
     }
 }

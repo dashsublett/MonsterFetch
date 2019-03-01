@@ -29,4 +29,5 @@
     <string name="monster_image">monster image</string>
     <string name="size_label">Size:</string>
     <string name="special_abilities">Special Abilities:</string>
+    <string name="title_activity_ability">AbilityActivity</string>
 </resources>
