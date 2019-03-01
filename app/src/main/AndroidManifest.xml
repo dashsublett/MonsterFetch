@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MonsterDetail"
+            android:name=".activities.MonsterDetailActivity"
             android:parentActivityName=".activities.MainActivity"/>
         <activity
-            android:name=".activities.ClassDetail"
+            android:name=".activities.ClassDetailActivity"
             android:parentActivityName=".activities.MainActivity"/>
         <activity
-            android:name=".activities.SpellDetail"
+            android:name=".activities.SpellDetailActivity"
             android:parentActivityName=".activities.MainActivity"/>
     </application>
 </manifest>

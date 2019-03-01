@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity(), Showable {
             }
         }
 
-//        this.actionBar?.setDisplayHomeAsUpEnabled(true)
         setSupportActionBar(this.topNavbar)
 
         this.replaceRvFragment(MonstersListFragment())
@@ -50,9 +49,9 @@ class MainActivity : AppCompatActivity(), Showable {
     override fun showDetails(responseItem: ResponseItem) {
         this.loadingSpinner.visibility = View.VISIBLE
         val detailClass = when (UrlParse.getEndpoint(responseItem.url)) {
-            "monsters" -> MonsterDetail::class.java
-            "classes" -> ClassDetail::class.java
-            "spells" -> SpellDetail::class.java
+            "monsters" -> MonsterDetailActivity::class.java
+            "classes" -> ClassDetailActivity::class.java
+            "spells" -> SpellDetailActivity::class.java
             else -> throw Exception("That endpoint is invalid or has not been implemented yet.")
         }
         val theIntent = Intent(this, detailClass).apply {

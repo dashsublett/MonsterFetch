@@ -13,7 +13,7 @@ import com.inmotionsoftware.promise.then
 import kotlinx.android.synthetic.main.class_detail.*
 import kotlinx.android.synthetic.main.class_detail.view.*
 
-class ClassDetail : DetailActivity("classFavorites") {
+class ClassDetailActivity : DetailActivity("classFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.class_detail)

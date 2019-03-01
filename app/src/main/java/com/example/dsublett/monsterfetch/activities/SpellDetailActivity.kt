@@ -13,7 +13,7 @@ import com.inmotionsoftware.promise.then
 import kotlinx.android.synthetic.main.spell_detail.*
 import kotlinx.android.synthetic.main.spell_detail.view.*
 
-class SpellDetail : DetailActivity("spellFavorites") {
+class SpellDetailActivity : DetailActivity("spellFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.spell_detail)

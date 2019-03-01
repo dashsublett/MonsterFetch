@@ -13,7 +13,7 @@ import com.inmotionsoftware.promise.catch
 import com.inmotionsoftware.promise.then
 import kotlinx.android.synthetic.main.monster_detail.*
 
-class MonsterDetail : DetailActivity("monsterFavorites") {
+class MonsterDetailActivity : DetailActivity("monsterFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.monster_detail)
