@@ -17,7 +17,7 @@ import java.lang.Exception
 class MainActivity : AppCompatActivity(), Showable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        this.setContentView(R.layout.activity_main)
 
         with(getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)) {
             if (getString("monsterFavorites", "").isBlank()) {
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), Showable {
             }
         }
 
-        setSupportActionBar(this.topNavbar)
+        this.setSupportActionBar(this.topNavbar)
 
         this.replaceRvFragment(MonstersListFragment())
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), Showable {
             action = Intent.ACTION_VIEW
             putExtras(Bundle().apply { putParcelable("responseItem", responseItem) })
         }
-        startActivity(theIntent)
+        this.startActivity(theIntent)
     }
 
     private fun replaceRvFragment(fragment: Fragment) {

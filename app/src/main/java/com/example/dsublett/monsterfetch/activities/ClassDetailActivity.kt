@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.class_detail.view.*
 class ClassDetailActivity : DetailActivity("classFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.class_detail)
+        this.setContentView(R.layout.class_detail)
 
         this.classDetailView.visibility = View.INVISIBLE
         this.itemIndex =
@@ -34,9 +34,9 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
 
         details as ClassResponse
 
-        classDetailView.className.text = details.name
-        classDetailView.classHitDice.text = details.hitDice
+        this.classDetailView.className.text = details.name
+        this.classDetailView.classHitDice.text = details.hitDice
 
-        classDetailView.classDetailView.visibility = View.VISIBLE
+        this.classDetailView.classDetailView.visibility = View.VISIBLE
     }
 }

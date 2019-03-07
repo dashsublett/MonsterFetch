@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.spell_detail.view.*
 class SpellDetailActivity : DetailActivity("spellFavorites") {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.spell_detail)
+        this.setContentView(R.layout.spell_detail)
 
         this.spellDetailView.visibility = View.INVISIBLE
         this.itemIndex =
@@ -34,16 +34,16 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
 
         details as SpellResponse
 
-        spellDetailView.spellName.text = details.name
-        spellDetailView.spellDesc.text = details.desc.toString()
-        spellDetailView.spellRange.text = details.range
-        spellDetailView.spellComponents.text = details.components.toString()
-        spellDetailView.spellRitual.text = details.ritual
-        spellDetailView.spellDuration.text = details.duration
-        spellDetailView.spellConcentration.text = details.concentration
-        spellDetailView.spellCastingTime.text = details.castingTime
-        spellDetailView.spellLevel.text = details.level.toString()
+        this.spellDetailView.spellName.text = details.name
+        this.spellDetailView.spellDesc.text = details.desc.toString()
+        this.spellDetailView.spellRange.text = details.range
+        this.spellDetailView.spellComponents.text = details.components.toString()
+        this.spellDetailView.spellRitual.text = details.ritual
+        this.spellDetailView.spellDuration.text = details.duration
+        this.spellDetailView.spellConcentration.text = details.concentration
+        this.spellDetailView.spellCastingTime.text = details.castingTime
+        this.spellDetailView.spellLevel.text = details.level.toString()
 
-        spellDetailView.spellDetailView.visibility = View.VISIBLE
+        this.spellDetailView.spellDetailView.visibility = View.VISIBLE
     }
 }

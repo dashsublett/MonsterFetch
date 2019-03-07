@@ -3,7 +3,6 @@ package com.example.dsublett.monsterfetch.activities
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
-import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
@@ -16,7 +15,7 @@ import com.squareup.moshi.Moshi
 
 abstract class DetailActivity(private val spListName: String) : AppCompatActivity() {
     protected lateinit var itemIndex: String
-    protected lateinit var detailItem: ResponseItem
+    private lateinit var detailItem: ResponseItem
     private lateinit var responseItemString: String
     private lateinit var sharedPreferences: SharedPreferences
     private var addButton: MenuItem? = null
@@ -60,20 +59,6 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.run {
-            putString("itemIndex", this@DetailActivity.itemIndex)
-        }
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        savedInstanceState?.run {
-            this@DetailActivity.itemIndex = getString("itemIndex")
-        }
     }
 
     private fun setTintOnCreate() {
