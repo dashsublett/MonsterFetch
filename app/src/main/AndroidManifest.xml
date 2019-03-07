@@ -15,6 +15,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".activities.AbilityActivity"
+            android:parentActivityName=".activities.MonsterDetailActivity"
             android:label="@string/title_activity_ability"
             android:theme="@style/NoActionBar"></activity>
         <activity

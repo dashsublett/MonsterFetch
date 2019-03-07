@@ -2,6 +2,7 @@ package com.example.dsublett.monsterfetch.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.adapters.AbilityAdapter
@@ -22,8 +23,12 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
 
         this.collapsingToolbar.visibility = View.INVISIBLE
         this.initSharedPreferences()
-        this.itemIndex =
+
+        Log.d("onCreate", "${savedInstanceState}")
+
+        this.itemIndex = savedInstanceState?.getString("itemIndex") ?:
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
+
         ServiceProxy.dndService.getMonster(this.itemIndex).then {
             this.buildUI(it)
             setSupportActionBar(this.toolbar)
