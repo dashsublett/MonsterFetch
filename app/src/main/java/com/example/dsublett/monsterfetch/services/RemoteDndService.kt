@@ -52,7 +52,6 @@ class RemoteDndService : DndService {
             RetrofitDndApi.create().getMonster(index).enqueue(this.detailCallback(resolve, reject))
         }
 
-
     override fun getClass(index: String): Promise<ClassResponse?> =
         Promise { resolve, reject ->
             RetrofitDndApi.create().getClass(index).enqueue(this.detailCallback(resolve, reject))

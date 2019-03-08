@@ -2,6 +2,7 @@ package com.example.dsublett.monsterfetch.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.adapters.AbilityAdapter
@@ -37,17 +38,20 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
 
     private fun buildUI(details: ItemResponse?) {
         this.prepareUI()
+        this.nestedScrollView.visibility = View.INVISIBLE
 
         details as MonsterResponse
 
-        this.rvAbilityList.adapter = AbilityAdapter(
-            details.specialAbilities,
-            object : AbilityAdapter.OnItemClickListener {
-                override fun onItemClick(ability: Ability) {
-                    this@MonsterDetailActivity.showAbility(ability)
+        this.rvAbilityList.adapter = details?.specialAbilities?.let {
+            AbilityAdapter(
+                it,
+                object : AbilityAdapter.OnItemClickListener {
+                    override fun onItemClick(ability: Ability) {
+                        this@MonsterDetailActivity.showAbility(ability)
+                    }
                 }
-            }
-        )
+            )
+        }
 
         this.toolbar.title = details.name
         this.toolbar.subtitle = details.type
@@ -61,6 +65,7 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
         this.monsterStrength.text = details.strength.toString()
         this.monsterDexterity.text = details.dexterity.toString()
 
+        this.nestedScrollView.visibility = View.VISIBLE
         this.collapsingToolbar.visibility = View.VISIBLE
     }
 

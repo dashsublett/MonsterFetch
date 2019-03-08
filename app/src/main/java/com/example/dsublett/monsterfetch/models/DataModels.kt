@@ -56,10 +56,10 @@ data class MonsterResponse(
     val senses: String,
     val languages: String,
     @field:Json(name = "challenge_rating") val challengeRating: Float,
-    @field:Json(name = "special_abilities") val specialAbilities: List<Ability>,
-    val actions: List<Ability>,
-    val reactions: List<Ability>,
-    @field:Json(name = "legendary_actions") val legendaryActions: List<Ability>,
+    @field:Json(name = "special_abilities") val specialAbilities: List<Ability>?,
+    val actions: List<Ability>?,
+    val reactions: List<Ability>?,
+    @field:Json(name = "legendary_actions") val legendaryActions: List<Ability>?,
     val url: String
 ) : ItemResponse
 
