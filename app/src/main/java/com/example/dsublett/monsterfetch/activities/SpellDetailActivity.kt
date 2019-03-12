@@ -19,6 +19,7 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
 
         this.spellNestedScrollView.visibility = View.INVISIBLE
         this.spellCollapsingToolbar.visibility = View.INVISIBLE
+        this.spellLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
 
         this.itemIndex =
@@ -51,5 +52,6 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
 
         this.spellNestedScrollView.visibility = View.VISIBLE
         this.spellCollapsingToolbar.visibility = View.VISIBLE
+        this.spellLoadingSpinner.visibility = View.INVISIBLE
     }
 }

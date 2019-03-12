@@ -156,6 +156,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/proficienciesDivider"
                 tools:listitem="@layout/list_proficiency" />
         </android.support.constraint.ConstraintLayout>
+        
     </android.support.v4.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/classLoadingSpinner"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>

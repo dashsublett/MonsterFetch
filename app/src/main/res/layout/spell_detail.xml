@@ -284,4 +284,12 @@
 
     </android.support.v4.widget.NestedScrollView>
 
+    <ProgressBar
+        android:id="@+id/spellLoadingSpinner"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
 </android.support.design.widget.CoordinatorLayout>

@@ -20,6 +20,7 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
 
         this.classCollapsingToolbar.visibility = View.INVISIBLE
         this.classNestedScrollView.visibility = View.INVISIBLE
+        this.classLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
 
         this.itemIndex =
@@ -49,5 +50,6 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
 
         this.classNestedScrollView.visibility = View.VISIBLE
         this.classCollapsingToolbar.visibility = View.VISIBLE
+        this.classLoadingSpinner.visibility = View.INVISIBLE
     }
 }

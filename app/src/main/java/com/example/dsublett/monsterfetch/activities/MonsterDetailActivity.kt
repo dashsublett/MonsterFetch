@@ -22,6 +22,7 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
 
         this.monsterCollapsingToolbar.visibility = View.INVISIBLE
         this.monsterNestedScrollView.visibility = View.INVISIBLE
+        this.monsterLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
 
         this.itemIndex =
@@ -65,6 +66,7 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
 
         this.monsterNestedScrollView.visibility = View.VISIBLE
         this.monsterCollapsingToolbar.visibility = View.VISIBLE
+        this.monsterLoadingSpinner.visibility = View.INVISIBLE
     }
 
     fun showAbility(ability: Ability) {
