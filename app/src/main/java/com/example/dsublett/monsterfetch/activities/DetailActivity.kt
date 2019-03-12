@@ -36,11 +36,12 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
     protected fun prepareUI() {
         this.detailItem = this.intent.getParcelableExtra("responseItem")
         this.responseItemString = this.responseItemAdapter.toJson(this.detailItem)
-        this.setTintOnCreate()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.action_bar, menu)
+        this.addFavoriteBtn = menu?.findItem(R.id.addFavoriteBtn)
+        this.setFavBtnTint()
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -60,7 +61,7 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setTintOnCreate() {
+    private fun setFavBtnTint() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (SPFavorites.isFavorited(
                     this.spListName,
