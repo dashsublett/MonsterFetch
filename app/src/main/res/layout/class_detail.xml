@@ -156,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/proficienciesDivider"
                 tools:listitem="@layout/list_proficiency" />
         </android.support.constraint.ConstraintLayout>
-        
+
     </android.support.v4.widget.NestedScrollView>
 
     <ProgressBar

@@ -3,7 +3,7 @@ package com.example.dsublett.monsterfetch.activities
 import android.os.Bundle
 import android.view.View
 import com.example.dsublett.monsterfetch.R
-import com.example.dsublett.monsterfetch.adapters.ItemAdapter
+import com.example.dsublett.monsterfetch.adapters.ProficiencyAdapter
 import com.example.dsublett.monsterfetch.models.ClassResponse
 import com.example.dsublett.monsterfetch.models.ItemResponse
 import com.example.dsublett.monsterfetch.models.ResponseItem
@@ -40,7 +40,7 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
 
         details as ClassResponse
 
-        this.rvProficiencyList.adapter = ItemAdapter(details.proficiencies, null)
+        this.rvProficiencyList.adapter = ProficiencyAdapter(details.proficiencies)
 
         this.classToolbar.title = details.name
 
