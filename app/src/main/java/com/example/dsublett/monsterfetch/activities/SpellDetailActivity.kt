@@ -40,7 +40,7 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
 
         this.spellToolbar.title = details.name
 
-        this.spellDescription.text = SpellResponse.descAsString(details.desc)
+        this.spellDescription.text = details.descAsString()
         this.spellRange.text = details.range
         this.spellComponents.text = details.components.toString()
         this.spellRitual.text = details.ritual

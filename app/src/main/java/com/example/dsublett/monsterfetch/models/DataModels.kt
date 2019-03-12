@@ -98,14 +98,12 @@ data class SpellResponse(
     val subclasses: List<ResponseItem>,
     val url: String
 ) : ItemResponse {
-    companion object {
-        fun descAsString(inList: List<String>): String {
-            var retStr = ""
-            for(desc in inList) {
-                retStr += "$desc "
-            }
-            return retStr
+    fun descAsString(): String {
+        var retStr = ""
+        for(desc in this.desc) {
+            retStr += "$desc "
         }
+        return retStr
     }
 }
 
