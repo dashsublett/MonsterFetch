@@ -18,7 +18,7 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
     private lateinit var detailItem: ResponseItem
     private lateinit var responseItemString: String
     private lateinit var sharedPreferences: SharedPreferences
-    private var addButton: MenuItem? = null
+    private var addFavoriteBtn: MenuItem? = null
 
     private val responseItemAdapter: JsonAdapter<ResponseItem> = Moshi
         .Builder()
@@ -26,7 +26,7 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         .adapter(ResponseItem::class.java)
 
     protected fun logFailure(t: Throwable) {
-        Log.d("logFailure", "$t")
+        Log.e("logFailure", "$t")
     }
 
     protected fun initSharedPreferences() {
@@ -41,7 +41,6 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.action_bar, menu)
-        this.addButton = menu?.findItem(R.id.addFavoriteBtn)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -68,9 +67,9 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
                     this.responseItemString,
                     this.sharedPreferences
                 )) {
-                this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
+                this.addFavoriteBtn?.icon?.setTint(getColor(R.color.accent_material_dark))
             } else {
-                this.addButton?.icon?.setTintList(null)
+                this.addFavoriteBtn?.icon?.setTintList(null)
             }
         }
     }

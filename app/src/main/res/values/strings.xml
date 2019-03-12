@@ -30,4 +30,16 @@
     <string name="size_label">Size:</string>
     <string name="special_abilities">Special Abilities:</string>
     <string name="title_activity_ability">AbilityActivity</string>
+    <string name="proficiencies">Proficiencies:</string>
+    <string name="subclasses">Subclasses:</string>
+    <string name="saving_throws">Saving Throws:</string>
+    <string name="hit_dice">Hit Dice:</string>
+    <string name="range">Range:</string>
+    <string name="components">Components:</string>
+    <string name="ritual">Ritual:</string>
+    <string name="material">Material:</string>
+    <string name="duration">Duration:</string>
+    <string name="concentration">Concentration:</string>
+    <string name="casting_time">Casting Time:</string>
+    <string name="level">Level:</string>
 </resources>

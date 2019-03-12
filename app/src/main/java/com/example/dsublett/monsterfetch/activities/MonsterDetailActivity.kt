@@ -2,7 +2,6 @@ package com.example.dsublett.monsterfetch.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.example.dsublett.monsterfetch.R
 import com.example.dsublett.monsterfetch.adapters.AbilityAdapter
@@ -21,16 +20,17 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.monster_detail)
 
-        this.collapsingToolbar.visibility = View.INVISIBLE
+        this.monsterCollapsingToolbar.visibility = View.INVISIBLE
+        this.monsterNestedScrollView.visibility = View.INVISIBLE
         this.initSharedPreferences()
 
         this.itemIndex =
             UrlParse.getIndex(this.intent.getParcelableExtra<ResponseItem>("responseItem").url)
 
         ServiceProxy.dndService.getMonster(this.itemIndex).then {
-            this.buildUI(it)
-            this.setSupportActionBar(this.toolbar)
+            this.setSupportActionBar(this.monsterToolbar)
             this.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            this.buildUI(it)
         }.catch {
             this.logFailure(it)
         }
@@ -38,11 +38,10 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
 
     private fun buildUI(details: ItemResponse?) {
         this.prepareUI()
-        this.nestedScrollView.visibility = View.INVISIBLE
 
         details as MonsterResponse
 
-        this.rvAbilityList.adapter = details?.specialAbilities?.let {
+        this.rvAbilityList.adapter = details.specialAbilities?.let {
             AbilityAdapter(
                 it,
                 object : AbilityAdapter.OnItemClickListener {
@@ -53,8 +52,7 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
             )
         }
 
-        this.toolbar.title = details.name
-        this.toolbar.subtitle = details.type
+        this.monsterToolbar.title = details.name
 
         this.monsterSize.text = details.size
         this.monsterAlignment.text = details.alignment
@@ -65,8 +63,8 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
         this.monsterStrength.text = details.strength.toString()
         this.monsterDexterity.text = details.dexterity.toString()
 
-        this.nestedScrollView.visibility = View.VISIBLE
-        this.collapsingToolbar.visibility = View.VISIBLE
+        this.monsterNestedScrollView.visibility = View.VISIBLE
+        this.monsterCollapsingToolbar.visibility = View.VISIBLE
     }
 
     fun showAbility(ability: Ability) {

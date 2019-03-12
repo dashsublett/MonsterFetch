@@ -1,189 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/spellDetailView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/labelName"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/name_label"
-        app:layout_constraintBottom_toTopOf="@id/labelDesc"
-        app:layout_constraintEnd_toStartOf="@id/spellName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/spellName"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellDesc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/spellCollapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@id/spellToolbar">
 
-    <TextView
-        android:id="@+id/labelDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/description_label"
-        app:layout_constraintBottom_toTopOf="@id/labelRange"
-        app:layout_constraintEnd_toStartOf="@id/spellDesc"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelName" />
+            <ImageView
+                android:id="@+id/spellDetailImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/spell_detail"
+                app:layout_collapseMode="parallax" />
 
-    <TextView
-        android:id="@+id/spellDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellRange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellName" />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/spellToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
 
-    <TextView
-        android:id="@+id/labelRange"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/range_label"
-        app:layout_constraintBottom_toTopOf="@id/labelComponents"
-        app:layout_constraintEnd_toStartOf="@id/spellRange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelDesc" />
 
-    <TextView
-        android:id="@+id/spellRange"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellComponents"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellDesc" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/labelComponents"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/components_label"
-        app:layout_constraintBottom_toTopOf="@id/labelRitual"
-        app:layout_constraintEnd_toStartOf="@id/spellComponents"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelRange" />
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/spellNestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/spellComponents"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellRitual"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellRange" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/labelRitual"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/ritual_label"
-        app:layout_constraintBottom_toTopOf="@id/labelDuration"
-        app:layout_constraintEnd_toStartOf="@id/spellRitual"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelComponents" />
+            <TextView
+                android:id="@+id/spellDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/spellRitual"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellDuration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellComponents" />
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/spellCardViewHolder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spellDescription">
 
-    <TextView
-        android:id="@+id/labelDuration"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/duration_label"
-        app:layout_constraintBottom_toTopOf="@id/labelConcentration"
-        app:layout_constraintEnd_toStartOf="@id/spellDuration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelRitual" />
+                <android.support.v7.widget.CardView
+                    android:id="@+id/spellCardView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:contentPaddingRight="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/spellCardView2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/spellDuration"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellConcentration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellRitual" />
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/labelConcentration"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/concentration_label"
-        app:layout_constraintBottom_toTopOf="@id/labelCastingTime"
-        app:layout_constraintEnd_toStartOf="@id/spellConcentration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelDuration" />
+                        <TextView
+                            android:id="@+id/labelRange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/range"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/labelComponents"
+                            app:layout_constraintEnd_toStartOf="@id/spellRange"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/spellConcentration"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellCastingTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellDuration" />
+                        <TextView
+                            android:id="@+id/spellRange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toTopOf="@id/spellComponents"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/labelRange"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/labelCastingTime"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/casting_time_label"
-        app:layout_constraintBottom_toTopOf="@id/labelLevel"
-        app:layout_constraintEnd_toStartOf="@id/spellCastingTime"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelConcentration" />
 
-    <TextView
-        android:id="@+id/spellCastingTime"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@id/spellLevel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellConcentration" />
+                        <TextView
+                            android:id="@+id/labelComponents"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/components"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/labelMaterial"
+                            app:layout_constraintEnd_toStartOf="@id/spellComponents"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelRange" />
 
-    <TextView
-        android:id="@+id/labelLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/level_label"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/spellLevel"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelCastingTime" />
+                        <TextView
+                            android:id="@+id/spellComponents"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toTopOf="@+id/spellMaterial"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/labelComponents"
+                            app:layout_constraintTop_toBottomOf="@id/spellRange" />
 
-    <TextView
-        android:id="@+id/spellLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spellCastingTime" />
 
-</android.support.constraint.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/labelMaterial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/material"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/labelRitual"
+                            app:layout_constraintEnd_toStartOf="@id/spellMaterial"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelComponents" />
+
+                        <TextView
+                            android:id="@+id/spellMaterial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toTopOf="@id/spellRitual"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/labelMaterial"
+                            app:layout_constraintTop_toBottomOf="@+id/labelComponents" />
+
+
+                        <TextView
+                            android:id="@+id/labelRitual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ritual"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/spellRitual"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelMaterial" />
+
+                        <TextView
+                            android:id="@+id/spellRitual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/labelRitual"
+                            app:layout_constraintTop_toBottomOf="@+id/spellMaterial" />
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/spellCardView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="8dp"
+                    app:contentPaddingRight="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/spellCardView1"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/labelDuration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/duration"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/labelConcentration"
+                            app:layout_constraintEnd_toStartOf="@id/spellDuration"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/spellDuration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toTopOf="@id/spellConcentration"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/labelDuration"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/labelConcentration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/concentration"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/labelCastingTime"
+                            app:layout_constraintEnd_toStartOf="@id/spellConcentration"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelDuration" />
+
+                        <TextView
+                            android:id="@+id/spellConcentration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toTopOf="@+id/spellCastingTime"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/labelConcentration"
+                            app:layout_constraintTop_toBottomOf="@id/spellDuration" />
+
+                        <TextView
+                            android:id="@+id/labelCastingTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/casting_time"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/labelLevel"
+                            app:layout_constraintEnd_toStartOf="@id/spellCastingTime"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelConcentration" />
+
+                        <TextView
+                            android:id="@+id/spellCastingTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toTopOf="@id/spellLevel"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/labelCastingTime"
+                            app:layout_constraintTop_toBottomOf="@+id/labelConcentration" />
+
+                        <TextView
+                            android:id="@+id/labelLevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/level"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/spellLevel"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/labelCastingTime" />
+
+                        <TextView
+                            android:id="@+id/spellLevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text=""
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/labelLevel"
+                            app:layout_constraintTop_toBottomOf="@+id/spellCastingTime" />
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

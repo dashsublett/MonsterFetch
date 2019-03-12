@@ -97,7 +97,17 @@ data class SpellResponse(
     val classes: List<ResponseItem>,
     val subclasses: List<ResponseItem>,
     val url: String
-) : ItemResponse
+) : ItemResponse {
+    companion object {
+        fun descAsString(inList: List<String>): String {
+            var retStr = ""
+            for(desc in inList) {
+                retStr += "$desc "
+            }
+            return retStr
+        }
+    }
+}
 
 
 // Supporting data classes
@@ -130,6 +140,16 @@ data class ResponseItem(val name: String, val url: String) : Parcelable {
 
         override fun newArray(size: Int): Array<ResponseItem?> {
             return arrayOfNulls(size)
+        }
+        fun stringOfNames(inList: List<ResponseItem>): String {
+            var retStr = ""
+            var i = 0
+            while(i < inList.size) {
+                retStr += "${inList[i].name}, "
+                ++i
+            }
+
+            return retStr.substring(0, retStr.length - 2)
         }
     }
 }

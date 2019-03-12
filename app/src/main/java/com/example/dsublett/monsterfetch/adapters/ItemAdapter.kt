@@ -10,7 +10,7 @@ import com.example.dsublett.monsterfetch.models.ResponseItem
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class ItemAdapter(private val responseItems: List<ResponseItem>,
-                  private val listener: OnItemClickListener) :
+                  private val listener: OnItemClickListener?) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -30,7 +30,7 @@ class ItemAdapter(private val responseItems: List<ResponseItem>,
         val tvItemName: TextView = itemView.itemName
         fun bind(responseItem: ResponseItem) {
             this.tvItemName.setOnClickListener {
-                this@ItemAdapter.listener.onItemClick(responseItem)
+                this@ItemAdapter.listener?.onItemClick(responseItem)
             }
         }
     }
