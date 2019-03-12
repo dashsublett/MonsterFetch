@@ -103,7 +103,7 @@ data class SpellResponse(
         for(desc in this.desc) {
             retStr += "$desc "
         }
-        return retStr
+        return retStr.replace("â€™", "'") //
     }
 }
 
