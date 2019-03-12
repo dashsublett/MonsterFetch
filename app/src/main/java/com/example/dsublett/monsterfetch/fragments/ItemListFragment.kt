@@ -35,11 +35,6 @@ abstract class ItemListFragment : Fragment() {
         this.loadingSpinner?.visibility = View.INVISIBLE
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        this.showable = (this.activity as? Showable)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,8 +49,13 @@ abstract class ItemListFragment : Fragment() {
         this.fetchData()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        this.showable = (this.activity as? Showable)
+    }
+
+    override fun onPause() {
+        super.onPause()
         this.loadingSpinner?.visibility = View.INVISIBLE
     }
 }
