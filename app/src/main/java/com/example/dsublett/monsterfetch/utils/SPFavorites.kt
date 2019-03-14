@@ -13,7 +13,8 @@ object SPFavorites {
 
     fun addIfNotFavorited(list: String, responseItem: String, prefs: SharedPreferences) {
         when {
-            !(isFavorited(list, responseItem, prefs)) -> this.addFavorite(list, responseItem, prefs)
+            !(this.isFavorited(list, responseItem, prefs)) ->
+                this.addFavorite(list, responseItem, prefs)
         }
     }
 
@@ -34,10 +35,11 @@ object SPFavorites {
                 this.updateFavorites(list, prefs, "[$responseItem]")
             }
             else -> {
-                val currentVal = prefs.getString(list, "")
-                this.updateFavorites(
-                    list, prefs, "${currentVal.slice(0..(currentVal.length - 2))},$responseItem]"
-                )
+                prefs.getString(list, "")?.let {
+                    this.updateFavorites(
+                        list, prefs, "${it.slice(0..(it.length - 2))},$responseItem]"
+                    )
+                }
             }
         }
 
