@@ -25,18 +25,20 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
         .build()
         .adapter(ResponseItem::class.java)
 
-    protected fun logFailure(t: Throwable) {
+    protected fun logFailure(t: Throwable) =
         Log.e("logFailure", "$t")
-    }
 
-    protected fun initSharedPreferences() {
-        this.sharedPreferences = this.getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)
-    }
+    protected fun initSharedPreferences() =
+        run {
+            this.sharedPreferences = this.getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)
+        }
 
-    protected fun prepareUI() {
-        this.detailItem = this.intent.getParcelableExtra("responseItem")
-        this.responseItemString = this.responseItemAdapter.toJson(this.detailItem)
-    }
+
+    protected fun prepareUI() =
+        run {
+            this.detailItem = this.intent.getParcelableExtra("responseItem")
+            this.responseItemString = this.responseItemAdapter.toJson(this.detailItem)
+        }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.action_bar, menu)

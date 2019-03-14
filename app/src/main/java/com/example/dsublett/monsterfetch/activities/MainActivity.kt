@@ -46,27 +46,24 @@ class MainActivity : AppCompatActivity(), Showable {
         }
     }
 
-    override fun showDetails(responseItem: ResponseItem) {
-        this.loadingSpinner.visibility = View.VISIBLE
-        val detailClass = when (UrlParse.getEndpoint(responseItem.url)) {
+    override fun showDetails(responseItem: ResponseItem) =
+        this.startActivity(Intent(this, when (UrlParse.getEndpoint(responseItem.url)) {
             "monsters" -> MonsterDetailActivity::class.java
             "classes" -> ClassDetailActivity::class.java
             "spells" -> SpellDetailActivity::class.java
             else -> throw Exception("That endpoint is invalid or has not been implemented yet.")
-        }
-        val theIntent = Intent(this, detailClass).apply {
+        }).apply {
             action = Intent.ACTION_VIEW
             putExtras(Bundle().apply { putParcelable("responseItem", responseItem) })
+        }).also {
+            this.loadingSpinner.visibility = View.VISIBLE
         }
-        this.startActivity(theIntent)
-    }
 
-    private fun replaceRvFragment(fragment: Fragment) {
+    private fun replaceRvFragment(fragment: Fragment) =
         this.supportFragmentManager
             .beginTransaction()
             .replace(R.id.listContainer, fragment)
             .commit()
-    }
 }
 
 interface Showable {

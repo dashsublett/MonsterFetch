@@ -6,32 +6,27 @@ import com.squareup.moshi.Moshi
 
 object SPFavorites {
     const val KEY = "com.example.dsublett.monsterfetch.sharedPreferences"
+    val favoritesListAdapter = Moshi
+        .Builder()
+        .build()
+        .adapter(FavoritesList::class.java)
+
     fun addIfNotFavorited(list: String, responseItem: String, prefs: SharedPreferences) {
         when {
-            isFavorited(list, responseItem, prefs) -> return // Remove favorite
-            else -> this.addFavorite(list, responseItem, prefs)
+            !(isFavorited(list, responseItem, prefs)) -> this.addFavorite(list, responseItem, prefs)
         }
     }
 
     fun isFavorited(list: String, responseItem: String, prefs: SharedPreferences): Boolean =
-        prefs.getString(list, "").contains(responseItem)
+        prefs.getString(list, "")?.contains(responseItem) ?: true
 
-    fun getFavorites(prefs: SharedPreferences?): FavoritesList {
-        val stringList = """
+    fun getFavorites(prefs: SharedPreferences?): FavoritesList =
+        this.favoritesListAdapter.fromJson("""
             {
                 "monsterFavorites":${prefs?.getString("monsterFavorites", "")},
                 "classFavorites":${prefs?.getString("classFavorites", "")},
                 "spellFavorites":${prefs?.getString("spellFavorites", "")}
-            }"""
-
-        val favoritesListAdapter = Moshi
-            .Builder()
-            .build()
-            .adapter(FavoritesList::class.java)
-
-        return favoritesListAdapter.fromJson(stringList)
-            ?: FavoritesList(emptyList(), emptyList(), emptyList())
-    }
+            }""") ?: FavoritesList(emptyList(), emptyList(), emptyList())
 
     private fun addFavorite(list: String, responseItem: String, prefs: SharedPreferences) =
         when {
@@ -46,7 +41,6 @@ object SPFavorites {
             }
         }
 
-    private fun updateFavorites(list: String, prefs: SharedPreferences, newString: String) {
+    private fun updateFavorites(list: String, prefs: SharedPreferences, newString: String) =
         prefs.edit().putString(list, newString).apply()
-    }
 }
