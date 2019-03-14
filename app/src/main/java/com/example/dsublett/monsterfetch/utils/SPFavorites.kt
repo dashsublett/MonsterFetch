@@ -2,11 +2,12 @@ package com.example.dsublett.monsterfetch.utils
 
 import android.content.SharedPreferences
 import com.example.dsublett.monsterfetch.models.FavoritesList
+import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
 object SPFavorites {
     const val KEY = "com.example.dsublett.monsterfetch.sharedPreferences"
-    val favoritesListAdapter = Moshi
+    private val favoritesListAdapter: JsonAdapter<FavoritesList> = Moshi
         .Builder()
         .build()
         .adapter(FavoritesList::class.java)
