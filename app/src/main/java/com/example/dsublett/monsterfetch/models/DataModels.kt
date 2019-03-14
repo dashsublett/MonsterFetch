@@ -100,10 +100,10 @@ data class SpellResponse(
 ) : ItemResponse {
     fun descAsString(): String {
         var retStr = ""
-        for(desc in this.desc) {
+        for (desc in this.desc) {
             retStr += "$desc "
         }
-        return retStr.replace("â€™", "'") // Replace with apostrophe
+        return retStr.replace("â€™", "'").replace("â€�", "").replace("â€œ", "")
     }
 }
 
@@ -127,22 +127,21 @@ data class ResponseItem(val name: String, val url: String) : Parcelable {
     override fun describeContents() = 0
 
     override fun writeToParcel(parcel: Parcel?, p1: Int) {
-        parcel?.writeString(this.name)
-        parcel?.writeString(this.url)
+        parcel?.let {
+            it.writeString(this.name)
+            it.writeString(this.url)
+        }
     }
 
     companion object CREATOR : Parcelable.Creator<ResponseItem> {
-        override fun createFromParcel(parcel: Parcel): ResponseItem {
-            return ResponseItem(parcel)
-        }
+        override fun createFromParcel(parcel: Parcel): ResponseItem = ResponseItem(parcel)
 
-        override fun newArray(size: Int): Array<ResponseItem?> {
-            return arrayOfNulls(size)
-        }
+        override fun newArray(size: Int): Array<ResponseItem?> = arrayOfNulls(size)
+
         fun stringOfNames(inList: List<ResponseItem>): String {
             var retStr = ""
             var i = 0
-            while(i < inList.size) {
+            while (i < inList.size) {
                 retStr += "${inList[i].name}, "
                 ++i
             }
