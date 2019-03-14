@@ -37,37 +37,37 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
         }
     }
 
-    private fun buildUI(details: ItemResponse?) {
-        this.prepareUI()
-
-        details as MonsterResponse
-
-        this.rvAbilityList.adapter = details.specialAbilities?.let {
-            AbilityAdapter(
-                it,
-                object : AbilityAdapter.OnItemClickListener {
-                    override fun onItemClick(ability: Ability) {
-                        this@MonsterDetailActivity.showAbility(ability)
+    private fun buildUI(details: ItemResponse?) =
+        this.run {
+            prepareUI()
+        }.apply {
+            details as MonsterResponse
+            rvAbilityList.adapter = details.specialAbilities?.let {
+                AbilityAdapter(
+                    it,
+                    object : AbilityAdapter.OnItemClickListener {
+                        override fun onItemClick(ability: Ability) {
+                            this@MonsterDetailActivity.showAbility(ability)
+                        }
                     }
-                }
-            )
+                )
+            }
+            monsterToolbar.title = details.name
+
+            monsterSize.text = details.size
+            monsterAlignment.text = details.alignment
+            monsterArmorClass.text = details.armorClass.toString()
+            monsterHitPoints.text = details.hitPoints.toString()
+            monsterHitDice.text = details.hitDice
+            monsterSpeed.text = details.speed
+            monsterStrength.text = details.strength.toString()
+            monsterDexterity.text = details.dexterity.toString()
+
+            monsterNestedScrollView.visibility = View.VISIBLE
+            monsterCollapsingToolbar.visibility = View.VISIBLE
+            monsterLoadingSpinner.visibility = View.INVISIBLE
         }
 
-        this.monsterToolbar.title = details.name
-
-        this.monsterSize.text = details.size
-        this.monsterAlignment.text = details.alignment
-        this.monsterArmorClass.text = details.armorClass.toString()
-        this.monsterHitPoints.text = details.hitPoints.toString()
-        this.monsterHitDice.text = details.hitDice
-        this.monsterSpeed.text = details.speed
-        this.monsterStrength.text = details.strength.toString()
-        this.monsterDexterity.text = details.dexterity.toString()
-
-        this.monsterNestedScrollView.visibility = View.VISIBLE
-        this.monsterCollapsingToolbar.visibility = View.VISIBLE
-        this.monsterLoadingSpinner.visibility = View.INVISIBLE
-    }
 
     fun showAbility(ability: Ability) {
         this.startActivity(Intent(this, AbilityActivity::class.java).apply {

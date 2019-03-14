@@ -35,21 +35,23 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
         }
     }
 
-    private fun buildUI(details: ItemResponse?) {
-        this.prepareUI()
+    private fun buildUI(details: ItemResponse?) =
+        this.run {
+            prepareUI()
+        }.apply {
 
-        details as ClassResponse
+            details as ClassResponse
 
-        this.rvProficiencyList.adapter = ProficiencyAdapter(details.proficiencies)
+            rvProficiencyList.adapter = ProficiencyAdapter(details.proficiencies)
 
-        this.classToolbar.title = details.name
+            classToolbar.title = details.name
 
-        this.classHitDice.text = details.hitDice
-        this.classSavingThrows.text = ResponseItem.stringOfNames(details.savingThrows)
-        this.classSubClasses.text = ResponseItem.stringOfNames(details.subclasses)
+            classHitDice.text = details.hitDice
+            classSavingThrows.text = ResponseItem.stringOfNames(details.savingThrows)
+            classSubClasses.text = ResponseItem.stringOfNames(details.subclasses)
 
-        this.classNestedScrollView.visibility = View.VISIBLE
-        this.classCollapsingToolbar.visibility = View.VISIBLE
-        this.classLoadingSpinner.visibility = View.INVISIBLE
-    }
+            classNestedScrollView.visibility = View.VISIBLE
+            classCollapsingToolbar.visibility = View.VISIBLE
+            classLoadingSpinner.visibility = View.INVISIBLE
+        }
 }

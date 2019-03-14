@@ -34,25 +34,26 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
         }
     }
 
-    private fun buildUI(details: ItemResponse?) {
-        this.prepareUI()
+    private fun buildUI(details: ItemResponse?) =
+        this.run {
+            prepareUI()
+        }.apply {
+            details as SpellResponse
 
-        details as SpellResponse
+            spellToolbar.title = details.name
 
-        this.spellToolbar.title = details.name
+            spellDescription.text = details.descAsString()
+            spellRange.text = details.range
+            spellComponents.text = details.components.toString()
+            spellMaterial.text = details.material
+            spellRitual.text = details.ritual
+            spellDuration.text = details.duration
+            spellConcentration.text = details.concentration
+            spellCastingTime.text = details.castingTime
+            spellLevel.text = details.level.toString()
 
-        this.spellDescription.text = details.descAsString()
-        this.spellRange.text = details.range
-        this.spellComponents.text = details.components.toString()
-        this.spellMaterial.text = details.material
-        this.spellRitual.text = details.ritual
-        this.spellDuration.text = details.duration
-        this.spellConcentration.text = details.concentration
-        this.spellCastingTime.text = details.castingTime
-        this.spellLevel.text = details.level.toString()
-
-        this.spellNestedScrollView.visibility = View.VISIBLE
-        this.spellCollapsingToolbar.visibility = View.VISIBLE
-        this.spellLoadingSpinner.visibility = View.INVISIBLE
-    }
+            spellNestedScrollView.visibility = View.VISIBLE
+            spellCollapsingToolbar.visibility = View.VISIBLE
+            spellLoadingSpinner.visibility = View.INVISIBLE
+        }
 }
