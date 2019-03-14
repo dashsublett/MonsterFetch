@@ -44,6 +44,7 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
         this.spellDescription.text = details.descAsString()
         this.spellRange.text = details.range
         this.spellComponents.text = details.components.toString()
+        this.spellMaterial.text = details.material
         this.spellRitual.text = details.ritual
         this.spellDuration.text = details.duration
         this.spellConcentration.text = details.concentration
