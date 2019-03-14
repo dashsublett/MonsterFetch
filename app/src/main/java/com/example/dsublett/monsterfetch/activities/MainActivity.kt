@@ -62,9 +62,10 @@ class MainActivity : AppCompatActivity(), Showable {
     }
 
     private fun replaceRvFragment(fragment: Fragment) {
-        val fragmentTransaction = this.supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.listContainer, fragment)
-        fragmentTransaction.commit()
+        this.supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.listContainer, fragment)
+            .commit()
     }
 }
 
