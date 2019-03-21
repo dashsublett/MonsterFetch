@@ -33,11 +33,11 @@ class AbilityAdapter(
 
     override fun getItemCount(): Int = this.abilities.size
 
-    inner class ViewHolder(abilityView: View) : RecyclerView.ViewHolder(abilityView) {
-        val tvAbilityName: TextView = abilityView.abilityName
-        val tvAbilityDesc: TextView = abilityView.abilityDesc
+    inner class ViewHolder(private val abilityView: View) : RecyclerView.ViewHolder(abilityView) {
+        val tvAbilityName: TextView = this.abilityView.abilityName
+        val tvAbilityDesc: TextView = this.abilityView.abilityDesc
         fun bind(ability: Ability?) =
-            this.tvAbilityName.setOnClickListener {
+            this.abilityView.setOnClickListener {
                 ability?.let {
                     this@AbilityAdapter.listener.onItemClick(it)
                 }

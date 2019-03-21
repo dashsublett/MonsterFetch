@@ -20,13 +20,13 @@ class MainActivity : AppCompatActivity(), Showable {
         this.setContentView(R.layout.activity_main)
 
         with(getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)) {
-            if (getString("monsterFavorites", "").isBlank()) {
+            if (getString("monsterFavorites", "")!!.isBlank()) {
                 edit().putString("monsterFavorites", "[]").apply()
             }
-            if (getString("classFavorites", "").isBlank()) {
+            if (getString("classFavorites", "")!!.isBlank()) {
                 edit().putString("classFavorites", "[]").apply()
             }
-            if (getString("spellFavorites", "").isBlank()) {
+            if (getString("spellFavorites", "")!!.isBlank()) {
                 edit().putString("spellFavorites", "[]").apply()
             }
         }
