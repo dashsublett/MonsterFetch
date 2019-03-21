@@ -12,8 +12,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
 class ItemAdapter(
     private val responseItems: List<ResponseItem>,
     private val listener: OnItemClickListener
-) :
-    RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(LayoutInflater
