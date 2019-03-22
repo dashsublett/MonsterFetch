@@ -18,6 +18,7 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.class_detail)
 
+        this.classNestedScrollView.visibility = View.INVISIBLE
         this.classCollapsingToolbar.visibility = View.INVISIBLE
         this.classLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
@@ -45,9 +46,15 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
 
             classToolbar.title = details.name
 
-            classHitDice.text = details.hitDice
-            classSavingThrows.text = ResponseItem.stringOfNames(details.savingThrows)
-            classSubClasses.text = ResponseItem.stringOfNames(details.subclasses)
+            classHitDice.text = getString(R.string.hit_dice_label, details.hitDice)
+            classSavingThrows.text = getString(
+                R.string.saving_throws,
+                ResponseItem.stringOfNames(details.savingThrows)
+            )
+            classSubClasses.text = getString(
+                R.string.subclasses,
+                ResponseItem.stringOfNames(details.subclasses)
+            )
 
             classNestedScrollView.visibility = View.VISIBLE
             classCollapsingToolbar.visibility = View.VISIBLE

@@ -80,40 +80,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/labelRange"
+                            android:id="@+id/spellRange"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
                             android:text="@string/range"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelComponents"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/spellRange"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
                             app:layout_constraintBottom_toTopOf="@id/spellComponents"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                        <TextView
-                            android:id="@+id/labelComponents"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/components"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelMaterial"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelRange" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/spellComponents"
@@ -121,23 +97,11 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toTopOf="@+id/spellMaterial"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/spellRange" />
-
-
-                        <TextView
-                            android:id="@+id/labelMaterial"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/material"
+                            android:text="@string/components"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelRitual"
+                            app:layout_constraintBottom_toTopOf="@id/spellMaterial"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelComponents" />
+                            app:layout_constraintTop_toBottomOf="@id/spellRange" />
 
                         <TextView
                             android:id="@+id/spellMaterial"
@@ -145,14 +109,14 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            android:text=""
+                            android:text="@string/material"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/spellRitual"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/spellComponents" />
-
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/spellComponents" />
 
                         <TextView
-                            android:id="@+id/labelRitual"
+                            android:id="@+id/spellRitual"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
@@ -161,18 +125,7 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelMaterial" />
-
-                        <TextView
-                            android:id="@+id/spellRitual"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/spellMaterial" />
+                            app:layout_constraintTop_toBottomOf="@id/spellMaterial" />
 
                     </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>
@@ -193,39 +146,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/labelDuration"
+                            android:id="@+id/spellDuration"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
                             android:text="@string/duration"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelConcentration"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/spellDuration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
                             app:layout_constraintBottom_toTopOf="@id/spellConcentration"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/labelConcentration"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/concentration"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelCastingTime"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelDuration" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/spellConcentration"
@@ -233,22 +163,11 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toTopOf="@+id/spellCastingTime"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/spellDuration" />
-
-                        <TextView
-                            android:id="@+id/labelCastingTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/casting_time"
+                            android:text="@string/concentration"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelLevel"
+                            app:layout_constraintBottom_toTopOf="@id/spellCastingTime"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelConcentration" />
+                            app:layout_constraintTop_toBottomOf="@id/spellDuration" />
 
                         <TextView
                             android:id="@+id/spellCastingTime"
@@ -256,13 +175,14 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            android:text=""
+                            android:text="@string/casting_time"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/spellLevel"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/labelConcentration" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/spellConcentration" />
 
                         <TextView
-                            android:id="@+id/labelLevel"
+                            android:id="@+id/spellLevel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
@@ -271,18 +191,7 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelCastingTime" />
-
-                        <TextView
-                            android:id="@+id/spellLevel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/spellCastingTime" />
+                            app:layout_constraintTop_toBottomOf="@id/spellCastingTime" />
 
                     </android.support.constraint.ConstraintLayout>
                 </android.support.v7.widget.CardView>

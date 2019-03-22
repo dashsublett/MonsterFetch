@@ -17,6 +17,7 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.spell_detail)
 
+        this.spellNestedScrollView.visibility = View.INVISIBLE
         this.spellCollapsingToolbar.visibility = View.INVISIBLE
         this.spellLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
@@ -42,14 +43,17 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
             spellToolbar.title = details.name
 
             spellDescription.text = details.descAsString()
-            spellRange.text = details.range
-            spellComponents.text = details.components.toString()
-            spellMaterial.text = details.material
-            spellRitual.text = details.ritual
-            spellDuration.text = details.duration
-            spellConcentration.text = details.concentration
-            spellCastingTime.text = details.castingTime
-            spellLevel.text = details.level.toString()
+            spellRange.text = getString(R.string.range_label, details.range)
+            spellComponents.text = getString(
+                R.string.components_label,
+                details.components.toString()
+            )
+            spellMaterial.text = getString(R.string.material, details.material)
+            spellRitual.text = getString(R.string.ritual_label, details.ritual)
+            spellDuration.text = getString(R.string.duration_label, details.duration)
+            spellConcentration.text = getString(R.string.concentration_label, details.concentration)
+            spellCastingTime.text = getString(R.string.casting_time_label, details.castingTime)
+            spellLevel.text = getString(R.string.level_label, details.level.toString())
 
             spellNestedScrollView.visibility = View.VISIBLE
             spellCollapsingToolbar.visibility = View.VISIBLE

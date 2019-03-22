@@ -76,40 +76,16 @@
 
 
                         <TextView
-                            android:id="@+id/labelSize"
+                            android:id="@+id/monsterSize"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
                             android:text="@string/size_label"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelAlignment"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/monsterSize"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
                             app:layout_constraintBottom_toTopOf="@id/monsterAlignment"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                        <TextView
-                            android:id="@+id/labelAlignment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/alignment_label"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelHitDice"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelSize" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/monsterAlignment"
@@ -117,23 +93,11 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toTopOf="@+id/monsterHitDice"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/monsterSize" />
-
-
-                        <TextView
-                            android:id="@+id/labelHitDice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/hit_dice_label"
+                            android:text="@string/alignment_label"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelArmorClass"
+                            app:layout_constraintBottom_toTopOf="@id/monsterHitDice"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelAlignment" />
+                            app:layout_constraintTop_toBottomOf="@id/monsterSize" />
 
                         <TextView
                             android:id="@+id/monsterHitDice"
@@ -141,14 +105,14 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            android:text=""
+                            android:text="@string/hit_dice_label"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/monsterArmorClass"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/labelAlignment" />
-
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/monsterAlignment" />
 
                         <TextView
-                            android:id="@+id/labelArmorClass"
+                            android:id="@+id/monsterArmorClass"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
@@ -157,19 +121,7 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelHitDice" />
-
-                        <TextView
-                            android:id="@+id/monsterArmorClass"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/monsterHitDice" />
-
+                            app:layout_constraintTop_toBottomOf="@id/monsterHitDice" />
 
                     </android.support.constraint.ConstraintLayout>
 
@@ -191,64 +143,28 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/labelHitPoints"
+                            android:id="@+id/monsterHitPoints"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
                             android:text="@string/hp_label"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelSpeed"
+                            app:layout_constraintBottom_toTopOf="@id/monsterSpeed"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/monsterHitPoints"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toTopOf="@id/monsterSpeed"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/labelSpeed"
+                            android:id="@+id/monsterSpeed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
                             android:text="@string/speed_label"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelStrength"
+                            app:layout_constraintBottom_toTopOf="@id/monsterStrength"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelHitPoints" />
-
-                        <TextView
-                            android:id="@+id/monsterSpeed"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:maxLines="1"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toTopOf="@+id/monsterStrength"
-                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/monsterHitPoints" />
-
-                        <TextView
-                            android:id="@+id/labelStrength"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/strength_label"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelDexterity"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelSpeed" />
 
                         <TextView
                             android:id="@+id/monsterStrength"
@@ -256,13 +172,14 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            android:text=""
+                            android:text="@string/strength_label"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/monsterDexterity"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/labelSpeed" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/monsterSpeed" />
 
                         <TextView
-                            android:id="@+id/labelDexterity"
+                            android:id="@+id/monsterDexterity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
@@ -271,18 +188,7 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelStrength" />
-
-                        <TextView
-                            android:id="@+id/monsterDexterity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text=""
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/monsterStrength" />
+                            app:layout_constraintTop_toBottomOf="@id/monsterStrength" />
 
                     </android.support.constraint.ConstraintLayout>
 

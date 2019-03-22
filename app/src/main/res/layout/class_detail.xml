@@ -66,38 +66,16 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/labelHitDice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/hit_dice"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelSavingThrows"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
                             android:id="@+id/classHitDice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
-                            app:layout_constraintBottom_toTopOf="@id/classSavingThrows"
-                            app:layout_constraintStart_toEndOf="@id/labelHitDice"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/labelSavingThrows"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            android:text="@string/saving_throws"
+                            android:text="@string/hit_dice_label"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/labelSubClasses"
+                            app:layout_constraintBottom_toTopOf="@id/classSavingThrows"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelHitDice" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/classSavingThrows"
@@ -105,12 +83,14 @@
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
                             android:paddingEnd="2dp"
+                            android:text="@string/saving_throws"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/classSubClasses"
-                            app:layout_constraintStart_toEndOf="@id/labelSavingThrows"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/classHitDice" />
 
                         <TextView
-                            android:id="@+id/labelSubClasses"
+                            android:id="@+id/classSubClasses"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="2dp"
@@ -119,16 +99,6 @@
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/labelSavingThrows" />
-
-                        <TextView
-                            android:id="@+id/classSubClasses"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/labelSubClasses"
                             app:layout_constraintTop_toBottomOf="@id/classSavingThrows" />
 
                     </android.support.constraint.ConstraintLayout>

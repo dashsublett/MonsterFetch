@@ -20,6 +20,7 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.monster_detail)
 
+        this.monsterNestedScrollView.visibility = View.INVISIBLE
         this.monsterCollapsingToolbar.visibility = View.INVISIBLE
         this.monsterLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
@@ -53,15 +54,20 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
             }
             monsterToolbar.title = details.name
 
-            monsterSize.text = details.size
-            monsterAlignment.text = details.alignment
-            monsterArmorClass.text = details.armorClass.toString()
-            monsterHitPoints.text = details.hitPoints.toString()
-            monsterHitDice.text = details.hitDice
-            monsterSpeed.text = details.speed
-            monsterStrength.text = details.strength.toString()
-            monsterDexterity.text = details.dexterity.toString()
-
+            monsterSize.text = getString(R.string.size_label, details.size)
+            monsterAlignment.text = getString(R.string.alignment_label, details.alignment)
+            monsterArmorClass.text = getString(
+                R.string.armor_class_label,
+                details.armorClass.toString()
+            )
+            monsterHitPoints.text = getString(R.string.hp_label, details.hitPoints.toString())
+            monsterHitDice.text = getString(R.string.hit_dice_label, details.hitDice)
+            monsterSpeed.text = getString(R.string.speed_label, details.speed)
+            monsterStrength.text = getString(R.string.strength_label, details.strength.toString())
+            monsterDexterity.text = getString(
+                R.string.dexterity_label,
+                details.dexterity.toString()
+            )
             monsterNestedScrollView.visibility = View.VISIBLE
             monsterCollapsingToolbar.visibility = View.VISIBLE
             monsterLoadingSpinner.visibility = View.INVISIBLE
