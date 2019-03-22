@@ -5,7 +5,6 @@
     <string name="spells">Spells</string>
     <string name="favorites">Favorites</string>
     <string name="hit_dice_label">Hit Dice:</string>
-    <string name="name_label">Name:</string>
     <string name="type_label">Type:</string>
     <string name="subtype_label">Subtype:</string>
     <string name="alignment_label">Alignment:</string>

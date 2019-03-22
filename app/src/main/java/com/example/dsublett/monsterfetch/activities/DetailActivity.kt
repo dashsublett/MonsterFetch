@@ -56,24 +56,38 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
                 this.sharedPreferences
             )
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                item.icon.setTint(getColor(R.color.accent_material_dark))
+                item.icon.setTint(getColor(R.color.colorAccent))
+            } else {
+                item.setIcon(R.drawable.addfavoritebtn_icon_tinted)
             }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setFavBtnTint() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (SPFavorites.isFavorited(
-                    this.spListName,
-                    this.responseItemString,
-                    this.sharedPreferences
-                )) {
-                this.addFavoriteBtn?.icon?.setTint(getColor(R.color.accent_material_dark))
-            } else {
-                this.addFavoriteBtn?.icon?.setTintList(null)
+    private fun setFavBtnTint() =
+        this.addFavoriteBtn?.let {
+            when {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ->
+                    if (SPFavorites.isFavorited(
+                            this.spListName,
+                            this.responseItemString,
+                            this.sharedPreferences
+                        )) {
+                        it.icon?.setTint(getColor(R.color.colorAccent))
+                    } else {
+                        it.icon?.setTintList(null)
+                    }
+                else ->
+                    if (SPFavorites.isFavorited(
+                            this.spListName,
+                            this.responseItemString,
+                            this.sharedPreferences
+                        )) {
+                        it.setIcon(R.drawable.addfavoritebtn_icon_tinted)
+                    } else {
+                        it.setIcon(R.drawable.addfavoritebtn_icon)
+                    }
             }
         }
-    }
 }
