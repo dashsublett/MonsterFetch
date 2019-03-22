@@ -21,7 +21,6 @@ class MonsterDetailActivity : DetailActivity("monsterFavorites") {
         this.setContentView(R.layout.monster_detail)
 
         this.monsterCollapsingToolbar.visibility = View.INVISIBLE
-        this.monsterNestedScrollView.visibility = View.INVISIBLE
         this.monsterLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
 

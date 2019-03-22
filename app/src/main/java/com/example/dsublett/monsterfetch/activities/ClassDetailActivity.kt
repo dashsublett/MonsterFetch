@@ -19,7 +19,6 @@ class ClassDetailActivity : DetailActivity("classFavorites") {
         this.setContentView(R.layout.class_detail)
 
         this.classCollapsingToolbar.visibility = View.INVISIBLE
-        this.classNestedScrollView.visibility = View.INVISIBLE
         this.classLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
 

@@ -17,7 +17,6 @@ class SpellDetailActivity : DetailActivity("spellFavorites") {
         super.onCreate(savedInstanceState)
         this.setContentView(R.layout.spell_detail)
 
-        this.spellNestedScrollView.visibility = View.INVISIBLE
         this.spellCollapsingToolbar.visibility = View.INVISIBLE
         this.spellLoadingSpinner.visibility = View.VISIBLE
         this.initSharedPreferences()
