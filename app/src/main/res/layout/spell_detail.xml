@@ -44,7 +44,9 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:id="@+id/spellDescription"
