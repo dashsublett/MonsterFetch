@@ -8,8 +8,8 @@ enum class ItemListType {
 }
 
 interface DndService {
-    fun getList(listType: ItemListType) : Promise<List<ResponseItem>>
-    fun getMonster(index: String) : Promise<MonsterResponse?>
-    fun getClass(index: String) : Promise<ClassResponse?>
-    fun getSpell(index: String) : Promise<SpellResponse?>
+    fun getList(listType: ItemListType): Promise<List<ResponseItem>>
+    fun getMonster(index: String): Promise<MonsterResponse?>
+    fun getClass(index: String): Promise<ClassResponse?>
+    fun getSpell(index: String): Promise<SpellResponse?>
 }

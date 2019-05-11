@@ -18,30 +18,32 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
     private lateinit var detailItem: ResponseItem
     private lateinit var responseItemString: String
     private lateinit var sharedPreferences: SharedPreferences
-    private var addButton: MenuItem? = null
+    private var addFavoriteBtn: MenuItem? = null
 
     private val responseItemAdapter: JsonAdapter<ResponseItem> = Moshi
         .Builder()
         .build()
         .adapter(ResponseItem::class.java)
 
-    protected fun logFailure(t: Throwable) {
-        Log.d("logFailure", "$t")
-    }
+    protected fun logFailure(t: Throwable) =
+        Log.e("logFailure", "$t")
 
-    protected fun initSharedPreferences() {
-        this.sharedPreferences = this.getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)
-    }
+    protected fun initSharedPreferences() =
+        run {
+            this.sharedPreferences = this.getSharedPreferences(SPFavorites.KEY, Context.MODE_PRIVATE)
+        }
 
-    protected fun prepareUI() {
-        this.detailItem = this.intent.getParcelableExtra("responseItem")
-        this.responseItemString = this.responseItemAdapter.toJson(this.detailItem)
-        this.setTintOnCreate()
-    }
+
+    protected fun prepareUI() =
+        run {
+            this.detailItem = this.intent.getParcelableExtra("responseItem")
+            this.responseItemString = this.responseItemAdapter.toJson(this.detailItem)
+        }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.action_bar, menu)
-        this.addButton = menu?.findItem(R.id.addFavoriteBtn)
+        this.addFavoriteBtn = menu?.findItem(R.id.addFavoriteBtn)
+        this.setFavBtnTint()
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -54,24 +56,38 @@ abstract class DetailActivity(private val spListName: String) : AppCompatActivit
                 this.sharedPreferences
             )
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                item.icon.setTint(getColor(R.color.accent_material_dark))
+                item.icon.setTint(getColor(R.color.colorAccent))
+            } else {
+                item.setIcon(R.drawable.addfavoritebtn_icon_tinted)
             }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setTintOnCreate() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            if (SPFavorites.isFavorited(
-                    this.spListName,
-                    this.responseItemString,
-                    this.sharedPreferences
-                )) {
-                this.addButton?.icon?.setTint(getColor(R.color.accent_material_dark))
-            } else {
-                this.addButton?.icon?.setTintList(null)
+    private fun setFavBtnTint() =
+        this.addFavoriteBtn?.let {
+            when {
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ->
+                    if (SPFavorites.isFavorited(
+                            this.spListName,
+                            this.responseItemString,
+                            this.sharedPreferences
+                        )) {
+                        it.icon?.setTint(getColor(R.color.colorAccent))
+                    } else {
+                        it.icon?.setTintList(null)
+                    }
+                else ->
+                    if (SPFavorites.isFavorited(
+                            this.spListName,
+                            this.responseItemString,
+                            this.sharedPreferences
+                        )) {
+                        it.setIcon(R.drawable.addfavoritebtn_icon_tinted)
+                    } else {
+                        it.setIcon(R.drawable.addfavoritebtn_icon)
+                    }
             }
         }
-    }
 }

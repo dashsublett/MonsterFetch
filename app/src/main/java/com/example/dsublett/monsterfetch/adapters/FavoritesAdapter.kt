@@ -12,8 +12,10 @@ import com.example.dsublett.monsterfetch.models.FavoriteItem
 import com.example.dsublett.monsterfetch.models.FavoriteType
 import com.example.dsublett.monsterfetch.models.ResponseItem
 
-class FavoritesAdapter(private val favoritesList: List<FavoriteItem>,
-                       private val listener: OnItemClickListener) :
+class FavoritesAdapter(
+    private val favoritesList: List<FavoriteItem>,
+    private val listener: OnItemClickListener
+) :
     RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -28,13 +30,16 @@ class FavoritesAdapter(private val favoritesList: List<FavoriteItem>,
                 }
             }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val favoriteItem = this.favoritesList[position]
-        holder.tvItemName.text = favoriteItem.label
-        if (favoriteItem.type == FavoriteType.Favorite) {
-            holder.bind(this.favoritesList[position].data)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        this.favoritesList[position].let {
+            holder.apply {
+                tvItemName.text = it.label
+            }.run {
+                if (it.type == FavoriteType.Favorite) {
+                    holder.bind(it.data)
+                }
+            }
         }
-    }
 
     override fun getItemCount(): Int = this.favoritesList.size
 
@@ -42,14 +47,13 @@ class FavoritesAdapter(private val favoritesList: List<FavoriteItem>,
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvItemName: TextView = itemView.findViewById(R.id.itemName)
-        fun bind(responseItem: ResponseItem?) {
+        fun bind(responseItem: ResponseItem?) =
             this.tvItemName.setOnClickListener {
                 responseItem?.let {
                     this@FavoritesAdapter.listener.onItemClick(it)
                 }
             }
         }
-    }
 
     interface OnItemClickListener {
         fun onItemClick(responseItem: ResponseItem)

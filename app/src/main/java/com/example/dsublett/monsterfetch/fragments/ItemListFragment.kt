@@ -35,24 +35,23 @@ abstract class ItemListFragment : Fragment() {
         this.loadingSpinner?.visibility = View.INVISIBLE
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        this.showable = (this.activity as? Showable)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater
+    ): View? =
+        inflater
             .inflate(R.layout.item_list, container, false)
             .apply { this.loadingSpinner.visibility = View.VISIBLE }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.fetchData()
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        this.showable = (this.activity as? Showable)
     }
 
     override fun onPause() {
